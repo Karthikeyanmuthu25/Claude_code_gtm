@@ -1,0 +1,1183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zinance Market Sizing Report — March 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0a0f1e;
+    --navy-mid: #111827;
+    --navy-soft: #1e2a3a;
+    --accent: #00e5b4;
+    --accent2: #4f8ef7;
+    --accent3: #a78bfa;
+    --white: #ffffff;
+    --off-white: #f0f4ff;
+    --muted: #64748b;
+    --border: rgba(255,255,255,0.08);
+    --card-bg: rgba(255,255,255,0.04);
+    --font-display: 'DM Serif Display', Georgia, serif;
+    --font-body: 'DM Sans', system-ui, sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { font-size: 16px; }
+
+  body {
+    background: var(--navy);
+    color: var(--white);
+    font-family: var(--font-body);
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* ── PAGE SHELL ── */
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 0 auto 2mm;
+    background: var(--navy);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    padding: 14mm 16mm 12mm;
+  }
+
+  /* subtle grid texture */
+  .page::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,229,180,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,229,180,0.03) 1px, transparent 1px);
+    background-size: 32px 32px;
+    pointer-events: none;
+  }
+
+  /* glow blob */
+  .blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    pointer-events: none;
+  }
+
+  /* ── HEADER ── */
+  .report-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 10mm;
+    position: relative;
+    z-index: 2;
+  }
+
+  .brand-mark {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .brand-icon {
+    width: 36px;
+    height: 36px;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--navy);
+    font-family: var(--font-display);
+    letter-spacing: -1px;
+  }
+
+  .brand-name {
+    font-family: var(--font-display);
+    font-size: 20px;
+    color: var(--white);
+    letter-spacing: -0.3px;
+  }
+
+  .report-meta {
+    text-align: right;
+  }
+
+  .report-meta .label {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  .report-meta .date {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+
+  /* ── TITLE BLOCK ── */
+  .title-block {
+    position: relative;
+    z-index: 2;
+    margin-bottom: 8mm;
+  }
+
+  .title-block h1 {
+    font-family: var(--font-display);
+    font-size: 36px;
+    line-height: 1.1;
+    color: var(--white);
+    letter-spacing: -1px;
+  }
+
+  .title-block h1 em {
+    font-style: italic;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .title-block .subtitle {
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 6px;
+    font-weight: 400;
+    letter-spacing: 0.2px;
+  }
+
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, var(--accent), transparent);
+    margin: 6mm 0;
+    opacity: 0.5;
+  }
+
+  /* ── COMPANY DESCRIPTION ── */
+  .company-desc {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 11.5px;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.75);
+    margin-bottom: 7mm;
+    position: relative;
+    z-index: 2;
+  }
+
+  .company-desc strong { color: var(--accent); font-weight: 600; }
+
+  /* ── TWO COLUMN ── */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5mm;
+    margin-bottom: 7mm;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* ── TARGET PROFILE ── */
+  .target-profile {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 14px;
+  }
+
+  .section-label {
+    font-size: 9px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .profile-row {
+    display: flex;
+    gap: 8px;
+    padding: 5px 0;
+    border-bottom: 1px solid var(--border);
+    align-items: flex-start;
+  }
+
+  .profile-row:last-child { border-bottom: none; }
+
+  .profile-key {
+    font-size: 10px;
+    color: var(--muted);
+    font-weight: 500;
+    min-width: 60px;
+    padding-top: 1px;
+  }
+
+  .profile-val {
+    font-size: 10.5px;
+    color: var(--off-white);
+    font-weight: 400;
+    line-height: 1.4;
+  }
+
+  /* ── TAILWINDS ── */
+  .tailwinds {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 14px;
+  }
+
+  .tailwind-item {
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+    padding: 4px 0;
+  }
+
+  .tw-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--accent);
+    margin-top: 5px;
+    flex-shrink: 0;
+  }
+
+  .tw-text {
+    font-size: 10px;
+    color: rgba(255,255,255,0.72);
+    line-height: 1.5;
+  }
+
+  .tw-text strong { color: var(--accent); font-weight: 600; }
+
+  /* ── METRIC CARDS ── */
+  .metrics-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 4mm;
+    margin-bottom: 7mm;
+    position: relative;
+    z-index: 2;
+  }
+
+  .metric-card {
+    border-radius: 12px;
+    padding: 12px;
+    border: 1px solid;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .metric-card.tam {
+    background: linear-gradient(135deg, rgba(0,229,180,0.12), rgba(0,229,180,0.04));
+    border-color: rgba(0,229,180,0.3);
+  }
+
+  .metric-card.sam {
+    background: linear-gradient(135deg, rgba(79,142,247,0.12), rgba(79,142,247,0.04));
+    border-color: rgba(79,142,247,0.3);
+  }
+
+  .metric-card.som3 {
+    background: linear-gradient(135deg, rgba(167,139,250,0.12), rgba(167,139,250,0.04));
+    border-color: rgba(167,139,250,0.3);
+  }
+
+  .metric-card.som5 {
+    background: linear-gradient(135deg, rgba(251,191,36,0.12), rgba(251,191,36,0.04));
+    border-color: rgba(251,191,36,0.3);
+  }
+
+  .metric-tag {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .tam .metric-tag { color: var(--accent); }
+  .sam .metric-tag { color: var(--accent2); }
+  .som3 .metric-tag { color: var(--accent3); }
+  .som5 .metric-tag { color: #fbbf24; }
+
+  .metric-value {
+    font-family: var(--font-display);
+    font-size: 26px;
+    line-height: 1;
+    letter-spacing: -1px;
+    color: var(--white);
+    margin-bottom: 4px;
+  }
+
+  .metric-sub {
+    font-size: 9.5px;
+    color: var(--muted);
+    line-height: 1.4;
+  }
+
+  /* ── FUNNEL ── */
+  .funnel-section {
+    position: relative;
+    z-index: 2;
+    margin-bottom: 4mm;
+  }
+
+  .funnel-bar-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .funnel-bar-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .funnel-label {
+    font-size: 10px;
+    font-weight: 600;
+    min-width: 38px;
+    letter-spacing: 0.5px;
+  }
+
+  .funnel-track {
+    flex: 1;
+    height: 18px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .funnel-fill {
+    height: 100%;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    padding-left: 8px;
+    font-size: 9px;
+    font-weight: 600;
+    color: var(--navy);
+    white-space: nowrap;
+  }
+
+  .funnel-fill.tam { background: linear-gradient(90deg, var(--accent), #00b090); width: 100%; }
+  .funnel-fill.sam { background: linear-gradient(90deg, var(--accent2), #2563eb); width: 18%; }
+  .funnel-fill.som { background: linear-gradient(90deg, var(--accent3), #7c3aed); width: 1.8%; }
+
+  .funnel-amount {
+    font-size: 10px;
+    font-weight: 700;
+    min-width: 50px;
+    text-align: right;
+  }
+
+  .tam .funnel-amount { color: var(--accent); }
+  .sam-row .funnel-amount { color: var(--accent2); }
+  .som-row .funnel-amount { color: var(--accent3); }
+
+  /* ── FOOTER ── */
+  .page-footer {
+    margin-top: auto;
+    padding-top: 6mm;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--border);
+    position: relative;
+    z-index: 2;
+  }
+
+  .footer-conf {
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 500;
+  }
+
+  .footer-pg {
+    font-size: 9px;
+    color: var(--muted);
+  }
+
+  /* ══════════════════════════════
+     PAGE 2 STYLES
+  ══════════════════════════════ */
+
+  .page2-title {
+    position: relative;
+    z-index: 2;
+    margin-bottom: 7mm;
+  }
+
+  .page2-title h2 {
+    font-family: var(--font-display);
+    font-size: 28px;
+    letter-spacing: -0.8px;
+    color: var(--white);
+  }
+
+  .page2-title h2 em {
+    font-style: italic;
+    color: var(--accent2);
+  }
+
+  .page2-title p {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+
+  /* market section block */
+  .market-section {
+    margin-bottom: 6mm;
+    position: relative;
+    z-index: 2;
+  }
+
+  .ms-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+
+  .ms-badge {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    text-transform: uppercase;
+  }
+
+  .ms-badge.tam { background: rgba(0,229,180,0.15); color: var(--accent); border: 1px solid rgba(0,229,180,0.3); }
+  .ms-badge.sam { background: rgba(79,142,247,0.15); color: var(--accent2); border: 1px solid rgba(79,142,247,0.3); }
+  .ms-badge.som { background: rgba(167,139,250,0.15); color: var(--accent3); border: 1px solid rgba(167,139,250,0.3); }
+
+  .ms-headline {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--white);
+  }
+
+  .ms-big {
+    font-family: var(--font-display);
+    font-size: 22px;
+    letter-spacing: -0.5px;
+  }
+
+  .tam .ms-big { color: var(--accent); }
+  .sam .ms-big { color: var(--accent2); }
+  .som .ms-big { color: var(--accent3); }
+
+  .ms-body {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 14px;
+  }
+
+  .ms-definition {
+    font-size: 11px;
+    color: rgba(255,255,255,0.6);
+    font-style: italic;
+    margin-bottom: 8px;
+    line-height: 1.5;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 6px;
+  }
+
+  .ms-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .ms-bullets li {
+    font-size: 10.5px;
+    color: rgba(255,255,255,0.72);
+    padding-left: 14px;
+    position: relative;
+    line-height: 1.5;
+  }
+
+  .ms-bullets li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 9px;
+    top: 1px;
+  }
+
+  .ms-bullets li strong { color: var(--white); font-weight: 600; }
+
+  /* competitor table */
+  .comp-section {
+    position: relative;
+    z-index: 2;
+    margin-bottom: 6mm;
+  }
+
+  .comp-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 10px;
+  }
+
+  .comp-table th {
+    background: rgba(255,255,255,0.06);
+    padding: 7px 10px;
+    text-align: left;
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 600;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .comp-table td {
+    padding: 7px 10px;
+    border-bottom: 1px solid var(--border);
+    color: rgba(255,255,255,0.75);
+    vertical-align: top;
+    line-height: 1.4;
+  }
+
+  .comp-table tr:last-child td { border-bottom: none; }
+  .comp-table tr:hover td { background: rgba(255,255,255,0.02); }
+  .comp-table .co-name { color: var(--white); font-weight: 600; }
+  .comp-table .shut { color: #f87171; font-size: 9px; }
+
+  /* why wins */
+  .wins-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4mm;
+    position: relative;
+    z-index: 2;
+  }
+
+  .win-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 12px;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+
+  .win-icon {
+    font-size: 16px;
+    line-height: 1;
+    margin-top: 1px;
+  }
+
+  .win-text {
+    font-size: 10px;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.5;
+  }
+
+  .win-text strong { color: var(--white); font-weight: 600; display: block; margin-bottom: 2px; }
+
+  /* ══════════════════════════════
+     PAGE 3 STYLES
+  ══════════════════════════════ */
+
+  .assumptions-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 10.5px;
+    margin-bottom: 8mm;
+    position: relative;
+    z-index: 2;
+  }
+
+  .assumptions-table th {
+    background: rgba(0,229,180,0.08);
+    padding: 8px 12px;
+    text-align: left;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 700;
+    border-bottom: 1px solid rgba(0,229,180,0.2);
+  }
+
+  .assumptions-table td {
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+
+  .assumptions-table td:first-child {
+    color: var(--muted);
+    font-size: 10px;
+    min-width: 200px;
+    font-weight: 500;
+  }
+
+  .assumptions-table td:last-child {
+    color: var(--white);
+    font-weight: 500;
+  }
+
+  .assumptions-table tr:last-child td { border-bottom: none; }
+
+  .sources-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3mm;
+    position: relative;
+    z-index: 2;
+  }
+
+  .source-item {
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+    padding: 6px 0;
+  }
+
+  .src-num {
+    font-size: 9px;
+    font-weight: 700;
+    color: var(--accent);
+    min-width: 18px;
+    margin-top: 1px;
+  }
+
+  .src-text {
+    font-size: 10px;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.4;
+  }
+
+  .src-text strong { color: rgba(255,255,255,0.85); font-weight: 500; }
+
+  /* projection box */
+  .projection-box {
+    background: linear-gradient(135deg, rgba(0,229,180,0.08), rgba(79,142,247,0.08));
+    border: 1px solid rgba(0,229,180,0.2);
+    border-radius: 12px;
+    padding: 14px 18px;
+    margin-bottom: 7mm;
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+    text-align: center;
+  }
+
+  .proj-item .proj-label {
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  .proj-item .proj-val {
+    font-family: var(--font-display);
+    font-size: 20px;
+    letter-spacing: -0.5px;
+  }
+
+  .proj-item:nth-child(1) .proj-val { color: var(--accent); }
+  .proj-item:nth-child(2) .proj-val { color: var(--accent2); }
+  .proj-item:nth-child(3) .proj-val { color: #fbbf24; }
+
+  .proj-item .proj-note {
+    font-size: 9px;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+
+  /* print */
+  @media print {
+    body { background: #0a0f1e; margin: 0; }
+    .page { margin: 0; page-break-after: always; page-break-inside: avoid; }
+    .page:last-child { page-break-after: auto; }
+    @page { size: A4; margin: 0; }
+  }
+
+  @media screen {
+    body { padding: 20px 0; }
+    .page { box-shadow: 0 20px 60px rgba(0,0,0,0.5); margin-bottom: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════
+     PAGE 1 — MARKET SIZING SNAPSHOT
+═══════════════════════════════════════ -->
+<div class="page">
+  <!-- bg blobs -->
+  <div class="blob" style="width:300px;height:300px;background:rgba(0,229,180,0.06);top:-80px;right:-60px;"></div>
+  <div class="blob" style="width:250px;height:250px;background:rgba(79,142,247,0.05);bottom:40px;left:-80px;"></div>
+
+  <!-- header -->
+  <div class="report-header">
+    <div class="brand-mark">
+      <div class="brand-icon">Z</div>
+      <span class="brand-name">Zinance</span>
+    </div>
+    <div class="report-meta">
+      <div class="label">Market Sizing Report</div>
+      <div class="date">March 2026 &nbsp;·&nbsp; United States</div>
+    </div>
+  </div>
+
+  <!-- title -->
+  <div class="title-block">
+    <h1>US Market <em>Opportunity</em><br>for Zinance</h1>
+    <p class="subtitle">SaaS · Startups · E-commerce &nbsp;—&nbsp; Seed through Series B</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- description -->
+  <div class="company-desc">
+    <strong>Zinance</strong> is the #1 back office for fast-growing companies — handling bookkeeping, taxes, CFO &amp; finance operations end-to-end. Clients save <strong>50+ hours</strong> and <strong>$20K every month</strong> vs. hiring in-house.
+  </div>
+
+  <!-- metric cards -->
+  <div class="metrics-row">
+    <div class="metric-card tam">
+      <div class="metric-tag">TAM</div>
+      <div class="metric-value">$17.3B</div>
+      <div class="metric-sub">Total US Market<br>~6.5M businesses</div>
+    </div>
+    <div class="metric-card sam">
+      <div class="metric-tag">SAM</div>
+      <div class="metric-value">$3.1B</div>
+      <div class="metric-sub">Target Segment<br>~65,000 companies</div>
+    </div>
+    <div class="metric-card som3">
+      <div class="metric-tag">SOM · Yr 3</div>
+      <div class="metric-value">$62M</div>
+      <div class="metric-sub">ARR Opportunity<br>~1,300 clients</div>
+    </div>
+    <div class="metric-card som5">
+      <div class="metric-tag">SOM · Yr 5</div>
+      <div class="metric-value">$144M</div>
+      <div class="metric-sub">ARR Opportunity<br>~3,000 clients</div>
+    </div>
+  </div>
+
+  <!-- two col: profile + tailwinds -->
+  <div class="two-col">
+    <div class="target-profile">
+      <div class="section-label">Target Customer Profile</div>
+      <div class="profile-row">
+        <span class="profile-key">Who</span>
+        <span class="profile-val">Founders, CEOs &amp; operators at startups + SMBs</span>
+      </div>
+      <div class="profile-row">
+        <span class="profile-key">Stage</span>
+        <span class="profile-val">Seed through Series B</span>
+      </div>
+      <div class="profile-row">
+        <span class="profile-key">Size</span>
+        <span class="profile-val">10 – 200 employees</span>
+      </div>
+      <div class="profile-row">
+        <span class="profile-key">Industry</span>
+        <span class="profile-val">Tech, SaaS, E-commerce &amp; high-growth sectors</span>
+      </div>
+      <div class="profile-row">
+        <span class="profile-key">Location</span>
+        <span class="profile-val">US-based businesses</span>
+      </div>
+    </div>
+
+    <div class="tailwinds">
+      <div class="section-label">Market Tailwinds</div>
+      <div class="tailwind-item">
+        <div class="tw-dot"></div>
+        <div class="tw-text">US FAO market growing at <strong>8.9% CAGR</strong> through 2030</div>
+      </div>
+      <div class="tailwind-item">
+        <div class="tw-dot"></div>
+        <div class="tw-text"><strong>Bench shut down late 2024</strong> — displacing 10,000+ customers</div>
+      </div>
+      <div class="tailwind-item">
+        <div class="tw-dot"></div>
+        <div class="tw-text">Fractional CFO demand <strong>surged 103%</strong> in recent years</div>
+      </div>
+      <div class="tailwind-item">
+        <div class="tw-dot"></div>
+        <div class="tw-text"><strong>7,500–8,700 new VC-backed</strong> US startups funded every year</div>
+      </div>
+      <div class="tailwind-item">
+        <div class="tw-dot"></div>
+        <div class="tw-text">AI-native delivery enables <strong>lower cost, higher margins</strong> vs. legacy firms</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- funnel -->
+  <div class="funnel-section">
+    <div class="section-label" style="margin-bottom:6px;">Market Funnel</div>
+    <div class="funnel-bar-wrap">
+      <div class="funnel-bar-row tam">
+        <span class="funnel-label" style="color:var(--accent);">TAM</span>
+        <div class="funnel-track">
+          <div class="funnel-fill tam">$17.3B · All US outsourced finance &amp; accounting</div>
+        </div>
+        <span class="funnel-amount" style="color:var(--accent);">$17.3B</span>
+      </div>
+      <div class="funnel-bar-row sam-row">
+        <span class="funnel-label" style="color:var(--accent2);">SAM</span>
+        <div class="funnel-track">
+          <div class="funnel-fill sam">$3.1B</div>
+        </div>
+        <span class="funnel-amount" style="color:var(--accent2);">$3.1B</span>
+      </div>
+      <div class="funnel-bar-row som-row">
+        <span class="funnel-label" style="color:var(--accent3);">SOM</span>
+        <div class="funnel-track">
+          <div class="funnel-fill som"></div>
+        </div>
+        <span class="funnel-amount" style="color:var(--accent3);">$144M</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- footer -->
+  <div class="page-footer">
+    <span class="footer-conf">Confidential &nbsp;·&nbsp; Zinance</span>
+    <span class="footer-pg">Page 1 of 3</span>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════
+     PAGE 2 — BREAKDOWN & METHODOLOGY
+═══════════════════════════════════════ -->
+<div class="page">
+  <div class="blob" style="width:280px;height:280px;background:rgba(79,142,247,0.06);top:-60px;right:-40px;"></div>
+  <div class="blob" style="width:200px;height:200px;background:rgba(167,139,250,0.05);bottom:60px;left:-50px;"></div>
+
+  <div class="report-header">
+    <div class="brand-mark">
+      <div class="brand-icon">Z</div>
+      <span class="brand-name">Zinance</span>
+    </div>
+    <div class="report-meta">
+      <div class="label">Market Breakdown</div>
+      <div class="date">March 2026 &nbsp;·&nbsp; United States</div>
+    </div>
+  </div>
+
+  <div class="page2-title">
+    <h2>Understanding the <em>Numbers</em></h2>
+    <p>A plain-language breakdown of TAM, SAM, and SOM — and what they mean for Zinance</p>
+  </div>
+
+  <!-- TAM -->
+  <div class="market-section">
+    <div class="ms-header">
+      <span class="ms-badge tam">TAM</span>
+      <span class="ms-headline">Total Addressable Market &nbsp;·&nbsp; <span class="ms-big tam">$17.3B</span></span>
+    </div>
+    <div class="ms-body">
+      <div class="ms-definition">"The total size of the entire market Zinance could serve if it reached every possible customer in the US."</div>
+      <ul class="ms-bullets">
+        <li>Covers the entire <strong>US Finance &amp; Accounting Outsourcing industry</strong> — bookkeeping, tax compliance, CFO services, and financial ops</li>
+        <li>~<strong>6.5 million US businesses</strong> fall into this category (SBA 2024 data)</li>
+        <li>The market is currently worth <strong>$17.3 billion</strong> and growing at <strong>8.9% per year</strong></li>
+        <li>Projected to reach <strong>$29B+ by 2030</strong> — driven by AI, talent scarcity, and variable-cost preferences</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- SAM -->
+  <div class="market-section">
+    <div class="ms-header">
+      <span class="ms-badge sam">SAM</span>
+      <span class="ms-headline">Serviceable Addressable Market &nbsp;·&nbsp; <span class="ms-big sam">$3.1B</span></span>
+    </div>
+    <div class="ms-body">
+      <div class="ms-definition">"The slice of the total market that Zinance can realistically target, given who they actually serve."</div>
+      <ul class="ms-bullets">
+        <li>Filtered to <strong>US companies in tech, SaaS, and e-commerce only</strong> — with 10 to 200 employees</li>
+        <li><strong>Group 1:</strong> 18,000–25,000 VC-backed startups actively funded at seed–Series B</li>
+        <li><strong>Group 2:</strong> 90,000–100,000 high-growth bootstrapped SaaS &amp; e-commerce companies</li>
+        <li>Removed ~40–45% unlikely to switch to an outsourced model → leaves <strong>~65,000 reachable companies</strong></li>
+        <li>At <strong>$4,000/month average contract value</strong> ($48K/year), this equals a <strong>$3.1B opportunity</strong></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- SOM -->
+  <div class="market-section" style="margin-bottom:5mm;">
+    <div class="ms-header">
+      <span class="ms-badge som">SOM</span>
+      <span class="ms-headline">Serviceable Obtainable Market &nbsp;·&nbsp; <span class="ms-big som">$62M → $144M ARR</span></span>
+    </div>
+    <div class="ms-body">
+      <div class="ms-definition">"The realistic revenue Zinance can actually win in the next 3–5 years."</div>
+      <ul class="ms-bullets">
+        <li>Benchmarked against <strong>Pilot.com</strong> — best-funded competitor ($222M raised, ~1,000 clients, ~$27M ARR after 7 years)</li>
+        <li>Zinance needs just <strong>2% of SAM by Year 3</strong> and <strong>4.6% by Year 5</strong> — conservative targets</li>
+        <li><strong>Year 3:</strong> 1,300 clients × $48K/year = <strong>$62M ARR</strong></li>
+        <li><strong>Year 5:</strong> 3,000 clients × $48K/year = <strong>$144M ARR</strong></li>
+        <li>Bench's 2024 exit <strong>freed up 10,000+ displaced customers</strong> — immediate market opportunity</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- competitor table -->
+  <div class="comp-section">
+    <div class="section-label" style="margin-bottom:6px;">Competitive Landscape</div>
+    <table class="comp-table">
+      <thead>
+        <tr>
+          <th>Competitor</th>
+          <th>Funding</th>
+          <th>Est. ARR</th>
+          <th>Est. Customers</th>
+          <th>Positioning</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="co-name">Pilot.com</td>
+          <td>$222M</td>
+          <td>~$27M</td>
+          <td>~1,000</td>
+          <td>Premium startup bookkeeping + CFO</td>
+        </tr>
+        <tr>
+          <td class="co-name">Bench <span class="shut">(shut down 2024)</span></td>
+          <td>~$100M</td>
+          <td>~$30–50M</td>
+          <td>10,000+</td>
+          <td>Broad SMB bookkeeping</td>
+        </tr>
+        <tr>
+          <td class="co-name">Zeni.ai</td>
+          <td>$47.5M</td>
+          <td>Growing</td>
+          <td>~500–1,000</td>
+          <td>AI-powered, startup-focused</td>
+        </tr>
+        <tr>
+          <td class="co-name">inDinero</td>
+          <td>~$30M</td>
+          <td>~$10–15M</td>
+          <td>~500–1,000</td>
+          <td>Mid-market bundled ops</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- why wins -->
+  <div>
+    <div class="section-label" style="margin-bottom:6px;position:relative;z-index:2;">Why Zinance Wins</div>
+    <div class="wins-grid">
+      <div class="win-card">
+        <div class="win-icon">📊</div>
+        <div class="win-text"><strong>Fragmented Market</strong>$17.3B market with no dominant player in the startup segment — wide open for a full-stack challenger.</div>
+      </div>
+      <div class="win-card">
+        <div class="win-icon">💥</div>
+        <div class="win-text"><strong>Bench's Vacuum</strong>Shutdown in 2024 displaced 10,000+ customers actively looking for a replacement — immediate opportunity.</div>
+      </div>
+      <div class="win-card">
+        <div class="win-icon">💰</div>
+        <div class="win-text"><strong>Higher ACV</strong>Full-stack model (books + tax + CFO) commands $4K+/month vs. $500–$1,500 for point solutions.</div>
+      </div>
+      <div class="win-card">
+        <div class="win-icon">🤖</div>
+        <div class="win-text"><strong>AI-Native Edge</strong>Lower delivery cost than legacy firms, enabling better margins and more competitive pricing simultaneously.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="footer-conf">Confidential &nbsp;·&nbsp; Zinance</span>
+    <span class="footer-pg">Page 2 of 3</span>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════
+     PAGE 3 — ASSUMPTIONS & SOURCES
+═══════════════════════════════════════ -->
+<div class="page">
+  <div class="blob" style="width:260px;height:260px;background:rgba(0,229,180,0.05);top:-50px;left:-40px;"></div>
+  <div class="blob" style="width:220px;height:220px;background:rgba(251,191,36,0.04);bottom:80px;right:-50px;"></div>
+
+  <div class="report-header">
+    <div class="brand-mark">
+      <div class="brand-icon">Z</div>
+      <span class="brand-name">Zinance</span>
+    </div>
+    <div class="report-meta">
+      <div class="label">Assumptions &amp; Sources</div>
+      <div class="date">March 2026 &nbsp;·&nbsp; United States</div>
+    </div>
+  </div>
+
+  <div class="page2-title">
+    <h2>Assumptions &amp; <em>Data Sources</em></h2>
+    <p>Full methodology behind the numbers — transparent inputs for every figure in this report</p>
+  </div>
+
+  <!-- projection summary -->
+  <div class="projection-box">
+    <div class="proj-item">
+      <div class="proj-label">TAM · Today</div>
+      <div class="proj-val">$17.3B</div>
+      <div class="proj-note">US FAO market 2024</div>
+    </div>
+    <div class="proj-item">
+      <div class="proj-label">TAM · 2030</div>
+      <div class="proj-val">$29B+</div>
+      <div class="proj-note">At 8.9% CAGR</div>
+    </div>
+    <div class="proj-item">
+      <div class="proj-label">Zinance · Yr 5</div>
+      <div class="proj-val">$144M</div>
+      <div class="proj-note">4.6% SAM capture</div>
+    </div>
+  </div>
+
+  <!-- assumptions table -->
+  <div style="position:relative;z-index:2;margin-bottom:7mm;">
+    <div class="section-label" style="margin-bottom:6px;">Key Assumptions</div>
+    <table class="assumptions-table">
+      <thead>
+        <tr>
+          <th>Assumption</th>
+          <th>Value Used</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>US Finance &amp; Accounting Outsourcing market size (2024)</td>
+          <td>$17.3B</td>
+        </tr>
+        <tr>
+          <td>FAO market CAGR (2024–2030)</td>
+          <td>8.9%</td>
+        </tr>
+        <tr>
+          <td>Active VC-backed US startups (seed–Series B, total)</td>
+          <td>~55,000</td>
+        </tr>
+        <tr>
+          <td>VC-backed startups matching Zinance's ICP</td>
+          <td>~18,000–25,000</td>
+        </tr>
+        <tr>
+          <td>High-growth tech/SaaS SMBs (10–200 employees, bootstrapped)</td>
+          <td>~90,000–100,000</td>
+        </tr>
+        <tr>
+          <td>Share of SAM genuinely addressable by outsourced model</td>
+          <td>55–60% (~65,000 companies)</td>
+        </tr>
+        <tr>
+          <td>Blended Average Contract Value (ACV)</td>
+          <td>$48,000/year ($4,000/month)</td>
+        </tr>
+        <tr>
+          <td>SAM penetration rate — Year 3</td>
+          <td>2% (~1,300 clients)</td>
+        </tr>
+        <tr>
+          <td>SAM penetration rate — Year 5</td>
+          <td>4.6% (~3,000 clients)</td>
+        </tr>
+        <tr>
+          <td>Competitor benchmark (Pilot.com)</td>
+          <td>~1,000 clients · $27M ARR · $222M raised</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- sources -->
+  <div style="position:relative;z-index:2;">
+    <div class="section-label" style="margin-bottom:8px;">Data Sources</div>
+    <div class="sources-grid">
+      <div class="source-item">
+        <span class="src-num">01</span>
+        <span class="src-text"><strong>US Finance &amp; Accounting Outsourcing Market</strong> — Grand View Research</span>
+      </div>
+      <div class="source-item">
+        <span class="src-num">02</span>
+        <span class="src-text"><strong>Finance &amp; Accounting BPO Market</strong> — SNS Insider / GlobeNewswire</span>
+      </div>
+      <div class="source-item">
+        <span class="src-num">03</span>
+        <span class="src-text"><strong>2024 Small Business Profile</strong> — SBA Office of Advocacy</span>
+      </div>
+      <div class="source-item">
+        <span class="src-num">04</span>
+        <span class="src-text"><strong>Pilot Revenue &amp; Funding Data</strong> — Sacra / GetLatka</span>
+      </div>
+      <div class="source-item">
+        <span class="src-num">05</span>
+        <span class="src-text"><strong>Zeni Series B Announcement</strong> — Zeni.ai</span>
+      </div>
+      <div class="source-item">
+        <span class="src-num">06</span>
+        <span class="src-text"><strong>Fractional CFO Demand Surged 103%</strong> — CFO Engine / NOW CFO</span>
+      </div>
+      <div class="source-item">
+        <span class="src-num">07</span>
+        <span class="src-text"><strong>US Series A &amp; B Funding Data</strong> — Crunchbase</span>
+      </div>
+      <div class="source-item">
+        <span class="src-num">08</span>
+        <span class="src-text"><strong>VC-Backed Company Data</strong> — PitchBook / NVCA</span>
+      </div>
+      <div class="source-item">
+        <span class="src-num">09</span>
+        <span class="src-text"><strong>SaaS Statistics 2025</strong> — SellersCommerce / Ascendix Tech</span>
+      </div>
+      <div class="source-item">
+        <span class="src-num">10</span>
+        <span class="src-text"><strong>US Employer Firms Visualization</strong> — US Census Bureau</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="footer-conf">Confidential &nbsp;·&nbsp; Zinance &nbsp;·&nbsp; Prepared March 2026</span>
+    <span class="footer-pg">Page 3 of 3</span>
+  </div>
+</div>
+
+</body>
+</html>

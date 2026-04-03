@@ -1,0 +1,11 @@
+# Environment variables — NEVER commit these
+.env
+.env.local
+.env.production
+
+# Generated outputs
+reports/
+audit-logs/
+
+# Dependencies
+node_modules/

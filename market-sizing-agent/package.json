@@ -1,0 +1,19 @@
+{
+  "name": "market-sizing-agent",
+  "version": "1.0.0",
+  "description": "Claude Code sub-agent system for personalised market sizing reports using Exa semantic search",
+  "type": "module",
+  "main": "orchestrator.js",
+  "scripts": {
+    "start": "node orchestrator.js",
+    "batch": "node orchestrator.js --json",
+    "demo": "node demo.js"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.30.0",
+    "node-fetch": "^3.3.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
