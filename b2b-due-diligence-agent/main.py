@@ -22,7 +22,7 @@ from rich.panel import Panel
 
 from agent.orchestrator import run_pipeline
 from agent.validator import validate_input
-from agent.reporter import export_markdown
+from agent.reporter import export_executive_report, export_monitor_report
 
 os.environ.setdefault("PYTHONUTF8", "1")
 os.environ.setdefault("PYTHONIOENCODING", "utf-8")
@@ -144,10 +144,12 @@ Examples:
     if result is None:
         sys.exit(1)
 
-    # ── Always save Markdown report ───────────────────────────────────────────
+    # ── Save both reports ─────────────────────────────────────────────────────
     if not args.no_save:
-        md_path = export_markdown(data, result, output_dir=args.output_dir)
-        console.print(f"  MD report    --> {md_path}")
+        exec_path    = export_executive_report(data, result, output_dir=args.output_dir)
+        monitor_path = export_monitor_report(data, result, output_dir=args.output_dir)
+        console.print(f"  Executive    --> {exec_path}")
+        console.print(f"  Monitor      --> {monitor_path}")
         console.print()
 
     # ── Final line ────────────────────────────────────────────────────────────
