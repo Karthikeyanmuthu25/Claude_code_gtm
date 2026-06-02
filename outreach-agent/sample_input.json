@@ -1,0 +1,23 @@
+{
+  "sender_name": "Karthikeyan R",
+  "sender_role": "AI GTM Engineer",
+  "sender_company": "e-ideaCS",
+  "sender_summary": "I build AI-powered GTM systems for B2B SaaS companies. At e-ideaCS, I lead eKigai — an AI-native business intelligence product that helps pre-seed and seed-stage founders identify market signals, score ICPs, and automate outreach. I have 15+ years of digital marketing background combined with hands-on AI agent development using LangGraph, n8n, and Claude.",
+
+  "receiver_name": "Arjun Menon",
+  "receiver_role": "Co-founder & CEO",
+  "receiver_company": "GrowthPilot AI",
+  "receiver_summary": "Arjun is the co-founder and CEO of GrowthPilot AI, a seed-stage B2B SaaS startup building AI-assisted pipeline management for mid-market sales teams. He previously led growth at a Series B fintech and is now in early GTM mode with a team of 8. GrowthPilot recently raised a $1.2M pre-seed and is actively hiring an SDR and Head of Partnerships.",
+
+  "outreach_goal": "Book a 20-minute discovery call to explore if eKigai's market intelligence module can support GrowthPilot's ICP research and competitive tracking needs",
+
+  "offer": "eKigai is an AI-native GTM intelligence product with three modules: eKyra (market and competitive intelligence), eMaya (lead scoring and enrichment), and eMayl (outreach automation). For early-stage founders, eKyra provides real-time ICP signals, competitor movement tracking, and buyer intent scoring — replacing hours of manual research with automated intelligence pipelines.",
+
+  "asset_name": "The Early-Stage GTM Intelligence Playbook (PDF)",
+
+  "pain_points": "Founders spend 10-15 hours/week on manual ICP research with no system, No way to track competitor moves or buyer intent signals at speed, Lead lists are static and don't reflect who is actually in-market right now",
+
+  "tone": "Friendly peer-level — founder to founder, no fluff, direct",
+
+  "sequence_type": "Both"
+}
