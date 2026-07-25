@@ -1,0 +1,19 @@
+{
+  "product_idea": "One or two sentences: what are you building?",
+  "vision": "Where does this go if it works?",
+  "features": [
+    "Core feature 1",
+    "Core feature 2"
+  ],
+  "assumptions": [
+    "Something you believe but haven't proven 1",
+    "Something you believe but haven't proven 2"
+  ],
+  "founder_knowledge": "Why you? What do you know about this space that most people don't?",
+  "target_location": "India",
+  "competitors": [
+    {"linkedin_url": "https://www.linkedin.com/company/example", "known_name": "Example Competitor"}
+  ],
+  "target_account_count": 3,
+  "interview_notes": []
+}

@@ -1,0 +1,4 @@
+openai>=1.40.0
+exa-py>=1.9.0
+apify-client>=3.0.0
+pycountry>=24.6.0
