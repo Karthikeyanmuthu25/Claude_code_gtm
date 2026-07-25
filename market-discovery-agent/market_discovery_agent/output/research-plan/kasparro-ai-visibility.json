@@ -1,0 +1,179 @@
+{
+  "priority_order": [
+    "Competitor Agent",
+    "Industry Agent",
+    "Funding Agent",
+    "Social Intelligence Agent",
+    "Search Intent Agent",
+    "Job Market Agent",
+    "Community Agent"
+  ],
+  "agent_briefs": [
+    {
+      "agent_name": "Industry Agent",
+      "objective": "Understand the current state of AI search engine optimization and its growth potential.",
+      "questions": [
+        {
+          "question": "What are the latest trends in AI-assisted shopping and consumer decision-making?",
+          "rationale": "Understanding these trends will validate whether brands truly prioritize AI visibility, aligning with the hypothesis that AI assistants are critical in consumer decision-making."
+        },
+        {
+          "question": "How prevalent are AI-specific toolsets compared to traditional SEO tools?",
+          "rationale": "This information will help confirm or refute the hypothesis that there are few AI visibility toolsets compared to traditional SEO."
+        },
+        {
+          "question": "What industry challenges are currently associated with AI search engine optimization?",
+          "rationale": "Knowing the challenges will assess if Kasparro's features align with industry pain points, as hypothesized."
+        }
+      ],
+      "suggested_sources": [
+        "Gartner",
+        "Forrester",
+        "CB Insights"
+      ]
+    },
+    {
+      "agent_name": "Competitor Agent",
+      "objective": "Identify existing competitors and their solutions addressing AI search visibility.",
+      "questions": [
+        {
+          "question": "Which companies currently offer AI search visibility solutions, and what features do these solutions include?",
+          "rationale": "Identifying competitors can confirm the uniqueness of Kasparro's offerings and fill any gaps in toolset availability."
+        },
+        {
+          "question": "How are competitors' products priced, and what business models do they use?",
+          "rationale": "Understanding pricing will help assess market demand and willingness to pay, which is critical for Kasparro's commercial strategy."
+        },
+        {
+          "question": "What strategic partnerships do these competitors leverage to enhance their AI SEO capabilities?",
+          "rationale": "Identifying partnerships will indicate how Kasparro might secure endorsements or partnerships to validate its approach and enhance credibility."
+        }
+      ],
+      "suggested_sources": [
+        "Crunchbase",
+        "PitchBook",
+        "Owler"
+      ]
+    },
+    {
+      "agent_name": "Community Agent",
+      "objective": "Gauge community-driven insights and developer interest related to AI search visibility tools.",
+      "questions": [
+        {
+          "question": "What discussions are occurring within marketing and SEO communities about AI search engine optimization?",
+          "rationale": "Engagement levels can indicate demand, supporting the hypothesis of a market need for AI-specific visibility solutions."
+        },
+        {
+          "question": "Are there grassroots or open-source projects aimed at AI search visibility?",
+          "rationale": "These projects could indicate current gaps in commercial solutions that Kasparro could fill."
+        },
+        {
+          "question": "What feedback do early adopters or testers of similar tools provide, and how positive is this feedback?",
+          "rationale": "Early adopter feedback can guide feature refinement of Kasparro tools based on market needs."
+        }
+      ],
+      "suggested_sources": [
+        "Reddit",
+        "SEO forums",
+        "GitHub"
+      ]
+    },
+    {
+      "agent_name": "Search Intent Agent",
+      "objective": "Understand the search intent trends related to AI SEO and AI assistant visibility.",
+      "questions": [
+        {
+          "question": "What are common queries related to AI visibility tools for brands?",
+          "rationale": "Identifying specific queries can highlight customer pain points and potential feature demands."
+        },
+        {
+          "question": "Is there increasing search traffic for terms related to AI visibility in consumer decision-making processes?",
+          "rationale": "Increasing search traffic would validate the importance brands place on AI visibility."
+        },
+        {
+          "question": "How are AI recommendation techniques being discussed in search queries?",
+          "rationale": "Understanding interest in AI recommendation techniques can help tailor Kasparro's strategic insights."
+        }
+      ],
+      "suggested_sources": [
+        "Google Trends",
+        "Ahrefs",
+        "SEMrush"
+      ]
+    },
+    {
+      "agent_name": "Funding Agent",
+      "objective": "Analyze AI SEO tool investment trends to gauge market interest and viability.",
+      "questions": [
+        {
+          "question": "What are recent investment trends in AI-related marketing or search visibility fields?",
+          "rationale": "Investment trends can indicate market interest and feasibility, affecting Kasparro's business viability."
+        },
+        {
+          "question": "Which investors are actively funding AI SEO or similar technologies?",
+          "rationale": "Identifying investors can help in seeking potential funding opportunities for Kasparro."
+        },
+        {
+          "question": "What valuation and exit trends are observed in startups focusing on AI visibility solutions?",
+          "rationale": "Valuation trends can guide strategic financial planning and market potential assessment for Kasparro."
+        }
+      ],
+      "suggested_sources": [
+        "PitchBook",
+        "Crunchbase",
+        "VC-focused reports"
+      ]
+    },
+    {
+      "agent_name": "Job Market Agent",
+      "objective": "Evaluate demand for AI search optimization skills in the job market to infer industry growth.",
+      "questions": [
+        {
+          "question": "How has the demand for skills related to AI search optimization changed over the past year?",
+          "rationale": "An increase in job postings would suggest a growing industry and support for Kasparro's market entry."
+        },
+        {
+          "question": "What skills are most demanded in AI search optimization roles?",
+          "rationale": "Understanding needed skills can align Kasparro's tools with practical application expertise."
+        },
+        {
+          "question": "Which companies are hiring the most for AI-focused marketing roles?",
+          "rationale": "Identifying hiring companies may reveal early adopters or potential partners for Kasparro."
+        }
+      ],
+      "suggested_sources": [
+        "LinkedIn Jobs",
+        "Indeed",
+        "Glassdoor"
+      ]
+    },
+    {
+      "agent_name": "Social Intelligence Agent",
+      "objective": "Analyze social sentiment and discussions around AI search visibility and SEO challenges.",
+      "questions": [
+        {
+          "question": "What is the general sentiment on social media regarding AI-driven search visibility?",
+          "rationale": "Positive sentiment indicates interest and potential market demand for solutions like Kasparro."
+        },
+        {
+          "question": "Which platforms are most frequently discussing AI SEO, and who are the influencers in this space?",
+          "rationale": "Identifying key influencers can aid in targeted marketing strategies to promote Kasparro."
+        },
+        {
+          "question": "How are brands currently discussing their challenges with AI assistant visibility on social media?",
+          "rationale": "Brands' public discussions can offer direct insights into pains that Kasparro might address."
+        }
+      ],
+      "suggested_sources": [
+        "Twitter",
+        "LinkedIn",
+        "Brandwatch"
+      ]
+    }
+  ],
+  "open_questions_for_founder": [
+    "What is the current budget allocated for research and development of Kasparro?",
+    "Are there specific industry partnerships or endorsements you are already pursuing?",
+    "How flexible is the Kasparro toolset to pivot based on emerging market data?"
+  ]
+}

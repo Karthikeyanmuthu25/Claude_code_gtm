@@ -1,0 +1,35 @@
+{
+  "job_market_landscape": "Ecommerce, SaaS, and Fintech job postings",
+  "findings": [
+    {
+      "question": "What roles are target sector companies hiring for specifically related to AI and machine learning optimization?",
+      "answer": "Target sector companies are hiring roles such as Senior Machine Learning Engineer, Search and Recommendations (e.g., Shopify), Applied Scientist, Search (Amazon), Senior Data Scientist, Search & Personalization (Walmart), Senior Machine Learning Engineer, Content Recommendations (HubSpot), and Lead Data Scientist, Einstein Search (Salesforce).",
+      "confidence": "High",
+      "sources": [
+        "LinkedIn Jobs",
+        "Indeed / LinkedIn Jobs",
+        "Salesforce Careers via Indeed"
+      ]
+    },
+    {
+      "question": "Which skills are most in demand for optimizing presence on AI-driven platforms in these sectors?",
+      "answer": "Core skills in demand include experience with ranking/recommendation systems, proficiency in Python and ML frameworks, knowledge of A/B testing, understanding of SEO and generative search experiences, and skills in measurement and experimentation.",
+      "confidence": "High",
+      "sources": [
+        "LinkedIn Jobs",
+        "Indeed / LinkedIn Jobs"
+      ]
+    },
+    {
+      "question": "Are there any job postings explicitly mentioning visibility optimization for AI systems?",
+      "answer": "Explicit mentions exist, but they are rare and mostly confined to agency/marketing roles and a few 'AI SEO' job postings, not mainstream in-house roles at mid-market/enterprise brands.",
+      "confidence": "Medium",
+      "sources": [
+        "Indeed / Glassdoor",
+        "LinkedIn Jobs"
+      ]
+    }
+  ],
+  "summary": "Job postings in ecommerce, SaaS, and fintech sectors indicate strong hiring around algorithmic visibility optimization through search, recommendation, and personalization systems. However, explicit hiring for visibility optimization in external AI assistants is mainly seen in agency roles, not in-house, suggesting that in-house capabilities remain underdeveloped, creating opportunities for niche specialization.",
+  "opportunity_signal": "Moderate"
+}

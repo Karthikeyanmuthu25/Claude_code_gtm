@@ -1,0 +1,34 @@
+{
+  "founder_input": {
+    "product_idea": "A tool that automatically reconciles GST invoices against purchase orders for mid-size Indian manufacturing companies, flagging mismatches before month-end filing.",
+    "vision": "Become the default GST compliance layer that every mid-size Indian manufacturer runs its finance operations through.",
+    "features": [
+      "Automatic GST invoice-to-PO matching",
+      "Mismatch flagging with suggested resolution",
+      "One-click GSTR filing export"
+    ],
+    "assumptions": [
+      "Finance teams at mid-size manufacturers still reconcile GST invoices manually or in spreadsheets",
+      "Compliance teams will pay for a tool that reduces month-end filing errors and penalties"
+    ],
+    "founder_knowledge": "Spent 6 years running finance operations at a mid-size auto-parts manufacturer in Pune and personally dealt with GST reconciliation pain every month.",
+    "target_location": "India"
+  },
+  "phase1_output": {
+    "problem_statement": "Mid-size manufacturing companies in India struggle with inaccurate and labor-intensive GST invoice reconciliation against purchase orders, leading to potential compliance errors, financial penalties, and inefficient month-end closures.",
+    "initial_hypotheses": [
+      "Mid-size manufacturing companies in India have a significant pain point around GST invoice reconciliation, which affects their compliance accuracy and leads to financial penalties.",
+      "Finance teams in these companies currently rely on manual processes or spreadsheets for GST reconciliation, resulting in significant inefficiencies and errors.",
+      "These companies are willing to pay for a tool that reduces the time and errors associated with month-end GST filing, as this directly impacts their financial reporting efficiency.",
+      "The tool's ability to automatically flag mismatches and suggest resolutions significantly reduces time spent by finance teams on reconciliation tasks.",
+      "The market size of mid-size Indian manufacturers facing this issue is large enough to sustain a profitable business."
+    ],
+    "success_criteria": [
+      "In initial outreach, at least 30% of targeted finance managers express frustration with current GST reconciliation processes and interest in a streamlined solution.",
+      "Early pilot users report at least a 50% reduction in time spent on GST reconciliations after implementing the tool.",
+      "At least 20 mid-size manufacturing companies adopt the tool within the first year, showing a strong willingness to pay for the solution.",
+      "Feedback from initial users indicates that mismatch flagging and resolution suggestions are accurate and significantly aid in their month-end processes.",
+      "The tool achieves integration partnerships with at least 2 major ERP providers within the first 18 months, ensuring wide accessibility and reduced implementation friction."
+    ]
+  }
+}

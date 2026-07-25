@@ -1,0 +1,218 @@
+{
+  "priority_order": [
+    "Community Agent",
+    "Social Intelligence Agent",
+    "Competitor Agent",
+    "Industry Agent",
+    "Search Intent Agent",
+    "Funding Agent",
+    "Job Market Agent"
+  ],
+  "agent_briefs": [
+    {
+      "agent_name": "Search Intent Agent",
+      "objective": "Determine whether founders and buyers are actually searching for/asking about 'AI citation visibility' or 'GEO for LinkedIn' style problems, and gauge real search volume/intent versus the founder's assumption that this is a triggering-event-driven discovery, not a searched-for category.",
+      "questions": [
+        {
+          "question": "What search volume and trend data exists for terms like 'AI search visibility', 'generative engine optimization', 'GEO tool', 'ChatGPT citation tracker', 'am I cited by ChatGPT', and LinkedIn-specific variants?",
+          "rationale": "Tests whether there's proactive search demand at all, which would contradict/refine the trigger-event-only discovery hypothesis and inform whether SEO/content could still work as an acquisition channel."
+        },
+        {
+          "question": "Are there existing autocomplete/People Also Ask patterns showing founders asking 'why didn't ChatGPT mention my company' or 'how to get cited by AI'?",
+          "rationale": "Directly tests hypothesis 5 (triggering event) — if such queries exist and are growing, it suggests some founders do proactively search once they suspect the problem, which changes the marketing motion needed."
+        },
+        {
+          "question": "What is the search intent and volume behind existing LinkedIn optimization tools (Taplio, Shield) queries — are searchers looking for 'engagement' or increasingly for 'discoverability/AI' framing?",
+          "rationale": "Helps size whether current LinkedIn-optimization search traffic could be redirected/educated toward AI-citation framing, informing whether this is a new category or an extension of an existing one."
+        },
+        {
+          "question": "Is there search demand for 'GEO audit' or 'AI visibility audit' tools generally (not LinkedIn-specific) that a free-audit funnel could piggyback on?",
+          "rationale": "Validates hypothesis 3 (willingness to submit URL/email for free audit) by checking if analogous free-audit categories (SEO audits, domain authority checkers) show comparable conversion/search patterns worth benchmarking against."
+        }
+      ],
+      "suggested_sources": [
+        "Google Keyword Planner",
+        "Ahrefs/SEMrush",
+        "AnswerThePublic",
+        "Google Trends",
+        "AlsoAsked"
+      ]
+    },
+    {
+      "agent_name": "Community Agent",
+      "objective": "Find direct, unprompted evidence in founder communities of the core felt-urgency claim: founders noticing/losing deals to AI-engine competitor citations, and how they currently talk about or cope with this.",
+      "questions": [
+        {
+          "question": "Are there threads in founder communities (Indie Hackers, r/SaaS, r/startups, Demand Curve Slack, GTM-focused Slacks) where founders mention noticing ChatGPT/Perplexity citing a competitor instead of them, or losing a deal because of it?",
+          "rationale": "Directly tests hypothesis 2 and success criterion requiring 1/3 of design partners to independently describe a real instance — need to see if this pattern already surfaces organically in the wild."
+        },
+        {
+          "question": "How do founders currently describe/frame the 'AI search visibility' problem in their own words when discussing it — do they use GEO/AEO terminology, or describe it as a vague feeling ('I feel invisible to AI')?",
+          "rationale": "Informs messaging and whether founders can self-diagnose the problem without a triggering event, refining hypothesis 5 and messaging for the audit funnel."
+        },
+        {
+          "question": "What complaints or requests exist about Taplio, Shield Analytics, or similar tools regarding their inability to address AI/LLM discoverability (vs. just engagement metrics)?",
+          "rationale": "Tests the stated gap that existing tools optimize for human engagement, not AI citation — validates the competitive whitespace claim directly from user voice."
+        },
+        {
+          "question": "Do B2B SaaS founders discuss third-party corroboration signals (press, G2 reviews, backlinks, Reddit mentions) as things they consciously manage for AI visibility, or is this entirely off their radar?",
+          "rationale": "Tests hypothesis 6 (confounding factors) — if founders already discuss non-LinkedIn levers for AI citation, it suggests LinkedIn-only optimization may be perceived as insufficient, threatening the product's core value prop."
+        }
+      ],
+      "suggested_sources": [
+        "Reddit (r/SaaS, r/startups, r/Entrepreneur)",
+        "Indie Hackers",
+        "LinkedIn posts/comments",
+        "relevant Slack/Discord communities (GTM, RevGenius)",
+        "Hacker News"
+      ]
+    },
+    {
+      "agent_name": "Competitor Agent",
+      "objective": "Map the actual competitive landscape across both LinkedIn-optimization tools and emerging GEO/AI-visibility tools to test the defensibility hypothesis (no well-funded competitor will enter this niche).",
+      "questions": [
+        {
+          "question": "Which existing GEO/AEO tools (e.g., Profound, Otterly.ai, Peec AI, Athena, Scrunch AI) currently track brand/individual citation in AI engines, and do any already offer person-level (not just company-level) tracking?",
+          "rationale": "Directly tests hypothesis 7 — if person-level LinkedIn-specific AI citation tracking already exists or is trivially extensible from these tools, the defensibility window may already be closing."
+        },
+        {
+          "question": "Do Taplio, Shield Analytics, Supergrow, or similar LinkedIn tools show any public roadmap signals (job postings, changelogs, tweets) indicating a pivot toward AI-citation or GEO features?",
+          "rationale": "Tests whether the 'existing tools optimize only for human engagement' assumption is stable or already eroding, which affects urgency and window-of-opportunity sizing."
+        },
+        {
+          "question": "What pricing and packaging do adjacent GEO tools use (per-seat, per-brand, audit-then-subscribe), and how does a $49/month founder-level price compare?",
+          "rationale": "Benchmarks whether $49/month is priced correctly relative to comparable tools, informing success criteria around conversion and retention."
+        },
+        {
+          "question": "Are any competitors already offering a free AI-visibility audit as a lead-gen mechanism, and what conversion/virality results (if public) have they reported?",
+          "rationale": "Tests hypotheses 3 and 4 (free-to-paid funnel viability) against real analogous funnel performance rather than assumption."
+        }
+      ],
+      "suggested_sources": [
+        "Producthunt",
+        "G2/Capterra",
+        "Company websites/changelogs",
+        "Crunchbase",
+        "Twitter/X and LinkedIn competitor announcements"
+      ]
+    },
+    {
+      "agent_name": "Industry Agent",
+      "objective": "Establish the broader GEO/AEO industry trajectory and evidence base for whether LinkedIn-signal-driven optimization can plausibly move AI citation frequency, informing the causal-mechanism hypothesis.",
+      "questions": [
+        {
+          "question": "What published research, case studies, or vendor whitepapers exist on which signals (structured data, third-party mentions, backlinks, social profiles, review sites) most influence LLM citation/recommendation behavior?",
+          "rationale": "Tests hypothesis 6 directly — need industry evidence on whether LinkedIn profile signals specifically (vs. press/backlinks/Reddit) have demonstrated influence on AI citation, or whether this is unproven speculation."
+        },
+        {
+          "question": "Is there any existing research or methodology for measuring AI citation frequency reliably and repeatably across ChatGPT/Perplexity/Claude/Gemini (given model non-determinism and version drift)?",
+          "rationale": "Directly relevant to the success criterion requiring a controlled before/after test — need to know if a defensible measurement methodology already exists or must be built from scratch, which affects feasibility and timeline."
+        },
+        {
+          "question": "How is the broader GEO/AEO industry sizing this market (analyst reports, VC theses, conference talks) and what growth rate/urgency narrative is being used?",
+          "rationale": "Provides independent sizing/urgency context to sanity check the founder's inference from a 34/100 average audit score, and to see whether industry-level urgency supports the personal-brand-specific niche."
+        },
+        {
+          "question": "Do B2B buyers actually use AI engines (vs. Google/LinkedIn search) as a meaningful step in vendor discovery for SaaS categories, and at what stage of the funnel?",
+          "rationale": "Tests the foundational premise that AI-engine citation matters for warm inbound lead generation at all — if buyer behavior data shows AI engines are rarely used for vendor discovery in B2B SaaS, the whole opportunity is smaller than assumed."
+        }
+      ],
+      "suggested_sources": [
+        "Gartner/Forrester reports",
+        "GEO/AEO vendor blogs (Profound, Otterly)",
+        "Academic papers on LLM retrieval/citation behavior",
+        "VC thesis blog posts (a16z, etc.)",
+        "B2B buyer behavior surveys"
+      ]
+    },
+    {
+      "agent_name": "Funding Agent",
+      "objective": "Assess investor appetite and funding trends in the GEO/AEO space to calibrate the competitive-window hypothesis and understand capital available to a well-funded entrant that could out-build this niche.",
+      "questions": [
+        {
+          "question": "How much funding have GEO/AEO startups (Profound, Otterly.ai, Athena, Scrunch AI, Goodie AI, etc.) raised in the last 18 months, and at what valuations/stage?",
+          "rationale": "Directly tests hypothesis 7 — high recent funding into adjacent players signals a shrinking window before a well-funded competitor extends into founder-level/LinkedIn-specific tracking."
+        },
+        {
+          "question": "Are any funded GEO players explicitly targeting individual personal-brand/creator-level tracking (as opposed to company/brand-level), and what do their job postings or public statements suggest about roadmap direction?",
+          "rationale": "Tests whether the specific person-level LinkedIn niche is already on a funded competitor's radar, which would materially change the defensibility calculus."
+        },
+        {
+          "question": "What funding or investor interest exists specifically in 'LinkedIn optimization' or 'personal branding SaaS' tools (Taplio, Shield, Supergrow), and are any pivoting toward AI visibility?",
+          "rationale": "Assesses risk that an existing, already-distributed LinkedIn tool with funding and userbase pivots into this exact niche, leveraging existing audience faster than a new entrant could."
+        },
+        {
+          "question": "Is there VC thesis content specifically framing 'AI search visibility for individuals/founders' as an investable category, and if so who is writing checks?",
+          "rationale": "Helps founder gauge whether raising money for this niche (if desired) is realistic, and signals how much competitive capital could flow into the space soon."
+        }
+      ],
+      "suggested_sources": [
+        "Crunchbase",
+        "PitchBook",
+        "Twitter/X VC threads",
+        "AngelList",
+        "TechCrunch/GEO funding news"
+      ]
+    },
+    {
+      "agent_name": "Job Market Agent",
+      "objective": "Use hiring signals from LinkedIn-tool companies and GEO/AEO startups to detect whether competitors are already building AI-citation-tracking features, corroborating or disconfirming the defensibility hypothesis.",
+      "questions": [
+        {
+          "question": "Are Taplio, Shield Analytics, Supergrow, or similar LinkedIn-tool companies currently hiring for roles mentioning 'LLM', 'AI search', 'GEO', 'generative engine optimization', or 'citation tracking'?",
+          "rationale": "Direct, concrete signal testing hypothesis 7 — job postings are a leading indicator of roadmap direction before public launch."
+        },
+        {
+          "question": "What roles are GEO/AEO-focused startups (Profound, Otterly, Scrunch AI, Athena) hiring for, and does any posting reference individual/personal-brand-level tracking (vs. company/domain-level)?",
+          "rationale": "Tests whether the specific founder-level LinkedIn niche is being staffed for by better-capitalized players."
+        },
+        {
+          "question": "Are there data science/ML roles at any company specifically focused on 'LLM citation modeling' or 'AI answer engine ranking factors' that suggest emerging proprietary methodology being built at scale?",
+          "rationale": "Signals how sophisticated and fast-moving the underlying measurement science is becoming, relevant to whether a solo/small founder team can keep pace methodologically."
+        }
+      ],
+      "suggested_sources": [
+        "LinkedIn Jobs",
+        "AngelList/Wellfound",
+        "company careers pages",
+        "levels.fyi",
+        "job aggregator APIs"
+      ]
+    },
+    {
+      "agent_name": "Social Intelligence Agent",
+      "objective": "Capture real-time, organic social conversation (especially on LinkedIn itself, the ironic core channel) about AI citation loss, GEO anxiety, and reactions to any existing free-audit-style tools, to test urgency and virality hypotheses.",
+      "questions": [
+        {
+          "question": "How frequently and in what tone do B2B SaaS founders post on LinkedIn/Twitter about being 'left out' of ChatGPT/Perplexity answers, or about a competitor being cited instead of them?",
+          "rationale": "Directly tests hypothesis 2 and the 'triggering event' hypothesis 5 — organic posts about this exact frustration would be strong validation of both felt urgency and discovery pattern."
+        },
+        {
+          "question": "When founders post their AI-visibility or GEO audit scores (from any existing tool) on LinkedIn, what engagement/share patterns do these posts get — do they go viral, get ignored, or get skeptical replies?",
+          "rationale": "Tests the 10% organic-share success criterion and virality assumption by finding analogous real-world share behavior for similar scorecard/audit content formats."
+        },
+        {
+          "question": "What sentiment exists around the 34/100-style 'low score' framing generally — do founders react to low audit/grading scores (SEO scores, LinkedIn SSI scores) with anxiety/action, or dismissiveness ('vanity metric')?",
+          "rationale": "Tests whether a low-score audit PDF is likely to trigger the second-action behavior required by the 15-20% success criterion, or whether founders have grown numb to scored-audit marketing tactics."
+        },
+        {
+          "question": "Are there any viral posts or threads specifically calling out AI engines citing wrong/outdated/competitor info for a founder or company, and what was the follow-on engagement (comments asking 'how do I check this for myself')?",
+          "rationale": "Would be the clearest possible real-world evidence of both the problem's existence and inbound demand for a diagnostic tool, directly informing go-to-market hook design."
+        }
+      ],
+      "suggested_sources": [
+        "LinkedIn post search",
+        "Twitter/X search",
+        "BuzzSumo",
+        "Brand24/Mention-style tools if accessible manually"
+      ]
+    }
+  ],
+  "open_questions_for_founder": [
+    "Are you willing to run a genuine controlled before/after citation-frequency experiment (10+ profiles, repeated prompt sampling across 4 engines) before investing further in the audit/product build — and do you have budget/time for the API costs and manual sampling rigor this requires?",
+    "If secondary research shows LinkedIn signals are only weakly/non-causally linked to AI citation (confounded by press/backlinks/Reddit), are you willing to pivot the product to a broader 'founder AI visibility' tool rather than LinkedIn-specific?",
+    "What is your actual runway/timeline to find 20-30 design-partner founders and get through both the qualitative validation (1/3 recalling a real instance) and the quantitative funnel tests (15-20% second action, 5-8% paid conversion) — are these sequential gates or are you building in parallel regardless of outcome?",
+    "If a well-funded GEO competitor (e.g., Profound, Otterly) is found to already be moving toward individual/creator-level tracking, would you still pursue this niche, and if so what specifically would you argue is your defensibility (data, distribution, community) rather than product features?",
+    "Is $49/month a fixed constraint or a hypothesis itself — would you consider testing higher price points if the audit proves highly diagnostic/actionable, given competitor pricing benchmarks may suggest room to move?"
+  ]
+}

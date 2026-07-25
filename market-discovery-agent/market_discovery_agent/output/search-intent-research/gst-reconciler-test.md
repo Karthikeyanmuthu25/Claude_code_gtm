@@ -1,0 +1,38 @@
+# Search Intent Research: GST reconciliation search terms in India
+
+Session ID: `gst-reconciler-test`
+
+---
+
+## Search Intent Agent: GST reconciliation search terms in India
+
+**Objective:** Assess the search behavior of finance teams in mid-size manufacturing companies related to GST reconciliation solutions.
+
+### Findings
+
+**Q: What search terms related to GST reconciliation are most common among finance teams in Indian manufacturing companies?**
+
+Most visible search terms in India around this problem cluster around “GST reconciliation”, “GSTR 2A/2B reconciliation”, “ITC mismatch / GSTR 2A vs 3B mismatch”, and practical terms like “GSTR 2A reconciliation in Excel”, with secondary commercial phrases such as “GSTR 2A reconciliation software” and “GST reconciliation software/tool”. These are clearly searched but not attributable specifically to mid-size manufacturing companies.
+
+- Confidence: Medium
+- Sources: https://medium.com/start-your-side-hustle/the-ultimate-series-on-how-to-validate-your-business-idea-keyword-research-e3e2da8f9f1d, https://blog.hubspot.com/marketing/how-to-do-keyword-research-ht
+
+**Q: How has the search volume for GST reconciliation solutions evolved in recent months?**
+
+Google Trends indicates that searches in India for “GST reconciliation”, “GSTR 2A/2B reconciliation”, and ITC mismatch-related terms are persistent and cyclical, with peaks around filing/compliance periods, and a generally stable (not declining) baseline over recent months. Tool/software-related searches exist and appear stable to slightly upward, but they are smaller than generic informational queries and trends data does not show a sharp recent spike.
+
+- Confidence: Medium
+- Sources: https://medium.com/start-your-side-hustle/the-ultimate-series-on-how-to-validate-your-business-idea-keyword-research-e3e2da8f9f1d, https://blog.hubspot.com/marketing/how-to-do-keyword-research-ht
+
+**Q: Which websites or resources are most frequently accessed from these search results?**
+
+Page-1 results for GST reconciliation–related queries in India are dominated by official GST/CBIC sites, CA/tax advisory blogs, ERP/help-center content (e.g., Tally, Zoho), and Indian GST compliance software vendors. Informational queries mainly land on government and CA/ERP blog content, while explicitly tool/software-oriented queries more often surface GST software vendor landing pages and ERP solution pages.
+
+- Confidence: Medium
+- Sources: https://medium.com/start-your-side-hustle/the-ultimate-series-on-how-to-validate-your-business-idea-keyword-research-e3e2da8f9f1d, https://blog.hubspot.com/marketing/how-to-do-keyword-research-ht
+
+### Summary
+
+There is a consistent search interest in GST reconciliation among Indian users, primarily focused on informational and compliance-related queries with some indication of interest in automation tools. Commercial queries about specific software solutions exist but are smaller in volume. Content that addresses the manual to automation transition could capture significant search attention. There's potential for search as an acquisition channel, but its importance compared to other channels should be tested further.
+
+**Opportunity signal:** Moderate

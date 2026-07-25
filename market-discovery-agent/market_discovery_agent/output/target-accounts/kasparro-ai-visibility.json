@@ -1,0 +1,51 @@
+{
+  "target_location": "India",
+  "accounts": [
+    {
+      "company_name": "Hindustan Unilever Limited",
+      "linkedin_url": "https://in.linkedin.com/company/hindustan-unilever-hul",
+      "website_url": "http://www.hul.co.in",
+      "industry": "Consumer Goods",
+      "employee_count": "501-1,000 employees",
+      "fit_score": 60,
+      "fit_score_rationale": "Hindustan Unilever is a strong B2C company with over 2,000 employees and a broad consumer goods offering. It fits the scale requirement, but lacks confirmed use of CRM and marketing automation technologies, as well as recent martech integrations or relevant exec titles on LinkedIn. Without evidence for these technographics, the fit score is limited.",
+      "key_matching_signals": [
+        "Employee count: 2043",
+        "Industry: Consumer Goods",
+        "Headquarters: Pune, Maharashtra"
+      ]
+    },
+    {
+      "company_name": "Bharti Airtel Limited",
+      "linkedin_url": "https://in.linkedin.com/company/airtel",
+      "website_url": "https://careers.airtel.com/",
+      "industry": "Telecommunications",
+      "employee_count": "10,001+ employees",
+      "fit_score": 60,
+      "fit_score_rationale": "While Bharti Airtel meets the employee threshold as a consumer telecom giant, there is no information on CRM or marketing automation use confirmed in the data. Moreover, the presence of buyer titles like VP of Digital Marketing or signs of recent martech stack integration is missing, limiting the fit score significantly.",
+      "key_matching_signals": [
+        "Employee count: 100370",
+        "Industry: Telecommunications",
+        "Headquarters: Gurgaon, Haryana"
+      ]
+    },
+    {
+      "company_name": "Tata Motors Limited",
+      "linkedin_url": "https://in.linkedin.com/company/tata-motors",
+      "website_url": "http://www.tatamotors.com",
+      "industry": "Motor Vehicle Manufacturing",
+      "employee_count": "10,001+ employees",
+      "fit_score": 55,
+      "fit_score_rationale": "Tata Motors is a large B2C automotive company which meets the employee threshold. However, it lacks confirmation of CRM/marketing automation systems usage and recent martech stack changes, and the presence of relevant marketing executive roles such as VP of Digital Marketing.",
+      "key_matching_signals": [
+        "Employee count: 77429",
+        "Industry: Motor Vehicle Manufacturing",
+        "Headquarters: Pune, Maharashtra"
+      ]
+    }
+  ],
+  "unverified_candidates": [
+    "Bajaj Finance Limited (scraped LinkedIn page is for 'Bajaj Finserv', not a confident name match — likely the wrong company's URL, dropped)"
+  ],
+  "summary": "The target list focuses primarily on large-scale consumer-facing companies within India, all having well above the 200-employee minimum. Hindustan Unilever Limited is the strongest B2C candidate, albeit without technographic confirmations, followed by Bharti Airtel and Tata Motors. Though meeting some criteria, all lack confirmed CRM usage and recent martech changes, keeping scores under 70."
+}

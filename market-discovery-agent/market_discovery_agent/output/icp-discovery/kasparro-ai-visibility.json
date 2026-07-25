@@ -1,0 +1,65 @@
+{
+  "primary_icp": {
+    "segment_name": "Mid-Market to Enterprise Consumer Brands Needing AI Visibility",
+    "market": "AI-focused marketing and SEO tools",
+    "industry": "B2C eCommerce, Retail, Consumer Brands, Travel",
+    "firmographics": "Mid-market and enterprise B2C companies with mature martech stacks, primarily in North America and Europe",
+    "technographics": "Companies already using CRM systems like Salesforce, marketing automation platforms like HubSpot, SEO tools, and analytics platforms. They lack a dedicated AI visibility tool.",
+    "buyer_persona": "VP/Director of SEO or Digital Marketing, who holds the pain of visibility and channel performance, with budget authority resting with CMOs or VPs of Marketing or Growth.",
+    "pain_points": "Difficulty understanding their brand's visibility and recommendation status on AI search engines, which impacts consumer discovery and competitive advantage.",
+    "buying_signals": "Companies experiencing a decline in traditional search performance or undergoing martech stack integration initiatives, typically looking to address visibility gaps in AI-driven discovery.",
+    "evidence": "External research and synthesis indicate that mid-market and enterprise B2C brands are most likely to invest in AI visibility tools, as they have existing SEO and analytics capabilities but lack AI search optimization solutions.",
+    "confidence": "Medium",
+    "fit_score": 80,
+    "fit_score_rationale": "The segment aligns with criteria such as company size, existing tech stack, and pain points related to AI visibility; they also have the budget authority for specialized marketing tools."
+  },
+  "secondary_icps": [],
+  "exclusion_criteria": "Exclude small businesses, companies without a sophisticated martech stack, and B2B firms heavily reliant on direct sales rather than consumer search, as they are unlikely to feel the need or have the budget for AI visibility tools.",
+  "scoring_rubric": [
+    {
+      "criterion": "Company has 200+ employees",
+      "weight": 20,
+      "how_to_score": "Check LinkedIn or company databases for employee count."
+    },
+    {
+      "criterion": "Company uses a CRM such as Salesforce",
+      "weight": 20,
+      "how_to_score": "Use technographic tools like ZoomInfo to check for CRM usage."
+    },
+    {
+      "criterion": "VP or Director of Digital Marketing in org chart",
+      "weight": 20,
+      "how_to_score": "Check LinkedIn for the presence of this role within the company."
+    },
+    {
+      "criterion": "Uses SEO tools and analytics platforms",
+      "weight": 20,
+      "how_to_score": "Verify via technographic profiles on platforms like BuiltWith or Datanyze."
+    },
+    {
+      "criterion": "Underwent recent martech stack integration",
+      "weight": 20,
+      "how_to_score": "Look for press releases or announcements about technology updates or integrations."
+    }
+  ],
+  "qualified_account_spec": {
+    "firmographic_filters": "Mid-market and enterprise B2C companies with 200+ employees, located in North America or Europe",
+    "technographic_filters": "Using CRM systems like Salesforce and marketing automation tools",
+    "buyer_titles": [
+      "VP of Digital Marketing",
+      "Director of SEO",
+      "VP Marketing"
+    ],
+    "buying_signal_filters": "Recent announcements about martech stack integrations or shifts in digital marketing strategy",
+    "minimum_fit_score": 70
+  },
+  "summary": "The ideal customer for this AI search visibility tool is a mid-market or enterprise B2C company in sectors like retail, eCommerce, travel, or consumer brands. They should have a mature martech stack including CRM and marketing automation platforms. The buyers are typically senior marketing leaders who care about visibility but currently lack a tool addressing AI-driven channel optimization. Focus on companies who are reevaluating their martech stack and experiencing a decline in traditional search performance.",
+  "icp_confidence": "Medium",
+  "recommended_validation_steps": [
+    "Conduct 15-20 interviews with marketers at mid-market B2C brands to understand their current AI visibility challenges.",
+    "Run a pilot program with 2-3 interested companies to test demand for AI visibility tools.",
+    "Develop case studies that track measurable outcomes from AI visibility improvements.",
+    "Engage with SEO communities to gather feedback on specific pain points related to AI recommendation optimization.",
+    "Test marketing messages and CTAs with a target segment to gauge interest and willingness to engage."
+  ]
+}

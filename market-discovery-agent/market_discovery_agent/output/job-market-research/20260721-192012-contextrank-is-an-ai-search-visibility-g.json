@@ -1,0 +1,30 @@
+{
+  "job_market_landscape": "Taplio, Shield Analytics, and GEO Startups job postings",
+  "findings": [
+    {
+      "question": "Are Taplio, Shield Analytics, Supergrow, or similar LinkedIn-tool companies hiring for roles mentioning 'LLM', 'AI search', 'GEO', 'generative engine optimization', or 'citation tracking'?",
+      "answer": "No direct hiring signal that these LinkedIn-growth tools are actively staffing GEO/AEO or citation-tracking roles right now. No public evidence of job postings explicitly mentioning these terms.",
+      "confidence": "High",
+      "sources": [
+        "https://taplio.com/",
+        "https://www.linkedin.com/help/linkedin/answer/a6889044"
+      ]
+    },
+    {
+      "question": "What roles are GEO/AEO-focused startups (Profound, Otterly, Scrunch AI, Athena) hiring for, and does any posting reference individual/personal-brand-level tracking (vs. company/domain-level)?",
+      "answer": "Current job postings focus on company/domain-level AI search visibility. No current, credible postings from Profound, Otterly, Scrunch AI, or Athena explicitly mention LinkedIn, founder profiles, or personal-brand-level scoring.",
+      "confidence": "Medium",
+      "sources": []
+    },
+    {
+      "question": "Are there data science/ML roles at any company specifically focused on 'LLM citation modeling' or 'AI answer engine ranking factors' that suggest emerging proprietary methodology being built at scale?",
+      "answer": "There are no roles explicitly labeled 'LLM citation modeling' or 'AI answer engine ranking factors.' Relevant work is conducted under broader 'search relevance' or 'ranking' titles at large platforms.",
+      "confidence": "High",
+      "sources": [
+        "https://www.linkedin.com/blog/engineering/ai/building-the-next-generation-of-job-search-at-linkedin"
+      ]
+    }
+  ],
+  "summary": "Current hiring signals suggest that LinkedIn tool companies and GEO/AEO startups are not actively pursuing roles focused on personal-brand AI optimization. While large platforms are advancing in LLM-based search, there's no explicit specialization in 'LLM citation modeling' current hiring, indicating a potential niche for startups.",
+  "opportunity_signal": "Moderate"
+}

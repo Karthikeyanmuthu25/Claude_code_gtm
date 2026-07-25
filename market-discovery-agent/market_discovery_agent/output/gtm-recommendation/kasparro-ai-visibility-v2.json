@@ -1,0 +1,68 @@
+{
+  "primary_motion": "Founder-led LinkedIn content + AI visibility audit offer",
+  "positioning_statement": "For mid-market ecommerce, SaaS, and fintech companies struggling with AI search visibility, our platform uniquely optimizes your AI-driven product placement to boost high-intent query inclusion and recommendation frequency.",
+  "messaging_pillars": [
+    "Increase measurable share of high-intent AI queries through expert visibility techniques.",
+    "Quantitative benchmarks and diagnostics in AI visibility to drive GTM KPIs like pipeline lift and conversion rates.",
+    "Strategic guidance to navigate and leverage AI search platforms effectively, filling in-house capability gaps.",
+    "Built-in data insights that align AI optimization efforts with concrete sales and marketing outcomes."
+  ],
+  "primary_channels": [
+    {
+      "channel": "Founder LinkedIn content focusing on AI visibility challenges",
+      "why_this_channel": "Establishes the founder as a thought leader in AI-driven product search, building credibility and generating leads.",
+      "evidence": "External research highlights LinkedIn as effective for GTM-related outreach and content-led engagement, especially for new categories.",
+      "first_actions": [
+        "Develop and publish 5 LinkedIn posts addressing AI visibility challenges and solutions in ecommerce, SaaS, and fintech.",
+        "Connect with 50 new mid-market marketing leaders and initiate engagement through thoughtful commenting.",
+        "Message engaged LinkedIn connections directly to offer personalized visibility insights and discussions.",
+        "Host a live LinkedIn session discussing trends and insights from AI search optimization research."
+      ]
+    },
+    {
+      "channel": "Free AI visibility audit as a lead magnet",
+      "why_this_channel": "Free audits are a proven entry strategy for similar GTM and consulting tools, offering initial value and prompting ongoing engagement.",
+      "evidence": "GTM playbooks recommend audits as an entry to showcase initial value and transition to a subscription or services offer.",
+      "first_actions": [
+        "Create an audit template that assesses current AI visibility and proposes quick wins.",
+        "Design a landing page offering the free AI visibility audit to capture interested leads.",
+        "Promote audit offer through LinkedIn posts and industry Slack/channel engagements.",
+        "Target LinkedIn/Slack group messages to key marketing personas about the audit offer."
+      ]
+    }
+  ],
+  "pricing_and_packaging": "Offer a free AI visibility audit leading to a tiered annual subscription model: entry at $10k/year for mid-market, scalable features at $25k/year for enterprise, with a focus on value-metric-driven packaging based on seats and usage.",
+  "launch_sequence": [
+    "Develop and publish initial LinkedIn content series tackling issues and solutions in AI visibility.",
+    "Design and launch a dedicated landing page for the free AI visibility audit with a clear CTA.",
+    "Engage LinkedIn and Slack communities to promote and discuss the audit offer.",
+    "Conduct initial audits with early leads, and document results and feedback.",
+    "Follow up with personalized demos showcasing potential improvements and ROI.",
+    "Adjust messaging based on feedback and insights from early interactions.",
+    "Analyze early conversion metrics from audit signups and LinkedIn engagement.",
+    "Refine audit process and outcome presentations for ongoing conversions.",
+    "Expand outreach to additional marketing decision-makers within the target sectors."
+  ],
+  "metrics_to_track": [
+    "Number of LinkedIn engagements, comments, and connection requests from target roles.",
+    "Conversion rate of audit landing page visitors to signups.",
+    "MQL-to-SQL conversion rate from audit signups to demo requests.",
+    "Feedback score and qualitative insights from initial audit feedback.",
+    "Tracking uplift in AI-generated shortlists post-audit among early user base."
+  ],
+  "key_risks": [
+    "Weak existing demand for AI visibility solutions could limit initial lead volume.",
+    "Complexity in conclusively tying audit insights to tangible economic outcomes.",
+    "Channel saturation on LinkedIn could diminish content engagement if not executed distinctly.",
+    "Strategic uncertainty and reluctance to invest in AI-specific optimization within target sectors."
+  ],
+  "confidence": "Low",
+  "summary": "The GTM plan focuses on leveraging founder-driven LinkedIn content and a free AI visibility audit as lead-generating mechanisms to tap into the nascent interest in AI-driven product discovery optimizations among mid-market SaaS, ecommerce, and fintech companies. Given the current weak demand for AI visibility solutions and unproven category traction, starting with a validation-driven motion is recommended, targeting specific pain points and testing the market's response before scaling further. This approach balances demonstrating value and educating the market while gathering crucial validation signals.",
+  "recommended_next_steps": [
+    "Draft and refine LinkedIn content calendar addressing AI visibility challenges and solutions.",
+    "Set up a landing page for the free AI visibility audit with a value-focused CTA.",
+    "Initiate outreach and connect with targeted LinkedIn groups of marketing leaders.",
+    "Develop the audit framework and initial scripts for personalized demos following audit results.",
+    "Start offering and performing audits, documenting quantifiable impacts and refining process."
+  ]
+}

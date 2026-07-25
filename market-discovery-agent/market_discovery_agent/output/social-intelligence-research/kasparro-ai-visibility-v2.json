@@ -1,0 +1,35 @@
+{
+  "social_intelligence_landscape": "Reddit and X posts on AI shopping",
+  "findings": [
+    {
+      "question": "What is the general sentiment of consumers towards shopping decisions influenced by AI platforms in these sectors?",
+      "answer": "Sentiment is mixed but increasingly engaged. Many users are actively experimenting with AI for product research, especially in tech, SaaS tools, travel, and ecommerce. They express both time-saving benefits and strong skepticism about reliability, hidden bias, and outdated data.",
+      "confidence": "Low",
+      "sources": [
+        "https://www.insightscout.co/guides/how-to-validate-a-saas-idea-with-public-conversations",
+        "https://www.ethanbase.com/articles/how-to-validate-a-saas-idea-without-getting-tricked-by-social-media-noise-395",
+        "https://storage.googleapis.com/reddit-search-api/startup-validation-framework-2026.html"
+      ]
+    },
+    {
+      "question": "How do consumers perceive brands that are prominently featured in AI-driven recommendations?",
+      "answer": "Perception is ambivalent: some users view repeated AI mentions as a signal of credibility or top-tier status, while others see it as potential manipulation or generic popularity and remain skeptical.",
+      "confidence": "Low",
+      "sources": [
+        "https://ourbraintrust.org/2023/12/the-realistic-guide-to-organic-social-media-for-small-businesses/",
+        "https://fi.co/insight/how-to-validate-a-startup-idea-a-step-by-step-guide-for-founders"
+      ]
+    },
+    {
+      "question": "Are there common complaints or praises related to AI-driven product discovery in social media channels?",
+      "answer": "Organic complaints significantly outweigh praises. Common complaints include outdated recommendations, lack of personalization, opaque rankings, and the over-concentration on well-known brands. Praises focus on time savings, serving as a good starting point for shortlisting, and discovering new categories.",
+      "confidence": "Low",
+      "sources": [
+        "https://fi.co/insight/how-to-validate-a-startup-idea-a-step-by-step-guide-for-founders",
+        "https://vichinth.com/how-to-use-social-media-to-validate-your-ideas-and-find-your-first-customers-before-you-launch/"
+      ]
+    }
+  ],
+  "summary": "Current social sentiment towards AI-influenced shopping is mixed: some users appreciate the efficiency of AI in product research, while many are cautious about its accuracy and potential biases. Brands frequently mentioned by AI face mixed perceptions, as some users suspect commercial influences. Complaints about AI recommendations outnumber praises, emphasizing issues like outdated suggestions and lack of personalization.",
+  "opportunity_signal": "Unclear"
+}

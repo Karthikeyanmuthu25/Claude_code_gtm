@@ -1,0 +1,180 @@
+{
+  "priority_order": [
+    "Search Intent Agent",
+    "Competitor Agent",
+    "Community Agent",
+    "Social Intelligence Agent",
+    "Industry Agent",
+    "Job Market Agent",
+    "Funding Agent"
+  ],
+  "agent_briefs": [
+    {
+      "agent_name": "Industry Agent",
+      "objective": "Understand the current landscape and trends regarding AI-driven search and recommendation systems in the target sectors.",
+      "questions": [
+        {
+          "question": "What are the current trends in AI-driven search and recommendation systems specifically in ecommerce, D2C, SaaS, and fintech sectors?",
+          "rationale": "Understanding industry trends helps confirm if reliance on AI search is indeed growing across these specific sectors."
+        },
+        {
+          "question": "How are companies in these sectors currently addressing visibility challenges in AI-driven platforms?",
+          "rationale": "Identifying existing solutions and strategies helps assess the innovation gap and the potential value of new solutions."
+        },
+        {
+          "question": "What are the key challenges businesses face in gaining visibility on AI platforms, as stated in industry reports?",
+          "rationale": "Knowing common challenges can validate the hypothesis about market opportunity due to poor optimization in AI channels."
+        }
+      ],
+      "suggested_sources": [
+        "Gartner",
+        "Forrester",
+        "McKinsey",
+        "Industry-specific publications"
+      ]
+    },
+    {
+      "agent_name": "Competitor Agent",
+      "objective": "Identify which companies are effectively gaining visibility within AI-driven search and recommendation systems in the target sectors.",
+      "questions": [
+        {
+          "question": "Which competitors are leading in AI visibility within ecommerce, D2C, SaaS, and fintech sectors?",
+          "rationale": "Identifying leaders provides benchmarks for success and insights on best practices."
+        },
+        {
+          "question": "What strategies or technologies are these leading companies employing to improve AI visibility?",
+          "rationale": "Understanding the competitive landscape helps identify potential partnership or differentiation opportunities."
+        },
+        {
+          "question": "Are there case studies or examples where competitors have successfully optimized for AI-driven channels?",
+          "rationale": "Documented success stories can support the hypothesis of a measurable impact through optimized AI visibility."
+        }
+      ],
+      "suggested_sources": [
+        "Crunchbase",
+        "CB Insights",
+        "Competitor websites and press releases"
+      ]
+    },
+    {
+      "agent_name": "Community Agent",
+      "objective": "Gauge the perceived value and challenges of AI optimization within professional circles of target sectors.",
+      "questions": [
+        {
+          "question": "What are the key discussion points or concerns among professionals regarding AI-driven product search and discovery?",
+          "rationale": "Understanding community discussions can reveal the current sentiment and interest level in AI visibility challenges."
+        },
+        {
+          "question": "How frequently do professionals within these sectors discuss optimization for AI platforms on forums like Reddit and LinkedIn?",
+          "rationale": "High frequency might correlate with a higher need for solutions that improve AI visibility."
+        },
+        {
+          "question": "What solutions or tools are being recommended within these communities?",
+          "rationale": "Identifying existing solutions discussed by the community can highlight gaps or validate the proposed solution's necessity."
+        }
+      ],
+      "suggested_sources": [
+        "Reddit industry subreddits",
+        "LinkedIn professional groups",
+        "Quora discussions"
+      ]
+    },
+    {
+      "agent_name": "Search Intent Agent",
+      "objective": "Understand how consumers are using AI-driven platforms for product discovery in the target sectors.",
+      "questions": [
+        {
+          "question": "Which AI platforms are most frequently used by consumers for product discovery within the target sectors?",
+          "rationale": "Identifying key platforms helps focus optimization efforts effectively where it matters most."
+        },
+        {
+          "question": "What are the specific queries or intents that lead consumers to discover products in these sectors through AI systems?",
+          "rationale": "Understanding consumer behavior and search intents is crucial for creating targeted optimization strategies."
+        },
+        {
+          "question": "How does AI-driven search impact consumer decision-making processes compared to traditional methods?",
+          "rationale": "Examining this impact validates the hypothesis about AI being a primary channel for product research and discovery."
+        }
+      ],
+      "suggested_sources": [
+        "Google Trends",
+        "Statista",
+        "Market research reports"
+      ]
+    },
+    {
+      "agent_name": "Funding Agent",
+      "objective": "Identify current funding trends for AI optimization technologies and services.",
+      "questions": [
+        {
+          "question": "What are the recent funding trends for startups focused on AI-driven search optimization?",
+          "rationale": "Understanding funding trends can reveal investor interest levels and potential financial opportunities or challenges."
+        },
+        {
+          "question": "Which venture capitalists or investors are actively investing in AI-related visibility enhancements?",
+          "rationale": "Connecting with interested investors may support scaling efforts if a market gap is identified."
+        },
+        {
+          "question": "What funding rounds have been closed recently by competitors in the space?",
+          "rationale": "Funding trends among competitors can indicate market dynamics and the perceived potential of the market."
+        }
+      ],
+      "suggested_sources": [
+        "PitchBook",
+        "Crunchbase",
+        "AngelList"
+      ]
+    },
+    {
+      "agent_name": "Job Market Agent",
+      "objective": "Determine current hiring trends and skills demand related to AI visibility optimization.",
+      "questions": [
+        {
+          "question": "What roles are target sector companies hiring for specifically related to AI and machine learning optimization?",
+          "rationale": "Hiring trends can reveal gaps in in-house capabilities and validate the need for external solutions."
+        },
+        {
+          "question": "Which skills are most in demand for optimizing presence on AI-driven platforms in these sectors?",
+          "rationale": "Identifying required skills helps understand whether current market capabilities meet the needs for optimizing AI visibility."
+        },
+        {
+          "question": "Are there any job postings explicitly mentioning visibility optimization for AI systems?",
+          "rationale": "Mentions in job postings can indicate priority areas for companies and validate the need for AI visibility services."
+        }
+      ],
+      "suggested_sources": [
+        "LinkedIn Job Postings",
+        "Glassdoor",
+        "Indeed"
+      ]
+    },
+    {
+      "agent_name": "Social Intelligence Agent",
+      "objective": "Analyze consumer sentiment towards using AI-driven search and recommendation systems in these sectors.",
+      "questions": [
+        {
+          "question": "What is the general sentiment of consumers towards shopping decisions influenced by AI platforms in these sectors?",
+          "rationale": "Consumer sentiment analysis helps confirm the increasing reliance and trust in AI-driven recommendations."
+        },
+        {
+          "question": "How do consumers perceive brands that are prominently featured in AI-driven recommendations?",
+          "rationale": "Understanding perception towards AI-prominent brands can highlight the potential brand equity benefits."
+        },
+        {
+          "question": "Are there common complaints or praises related to AI-driven product discovery in social media channels?",
+          "rationale": "Feedback about AI-driven discovery processes can validate the specific needs and improvements required in these systems."
+        }
+      ],
+      "suggested_sources": [
+        "Twitter sentiment analysis",
+        "Facebook group discussions",
+        "Social media monitoring tools"
+      ]
+    }
+  ],
+  "open_questions_for_founder": [
+    "What budget allocations are planned for research and development of the AI Visibility Platform?",
+    "Is there a timeline in place for implementing pilot tests with target companies?",
+    "Are there plans to pivot the business strategy should the research suggest that AI platform optimization is less impactful than anticipated?"
+  ]
+}

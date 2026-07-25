@@ -1,0 +1,63 @@
+{
+  "discovery_questions": [
+    {
+      "question": "Can you walk me through the last time you handled GST invoice reconciliation against purchase orders?",
+      "tests": "Mid-size manufacturing companies in India have a significant pain point around GST invoice reconciliation, which affects their compliance accuracy and leads to financial penalties.",
+      "what_to_listen_for": "Details about difficulties encountered, time taken, errors or mismatches, and any compliance issues that arose."
+    },
+    {
+      "question": "What challenges do you typically face with matching GST invoices to purchase orders during month-end closures?",
+      "tests": "Finance teams currently rely on manual processes or spreadsheets for GST reconciliation, resulting in significant inefficiencies and errors.",
+      "what_to_listen_for": "Mention of manual processes, use of spreadsheets, specific inefficiencies, or errors frequently occurring."
+    },
+    {
+      "question": "How do you currently solve these reconciliation issues? What tools or processes are used?",
+      "tests": "The tool's ability to automatically flag mismatches and suggest resolutions significantly reduces time spent by finance teams on reconciliation tasks.",
+      "what_to_listen_for": "Current tools used, whether attempts at automation have been made, and the perceived effectiveness of those tools."
+    },
+    {
+      "question": "Tell me about any recent GST audits or penalties your company experienced due to reconciliation errors.",
+      "tests": "Mid-size manufacturing companies in India have a significant pain point around GST invoice reconciliation, which affects their compliance accuracy and leads to financial penalties.",
+      "what_to_listen_for": "Incidents of penalties, audits, or reviews highlighting reconciliation errors."
+    },
+    {
+      "question": "What factors do you consider important when deciding to invest in improving your GST processes?",
+      "tests": "These companies are willing to pay for a tool that reduces the time and errors associated with month-end GST filing, as this directly impacts their financial reporting efficiency.",
+      "what_to_listen_for": "Insights into budget considerations, compliance priorities, and openness to investing in new technologies."
+    }
+  ],
+  "recruiting_channels": [
+    {
+      "channel": "LinkedIn search using roles like \"CFO\", \"Head of Finance\", \"Head of Accounts\", and \"GST Lead\" in the Indian Industrial Manufacturing sector.",
+      "why_this_channel": "LinkedIn allows direct access to professional profiles matching the ICP, facilitating targeted recruitment of potential interviewees with relevant roles and responsibilities.",
+      "evidence": "Guidance from external research emphasized using professional networks for targeted outreach, specifically using LinkedIn for role-based search."
+    },
+    {
+      "channel": "Naukri and Indeed platforms for finance roles in manufacturing companies",
+      "why_this_channel": "These job platforms show active recruitment for finance roles managing GST processes, offering a pool of relevant professionals.",
+      "evidence": "Job Market Agent data indicates high demand for GST-capable finance staff, and these platforms have continuous postings for such roles."
+    },
+    {
+      "channel": "GST practitioner communities and newsletters",
+      "why_this_channel": "These communities focus specifically on GST issues, where professionals dealing with reconciliation join discussions and share insights.",
+      "evidence": "External research suggests targeting niche groups where the specific pain point is actively discussed."
+    }
+  ],
+  "outreach_message_template": "Hi [Name], I noticed your expertise in finance for manufacturing. I'm researching how mid-size manufacturers handle GST invoice reconciliation. I'd love to learn about your current process and any challenges faced. Would you have 20 minutes for a call? This is not a sales pitch—just trying to understand the pain better.",
+  "screening_criteria": [
+    "CFO, Head of Finance, or GST Compliance Lead role",
+    "Company size between 200-2,000 employees",
+    "Multi-plant operations in India",
+    "Active involvement in GST reconciliation processes",
+    "Recent experience with GST audits or reconciliation penalties"
+  ],
+  "success_criteria": "At least 4 of 8 interviewed finance leaders affirm routine inefficiencies or errors in GST reconciliation unprompted; 3 express a proactive interest in automating this process.",
+  "summary": "This discovery plan targets finance leaders in mid-size Indian manufacturing companies to validate hypotheses around persistent GST reconciliation issues and automation interest. It seeks in-depth insights into their reconciliation workflows, difficulties, and the potential impact of automation tools, settling the question of a compelling business case for new technology.",
+  "recommended_next_steps": [
+    "Conduct targeted LinkedIn searches for relevant professionals and send outreach messages.",
+    "Schedule and conduct interviews with qualifying respondents, focusing on recent reconciliation experiences.",
+    "Analyze responses for patterns of manual process inefficiency or interest in automation.",
+    "Refine hypotheses based on gathered insights and determine if the need for a new tool is significant.",
+    "Plan a secondary outreach phase to gather further validation if initial results are mixed or inconclusive."
+  ]
+}

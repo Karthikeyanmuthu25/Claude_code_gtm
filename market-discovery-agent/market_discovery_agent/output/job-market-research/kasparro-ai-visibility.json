@@ -1,0 +1,31 @@
+{
+  "job_market_landscape": "AI-driven marketing job postings",
+  "findings": [
+    {
+      "question": "How has the demand for skills related to AI search optimization changed over the past year?",
+      "answer": "Demand is growing from a very small base. More roles mention AI assistants/LLM search explicitly now than a year ago, but they remain a minor subset of SEO/marketing postings overall. Earlier postings mostly saw AI/LLM as productivity tools, whereas recent postings view AI as a distribution/search channel.",
+      "confidence": "Medium",
+      "sources": [
+        "https://www.linkedin.com/top-content/career/leveraging-linkedin-for-job-opportunities/using-linkedin-signals-for-job-search/"
+      ]
+    },
+    {
+      "question": "What skills are most demanded in AI search optimization roles?",
+      "answer": "Traditional SEO/technical SEO foundations; Structured data/knowledge graph skills, Generative AI/LLM familiarity, Brand, trust, and content quality signals, Measurement and experimentation in opaque environments.",
+      "confidence": "High",
+      "sources": [
+        "https://www.linkedin.com/top-content/career/leveraging-linkedin-for-job-opportunities/using-linkedin-signals-for-job-search/"
+      ]
+    },
+    {
+      "question": "Which companies are hiring the most for AI-focused marketing roles?",
+      "answer": "Specialist digital marketing agencies, AI-native product startups, and larger B2C brands (e-commerce, travel, fintech) are hiring, but the volume of explicit roles is niche. Most large brands show few roles mentioning AI assistants among responsibilities, indicating early exploration rather than full-scale team building.",
+      "confidence": "Medium",
+      "sources": [
+        "https://www.linkedin.com/top-content/career/leveraging-linkedin-for-job-opportunities/using-linkedin-signals-for-job-search/"
+      ]
+    }
+  ],
+  "summary": "Demand for skills related to AI search optimization is growing, largely focusing on integrating AI capabilities into existing roles rather than creating new dedicated positions. Digital agencies and AI-native startups are leading in hiring efforts, with some large brands beginning to incorporate AI search responsibilities among broader roles. The niche nature of this market suggests an emerging competitive opportunity for specialized tools and expertise.",
+  "opportunity_signal": "Moderate"
+}

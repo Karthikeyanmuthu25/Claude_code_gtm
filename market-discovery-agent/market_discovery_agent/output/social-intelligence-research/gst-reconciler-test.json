@@ -1,0 +1,25 @@
+{
+  "social_intelligence_landscape": "LinkedIn and Twitter on GST reconciliation",
+  "findings": [
+    {
+      "question": "What is the general sentiment around GST reconciliation tasks expressed on social media by finance professionals?",
+      "answer": "No confident answer found. Current sentiment could not be measured without live social media access.",
+      "confidence": "Low",
+      "sources": []
+    },
+    {
+      "question": "Which platforms see the most discussion about GST issues in manufacturing?",
+      "answer": "No confident answer found. Platform comparisons could not be made without live social media access.",
+      "confidence": "Low",
+      "sources": []
+    },
+    {
+      "question": "What hashtags or keywords are associated with GST reconciliation on social media?",
+      "answer": "No confident answer found. Hashtags and keywords could not be identified without live social media access.",
+      "confidence": "Low",
+      "sources": []
+    }
+  ],
+  "summary": "The lack of access to live social data severely limits the ability to gauge the urgency or virality of GST reconciliation issues among finance professionals on social media. Without current evidence from platforms like Twitter or LinkedIn, it is unclear if discussions are widespread or if specific pain points are frequently voiced.",
+  "opportunity_signal": "Unclear"
+}

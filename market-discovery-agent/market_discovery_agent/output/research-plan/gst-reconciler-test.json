@@ -1,0 +1,194 @@
+{
+  "priority_order": [
+    "Competitor Agent",
+    "Industry Agent",
+    "Job Market Agent",
+    "Social Intelligence Agent",
+    "Search Intent Agent",
+    "Community Agent",
+    "Funding Agent"
+  ],
+  "agent_briefs": [
+    {
+      "agent_name": "Industry Agent",
+      "objective": "Understand the scale of GST reconciliation issues faced by mid-size manufacturing companies in India and their current practices.",
+      "questions": [
+        {
+          "question": "What is the prevalence of GST reconciliation issues among mid-size manufacturing companies in India?",
+          "rationale": "This will help validate whether the pain point is significant and widespread, supporting the initial hypothesis."
+        },
+        {
+          "question": "How do industry regulations affect GST reconciliation processes in India for mid-size manufacturers?",
+          "rationale": "Understanding regulatory pressures is crucial for assessing compliance and financial penalty risks, which underpin the problem statement."
+        },
+        {
+          "question": "What is the typical size and structure of finance teams in mid-size manufacturing companies?",
+          "rationale": "Determining the resources available for such tasks will help understand the scope of reliance on manual processes."
+        },
+        {
+          "question": "What trends are emerging in the financial tech solutions space for manufacturing companies in India?",
+          "rationale": "This can guide positioning the tool within the existing industry landscape and anticipating future directions."
+        }
+      ],
+      "suggested_sources": [
+        "Industry reports on GST in manufacturing",
+        "Government publications on GST compliance",
+        "Interviews with industry experts",
+        "Business chambers like FICCI or CII"
+      ]
+    },
+    {
+      "agent_name": "Competitor Agent",
+      "objective": "Identify existing solutions for GST reconciliation that target mid-size manufacturing companies in India and analyze their features.",
+      "questions": [
+        {
+          "question": "What are the leading solutions currently available for GST reconciliation in the Indian manufacturing sector?",
+          "rationale": "Identifying existing tools will help assess competition and potential positioning of the new tool."
+        },
+        {
+          "question": "What features do these competing tools offer, and how do they address the pain points of GST reconciliation?",
+          "rationale": "Understanding competitor features will indicate gaps or areas for improvement in the proposed tool."
+        },
+        {
+          "question": "What is the pricing structure of existing GST reconciliation tools catering to mid-size manufacturers?",
+          "rationale": "Identifying pricing strategies will inform potential pricing models and perceived value."
+        },
+        {
+          "question": "What feedback and critiques do users express in reviews or case studies about existing tools?",
+          "rationale": "User feedback can highlight pain points that existing solutions fail to address, providing opportunities for differentiation."
+        }
+      ],
+      "suggested_sources": [
+        "Competitor websites and product brochures",
+        "Customer reviews on tech forums",
+        "Market analysis reports",
+        "Industry trade shows"
+      ]
+    },
+    {
+      "agent_name": "Community Agent",
+      "objective": "Explore how finance teams in mid-size manufacturing companies discuss and prioritize GST reconciliation challenges.",
+      "questions": [
+        {
+          "question": "What challenges do finance professionals in manufacturing emphasize in online discussions about GST reconciliation?",
+          "rationale": "Direct insight into user frustrations will substantiate or refute the hypothesis about manual process dependency."
+        },
+        {
+          "question": "How frequently is GST reconciliation discussed in professional finance forums among Indian manufacturers?",
+          "rationale": "This can reveal the level of attention this issue commands and its impact on finance teams."
+        },
+        {
+          "question": "What solutions are finance professionals advocating or looking to implement for GST reconciliation challenges?",
+          "rationale": "User-preferred solutions might indicate market demand and guide feature development."
+        }
+      ],
+      "suggested_sources": [
+        "Finance-focused LinkedIn groups",
+        "Industry-specific forums",
+        "Webinars and discussion panels on GST challenges",
+        "Professional networks like ICAI"
+      ]
+    },
+    {
+      "agent_name": "Search Intent Agent",
+      "objective": "Assess the search behavior of finance teams in mid-size manufacturing companies related to GST reconciliation solutions.",
+      "questions": [
+        {
+          "question": "What search terms related to GST reconciliation are most common among finance teams in Indian manufacturing companies?",
+          "rationale": "Understanding search behavior will highlight what solutions or information users are actively seeking."
+        },
+        {
+          "question": "How has the search volume for GST reconciliation solutions evolved in recent months?",
+          "rationale": "Changes in search volume can indicate rising concern or interest, supporting assumptions of market urgency."
+        },
+        {
+          "question": "Which websites or resources are most frequently accessed from these search results?",
+          "rationale": "Key resources being accessed can guide collaboration or content strategy for the new tool."
+        }
+      ],
+      "suggested_sources": [
+        "Google Trends",
+        "SEO research tools like SEMrush",
+        "Content analysis reports",
+        "Financial news websites"
+      ]
+    },
+    {
+      "agent_name": "Funding Agent",
+      "objective": "Identify funding trends and investor interest in tools addressing GST reconciliation issues in mid-size manufacturing businesses.",
+      "questions": [
+        {
+          "question": "What recent funding activities have occurred for companies developing GST reconciliation solutions in India?",
+          "rationale": "Funding trends can indicate investor confidence in this market segment and potential for growth."
+        },
+        {
+          "question": "Who are the major investors currently backing financial tech solutions for the manufacturing sector in India?",
+          "rationale": "Identifying key investors might guide partnership strategies or strategic funding pursuits."
+        },
+        {
+          "question": "What are the success metrics emphasized by investors for GST reconciliation tools?",
+          "rationale": "Understanding investor expectations can align product development and market strategy with funding opportunities."
+        }
+      ],
+      "suggested_sources": [
+        "Venture capital databases",
+        "Financial and investment news outlets",
+        "Industry reports on startup funding",
+        "LinkedIn profiles of investors"
+      ]
+    },
+    {
+      "agent_name": "Job Market Agent",
+      "objective": "Determine the demand for professionals skilled in GST reconciliation within mid-size manufacturing companies in India.",
+      "questions": [
+        {
+          "question": "What job roles are commonly associated with GST reconciliation processes in mid-size Indian manufacturing companies?",
+          "rationale": "Job role prevalence can indicate internal resources devoted to overcoming this issue, validating market need."
+        },
+        {
+          "question": "How frequently do these companies recruit for finance roles that specifically handle GST processes?",
+          "rationale": "Recruitment frequency can suggest the level of internal investment in resolving GST reconciliation challenges."
+        },
+        {
+          "question": "What skills and experience are listed as requirements for GST-related finance roles?",
+          "rationale": "Skill requirements can showcase the complexity of tasks and potential demand for streamlined solutions."
+        }
+      ],
+      "suggested_sources": [
+        "Job portals like Naukri or Indeed",
+        "Company LinkedIn pages",
+        "Recruitment agency reports",
+        "Industry career trend publications"
+      ]
+    },
+    {
+      "agent_name": "Social Intelligence Agent",
+      "objective": "Analyze social media discussions for sentiments and trends related to GST reconciliation challenges in mid-size manufacturing companies in India.",
+      "questions": [
+        {
+          "question": "What is the general sentiment around GST reconciliation tasks expressed on social media by finance professionals?",
+          "rationale": "Sentiment analysis can validate the emotional impact and frustration levels caused by this challenge."
+        },
+        {
+          "question": "Which platforms see the most discussion about GST issues in manufacturing?",
+          "rationale": "Understanding where these conversations take place can improve outreach and marketing strategies."
+        },
+        {
+          "question": "What hashtags or keywords are associated with GST reconciliation on social media?",
+          "rationale": "Relevant hashtags can enhance social media engagement and content discovery for the tool."
+        }
+      ],
+      "suggested_sources": [
+        "Twitter sentiment analysis tools",
+        "Social media listening tools like Brandwatch",
+        "Professional networks on platforms like LinkedIn",
+        "Finance and manufacturing-focused social groups"
+      ]
+    }
+  ],
+  "open_questions_for_founder": [
+    "What is the budget constraint for developing, marketing, and deploying this GST reconciliation tool?",
+    "Is there a timeline within which the founder expects to evaluate the tool's success or pivot strategy?",
+    "Are there specific ERP providers the founder is keen on partnering with based on market research or existing relationships?"
+  ]
+}

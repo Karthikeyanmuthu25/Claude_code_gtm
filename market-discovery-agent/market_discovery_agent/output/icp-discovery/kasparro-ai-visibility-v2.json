@@ -1,0 +1,66 @@
+{
+  "primary_icp": {
+    "segment_name": "Mid-market companies in ecommerce, SaaS, and fintech",
+    "market": "AI search visibility optimization",
+    "industry": "Ecommerce, B2B SaaS, Fintech",
+    "firmographics": "Mid-market (250-2,500 employees, $10M–$100M+ revenue), global operations",
+    "technographics": "Typically employ CRM systems like Salesforce or HubSpot, marketing automation platforms like Marketo, and analytics tools like Google Analytics. Often lack specific tools for AI visibility in assistant platforms.",
+    "buyer_persona": "CMO or VP Marketing in collaboration with Head of Data or VP Analytics, who have budget authority and feel the pain of decreased visibility.",
+    "pain_points": "Lack of visibility in AI-driven search results, which impacts traffic and sales.",
+    "buying_signals": "Tech stack optimization cycles, notably during annual planning phases, strategic shifts to AI initiatives, and when noticing declines in digital acquisition metrics. Budget likely exists within existing digital marketing allocations.",
+    "evidence": "Research indicates moderate opportunity, existing tools in tech stacks lack AI visibility functions; external validation through similar categories and purchase processes exists through Search Intent and Industry Agents.",
+    "confidence": "Medium",
+    "fit_score": 80,
+    "fit_score_rationale": "Segment strongly matches with current investments in digital marketing technology and existing needs for AI-driven search optimization tools. Scoring driven by size, budget, and alignment with markets identified in secondary sources."
+  },
+  "secondary_icps": [],
+  "exclusion_criteria": "Small businesses under 250 employees due to budget constraints, companies without existing investment in digital marketing tooling, those with strong internal AI expertise already.",
+  "scoring_rubric": [
+    {
+      "criterion": "Company has 250-2,500 employees",
+      "weight": 25,
+      "how_to_score": "Check LinkedIn or Apollo data for employee count."
+    },
+    {
+      "criterion": "Uses a recognized CRM like Salesforce or HubSpot",
+      "weight": 25,
+      "how_to_score": "Check company profile for CRM systems in use via technographic tools."
+    },
+    {
+      "criterion": "Has a marketing automation platform like Marketo",
+      "weight": 20,
+      "how_to_score": "Verify through technographic data or company case studies/references."
+    },
+    {
+      "criterion": "Posted a job or made a strategic shift related to AI initiatives in the last 6 months",
+      "weight": 15,
+      "how_to_score": "Review job postings on LinkedIn or press releases/company updates."
+    },
+    {
+      "criterion": "Annual revenue is $10M–$100M+",
+      "weight": 15,
+      "how_to_score": "Assess financial data from business reports or databases."
+    }
+  ],
+  "qualified_account_spec": {
+    "firmographic_filters": "Industry: Ecommerce, SaaS, Fintech; Employee Count: 250-2,500; Revenue: $10M–$100M+",
+    "technographic_filters": "CRM: Salesforce or HubSpot; Marketing Automation: Marketo",
+    "buyer_titles": [
+      "CMO",
+      "VP Marketing",
+      "Head of Growth",
+      "VP Analytics"
+    ],
+    "buying_signal_filters": "Recent AI project announcements or related job postings.",
+    "minimum_fit_score": 70
+  },
+  "summary": "This ICP focuses on mid-market companies in the ecommerce, SaaS, and fintech sectors that are seeking to enhance their visibility in AI-driven searches. Typically ranging from 250 to 2,500 employees with $10M–$100M+ in revenue, these companies already invest in CRM and marketing automation but lack specific tools for AI visibility in search assistants. Key decision-makers include CMO or VP Marketing with input from data/analytics leads. Purchase triggers include annual planning cycles or tech stack optimizations, particularly when addressing declines in digital acquisition metrics.",
+  "icp_confidence": "Medium",
+  "recommended_validation_steps": [
+    "Conduct interviews with CMOs in mid-market ecommerce or SaaS companies about AI visibility concerns.",
+    "Test willingness to pay by showcasing product prototypes to marketing leaders in these firms.",
+    "Attend industry conferences to gather informal insights from fintech marketing executives.",
+    "Survey mid-market firms to determine current spending and perceived need of AI visibility tools.",
+    "Create a targeted campaign to gauge interest in AI search optimization solutions among identified firms."
+  ]
+}

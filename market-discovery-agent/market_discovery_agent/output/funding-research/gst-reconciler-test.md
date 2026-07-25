@@ -1,0 +1,38 @@
+# Funding Research: GST reconciliation fintech in India
+
+Session ID: `gst-reconciler-test`
+
+---
+
+## Funding Agent: GST reconciliation fintech in India
+
+**Objective:** Identify funding trends and investor interest in tools addressing GST reconciliation issues in mid-size manufacturing businesses.
+
+### Findings
+
+**Q: What recent funding activities have occurred for companies developing GST reconciliation solutions in India?**
+
+Recent large, visible funding rounds specifically for GST reconciliation in 2023–26 have not been identified. Clear (formerly ClearTax) received Series C funding in October 2021 of around $75M led by Kora Capital. Other players provide GST reconciliation as part of larger platforms, but no recent specific funding for reconciliation was found.
+
+- Confidence: High
+- Sources: https://qubit.capital/blog/startup-funding-trends, https://blog.mean.ceo/startup-funding-trends-june-2026/, https://www.hubspot.com/startups/fundraising/vc-fundraising-trends
+
+**Q: Who are the major investors currently backing financial tech solutions for the manufacturing sector in India?**
+
+There are no investors specifically focusing on GST reconciliation for manufacturing, but investors in Indian SME fintech/ERP and compliance SaaS include Sequoia Capital India, Stripe, and Tiger Global. These investors are interested in fintech platforms that could include GST reconciliation features.
+
+- Confidence: Medium
+- Sources: https://qubit.capital/blog/startup-funding-trends
+
+**Q: What are the success metrics emphasized by investors for GST reconciliation tools?**
+
+Key success metrics for GST reconciliation tools include the volume of transactions/invoices processed, customer segment penetration, workflow automation rate, ARR growth, low churn, and reduction in penalties. Vertical AI that improves reconciliation processes is also critical for attracting investment.
+
+- Confidence: Medium
+- Sources: https://qubit.capital/blog/ai-startup-fundraising-trends, https://www.hubspot.com/startups/fundraising/vc-fundraising-trends
+
+### Summary
+
+The funding landscape for GST reconciliation tools in India suggests a mature market. Recent funding rounds are more focused on integrated GST platforms rather than standalone solutions. Existing platforms like Clear indicate strong market penetration, suggesting that GST reconciliation is viewed as a feature within broader solutions rather than a standalone opportunity. Investors, including Sequoia and Stripe, are backing broader fintech and compliance solutions, showing interest in platforms rather than niche products.
+
+**Opportunity signal:** Moderate

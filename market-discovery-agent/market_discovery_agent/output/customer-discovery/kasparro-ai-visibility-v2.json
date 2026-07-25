@@ -1,0 +1,67 @@
+{
+  "discovery_questions": [
+    {
+      "question": "Tell me about the last time your brand wasn’t visible in AI-driven search results or assistants. What happened?",
+      "tests": "Mid-market and enterprise brands are currently not well-represented or optimized for visibility in AI-generated recommendations and searches.",
+      "what_to_listen_for": "Specific recent instances where their brand was not listed by AI assistants, indicating lack of visibility."
+    },
+    {
+      "question": "Describe any strategies you’ve tried to improve your brand’s visibility in AI platforms like ChatGPT. What worked and what didn’t?",
+      "tests": "The target sectors currently lack sufficient in-house capability or knowledge to optimize for AI visibility without external tools or services.",
+      "what_to_listen_for": "Lack of well-developed strategies or mention of failed attempts implying capability gaps."
+    },
+    {
+      "question": "How do you currently measure the impact of AI assistant visibility on your revenue or customer acquisition metrics?",
+      "tests": "Improvements in AI visibility can be quantitatively measured and acted upon using metrics like inclusion rates, recommendation frequency, and trust signals.",
+      "what_to_listen_for": "Mention of quantifiable metrics used or lack of measurement indicating an area for improvement."
+    },
+    {
+      "question": "Who in your organization is most involved when dealing with visibility issues on AI platforms, and what actions have they taken?",
+      "tests": "The target sectors currently lack sufficient in-house capability or knowledge to optimize for AI visibility without external tools or services.",
+      "what_to_listen_for": "Names of roles or individuals involved; lack of specialized roles may indicate a need for external solutions."
+    },
+    {
+      "question": "How frequently do you experience challenges with poor visibility on AI-driven platforms compared to other marketing challenges?",
+      "tests": "These brands experience or could experience significant revenue impact due to poor visibility in AI-driven channels compared to traditional search engines.",
+      "what_to_listen_for": "Frequency of challenges occurring, which would indicate the severity and potential impact on revenue."
+    }
+  ],
+  "recruiting_channels": [
+    {
+      "channel": "LinkedIn communities for CMOs/VP of Marketing roles in ecommerce, SaaS, and fintech.",
+      "why_this_channel": "Target professionals who are decision-makers in relevant industries, active in sharing knowledge and discussing industry trends.",
+      "evidence": "Guidance suggests LinkedIn is a viable platform for targeting specific job roles in precise industries."
+    },
+    {
+      "channel": "Slack communities like CMO Coffee Talk or other relevant marketing leader groups.",
+      "why_this_channel": "These communities facilitate direct engagement with CMO-level participants experiencing AI visibility challenges.",
+      "evidence": "Inferred need for targeting marketing leader communities where buy-in and discussion around marketing challenges are common."
+    },
+    {
+      "channel": "Industry-specific conferences or virtual summits tailored to ecommerce, SaaS, and fintech sectors.",
+      "why_this_channel": "Direct interaction with potential customers who are already focused on enhancing their digital strategy and may face the issues discussed.",
+      "evidence": "Suggested as strong recruiting channels for meeting potential customers aligned with the problem domain."
+    },
+    {
+      "channel": "Curated newsletters like Martech Today or Chiefmartec.",
+      "why_this_channel": "Likely read by VP Marketing/CMOs who are looking at new tech trends impacting marketing at mid-to-large enterprises.",
+      "evidence": "Guidance supports newsletters as useful channels to reach targeted marketing professionals."
+    }
+  ],
+  "outreach_message_template": "Hi [Name], I noticed that many in [your industry] face challenges with AI-driven search visibility impacting brand reach. Could you spare 20 minutes to share your experiences? Your insights could help shape new solutions.",
+  "screening_criteria": [
+    "Works at a mid-market company in ecommerce, SaaS, or fintech with global operations.",
+    "Holds a VP Marketing, CMO, or Head of Data/Analytics position.",
+    "Recently experienced visibility challenges on AI-driven platforms.",
+    "Shows interest in improving AI-driven search and assistant visibility."
+  ],
+  "success_criteria": "At least 4 of 8 interviewed CMOs/VPs independently recount incidents of poor AI visibility leading to actionable impacts (e.g., loss in leads or sales).",
+  "summary": "This discovery plan aims to validate the interest and needs of mid-market ecommerce, SaaS, and fintech companies in optimizing their visibility on AI-driven platforms. It seeks to explore existing pain points, measuring systems, and capability gaps to confirm underserved needs and potential demand for more effective solutions.",
+  "recommended_next_steps": [
+    "Prepare outreach messages and identify target profiles on LinkedIn.",
+    "Join relevant Slack communities like CMO Coffee Talk for deeper engagement.",
+    "Subscribe to and identify potential contributors from newsletters like Martech Today.",
+    "Attend or participate in industry-specific events to network with potential interviewees.",
+    "Conduct the initial set of 10 interviews focusing on past challenges with AI-driven visibility."
+  ]
+}

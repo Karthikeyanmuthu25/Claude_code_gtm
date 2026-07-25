@@ -1,0 +1,59 @@
+# Business Understanding
+
+Session ID: `20260721-192012-contextrank-is-an-ai-search-visibility-g`
+
+---
+
+## Founder Input
+
+**Product idea:**
+ContextRank is an AI Search Visibility (GEO/AEO) audit tool that scores early-stage B2B SaaS founders' LinkedIn presence against the signals AI engines (ChatGPT, Perplexity, Claude, Gemini) use to decide who to cite, then prioritizes fixes and tracks whether citation frequency improves.
+
+**Vision:**
+Founders never lose a warm inbound conversation to a competitor because an AI engine cited them instead - ContextRank becomes the standard rubric and tracking system for AI-driven B2B discovery.
+
+**Features:**
+- Profile GEO Audit - scores LinkedIn skills taxonomy, headline, About section, and content against AI citation criteria
+- Content AEO scoring - rates individual LinkedIn posts on answer density, quotable sentences, and authority signals
+- No-login lead magnet audit with PDF report delivered by email
+- Magic-link account activation from the audit email
+- Shareable LinkedIn Score Card image (1200x627px)
+- Citation monitoring - tracks whether score changes correlate with actual AI engine citations
+- Compounding research/audit/content phase chain (GCP context chain)
+
+**Assumptions:**
+- Founders with higher Profile GEO scores get cited more frequently by AI engines than founders with low scores
+- Founders will give their LinkedIn URL and email for a free audit with no login required
+- The free audit surfaces an insight valuable enough that founders would pay $49/month to track it
+- No funded, product-complete competitor targeting founder-specific AI Search Visibility exists yet
+- Founders discover the problem via a specific trigger event - seeing a competitor cited by an AI engine - more than through organic curiosity
+- Founders use colloquial language ("show up in ChatGPT") rather than technical SEO/GEO vocabulary to describe the problem
+- The PDF report and score card will be shared organically (to co-founders, investors, LinkedIn) without being prompted
+
+**Founder knowledge:**
+I'm the founder of ContextRank, building on direct research (50+ audits run, average score 34/100) and design partner conversations showing founders already ask AI engines who the experts are in their category before visiting anyone's website. I've mapped which LinkedIn signals AI engines use to decide who to cite - skills taxonomy depth, headline clarity, About-section answer density, third-party corroboration - and built a scoring rubric that adjacent tools like Taplio or Shield Analytics don't address, since they optimize for human engagement, not AI citation.
+
+## Phase 1 Output
+
+### Problem Statement
+
+Early-stage B2B SaaS founders who rely on LinkedIn as a primary personal-brand/discovery channel are increasingly losing warm inbound leads because AI engines (ChatGPT, Perplexity, Claude, Gemini) cite competitors instead of them when prospects ask "who are the experts/vendors in category X" — and founders currently have no way to (a) know this is happening, (b) diagnose why, or (c) fix it, because existing LinkedIn optimization tools (Taplio, Shield Analytics) optimize for human engagement metrics, not the distinct signal set AI engines use for citation decisions. This matters enough to pay for only if losing these specific citations demonstrably costs founders deals they can point to — which has not yet been shown, only inferred from low average audit scores (34/100).
+
+### Initial Hypotheses
+
+1. Founders with higher Profile GEO scores (skills taxonomy depth, headline clarity, About-section answer density, third-party corroboration) get cited measurably more often by AI engines than founders with low scores, holding company/category constant.
+2. A meaningful number of early-stage B2B SaaS founders can recall or point to a specific instance of losing a warm inbound conversation to a competitor because an AI engine cited that competitor instead of them.
+3. Founders will voluntarily submit their LinkedIn URL and email to a no-login tool for a free audit at a rate high enough to sustain a lead-gen funnel (i.e., this isn't just a top-of-funnel curiosity click with no downstream conversion).
+4. The free audit surfaces insight specific and actionable enough that a non-trivial percentage of recipients convert to a $49/month paid tracking product, rather than treating the one-time PDF as sufficient.
+5. Founders discover/recognize this problem primarily via a triggering event (seeing a competitor cited by an AI engine) rather than proactive curiosity — meaning the marketing/acquisition motion must be built around surfacing or simulating that trigger, not generic SEO/content education.
+6. The scoring rubric's correlation between LinkedIn signal changes and actual AI citation frequency is causal (or at least reliably correlated) and not confounded by other factors (company growth, press mentions, backlinks, Reddit/community mentions) that also influence AI citation independent of LinkedIn optimization.
+7. No well-funded, product-complete competitor will enter this specific niche (founder-level AI Search Visibility scoring/tracking) within the founder's window to build defensibility — current competitors optimize for human engagement, not AI citation.
+
+### Success Criteria
+
+1. At least 15-20% of founders who receive the free PDF audit take a second action within 7 days (open magic-link, log in, or share the score card) — evidence the insight is sticky enough to act on, not just curiosity-click.
+2. At least 5-8% of free-audit recipients convert to the $49/month paid tier within 30 days without additional sales outreach, establishing a baseline self-serve conversion rate.
+3. In a sample of 20-30 design-partner founders, at least a third can independently describe (unprompted) a real instance or strong suspicion of losing a lead to AI-engine competitor citation — validating the problem's felt urgency beyond the founder's own narrative.
+4. A controlled before/after test on 10+ profiles shows a statistically noticeable increase in AI engine citation frequency (measured via repeated, consistent prompt sampling across ChatGPT/Perplexity/Claude/Gemini) following score-driven profile changes, isolating LinkedIn changes as the likely driver.
+5. Month-over-month paid-tier retention exceeds 70% for the first 3 cohorts, indicating founders perceive ongoing tracking value rather than churning after one fix cycle.
+6. At least 10% of free audits or score cards are shared organically (LinkedIn post, forwarded PDF) without being explicitly prompted to do so, validating the built-in virality assumption.
