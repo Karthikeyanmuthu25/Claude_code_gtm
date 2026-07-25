@@ -9,7 +9,17 @@ Parallel LinkedIn: Connection → Post-accept → Follow-up → Soft close.
 import sys
 import os
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", ".."))
-from config.sequence_config import EMAIL_SCHEDULE, LINKEDIN_SCHEDULE
+from config.sequence_config import EMAIL_SCHEDULE, LINKEDIN_SCHEDULE, BANNED_PHRASES
+
+BRAIN_PATH = os.path.join(os.path.dirname(__file__), "..", "..", "knowledge", "brain.md")
+
+
+def _load_brain() -> str:
+    """Read the accumulated field-knowledge file, if it exists."""
+    if not os.path.exists(BRAIN_PATH):
+        return ""
+    with open(BRAIN_PATH, encoding="utf-8") as f:
+        return f.read().strip()
 
 
 def build_sequence_prompt(inputs: dict, ctx: dict) -> str:
@@ -24,6 +34,14 @@ def build_sequence_prompt(inputs: dict, ctx: dict) -> str:
         f"  → Hot Button 2: {hb.get('hot_button_2', '')}\n"
         f"  → Hot Button 3: {hb.get('hot_button_3', '')}"
     )
+
+    brain = _load_brain()
+    brain_block = f"""
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PROVEN KNOWLEDGE BASE (field-tested — use what's relevant, ignore what isn't)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+{brain}
+""" if brain else ""
 
     prompt = f"""
 You are a B2B outreach copywriter specializing in 14-21 day cold-to-warm nurture sequences.
@@ -58,12 +76,16 @@ Goal: {inputs.get("outreach_goal", "")}
 Offer: {inputs.get("offer", "")}
 Asset (Day 0): {inputs.get("asset_name", "N/A")}
 Tone: {inputs.get("tone", "Friendly and professional")}
-Connection angle: {ctx.get("connection_angle", "")}
 Sequence type: {seq_type}
+
+Determine the connection angle yourself from the receiver's actual role, company,
+and summary above — do not default to generic SaaS/GTM language ("pipeline",
+"MQL", "ICP") unless the receiver's own world genuinely is SaaS/GTM. State the
+angle you chose and why in the Outreach Angle section.
 
 ICP Pain Points (Hot Buttons):
 {pain_block}
-
+{brain_block}
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 NURTURE SEQUENCE FRAMEWORK
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -89,11 +111,9 @@ STRICT WRITING RULES
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 NEVER:
-→ Use "I hope this finds you well" or any variation
+→ Use any of these banned phrases (or close variations): {", ".join(f'"{p}"' for p in BANNED_PHRASES)}
 → Pitch the product in Day 0 or Day 1 emails
 → Write long paragraphs (3 sentences max per paragraph)
-→ Use fake familiarity ("I've been following your journey!")
-→ Use generic compliments ("Your company is doing amazing work")
 → Be pushy, guilt-trip, or create false urgency
 
 ALWAYS:
@@ -120,7 +140,20 @@ Return output in EXACTLY this structure:
 
 {_linkedin_block(generate_linkedin)}
 
+## Self-QA Checklist
+
+Answer each honestly, Y/N, after writing the sequence above (not before):
+- Connection angle grounded in receiver's actual role/summary (not generic GTM language unless genuinely applicable): Y/N — why
+- Day 0 and Day 1 contain zero product pitch: Y/N
+- No banned phrase or close variation appears anywhere: Y/N
+- Every LinkedIn step is within its word limit: Y/N
+- Subject lines are specific and curiosity-driven, not clickbait: Y/N
+- Receiver's actual decision-making authority for this offer is clear from the profile (flag below if uncertain): Y/N
+
 ## Notes for Human Review
+
+Flag anything a human should verify before sending: uncertain claims, assumptions
+about authority/fit, asset/link placeholders, or any Self-QA "N" answers above.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 

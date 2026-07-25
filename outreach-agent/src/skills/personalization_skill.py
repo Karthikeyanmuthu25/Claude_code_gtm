@@ -18,7 +18,6 @@ def build_personalization_context(inputs: dict) -> dict:
         "receiver_hooks": _extract_receiver_hooks(inputs),
         "pain_point_list": pain_points,
         "hot_button_map": _map_hot_buttons(pain_points, inputs),
-        "connection_angle": _infer_connection_angle(inputs),
         "sequence_type": inputs.get("sequence_type", "Both"),
     }
 
@@ -77,27 +76,13 @@ def _map_hot_buttons(pain_points: List[str], inputs: dict) -> dict:
     }
 
 
-def _infer_connection_angle(inputs: dict) -> str:
-    sender_role = inputs.get("sender_role", "").lower()
-    receiver_role = inputs.get("receiver_role", "").lower()
-    offer = inputs.get("offer", "").lower()
-
-    if any(w in offer for w in ["ai", "automation", "agent", "intelligence"]):
-        if any(w in receiver_role for w in ["founder", "ceo", "cto", "head"]):
-            return (
-                "AI-efficiency angle — position around intelligence uplift "
-                "and time reclaimed for founder-level thinking"
-            )
-    if any(w in sender_role for w in ["gtm", "growth", "sales"]):
-        return (
-            "peer GTM angle — sender brings tactical, hands-on GTM engineering "
-            "credibility that mirrors the receiver's growth challenges"
-        )
-    if any(w in offer for w in ["lead", "icp", "pipeline", "prospect"]):
-        return (
-            "pipeline quality angle — position around better qualified leads "
-            "and reduced time-to-MQL"
-        )
-    return (
-        "value-first angle — lead with insight and education before any product mention"
-    )
+# NOTE: this used to contain _infer_connection_angle(), a keyword-matching
+# guesser that picked a connection angle from words in the offer text (e.g.
+# "lead"/"pipeline" → "pipeline quality / time-to-MQL" angle). It once guessed
+# that angle for a real-estate asset-management buyer, which was simply wrong,
+# and the LLM had to notice and override it in the human-review notes. Keyword
+# matching on the offer has no idea who the receiver actually is — it injects
+# noise, not signal. The connection angle is now derived by the LLM directly
+# from receiver_hooks/receiver_summary at generation time (see
+# sequence_skill.py), which is the only place enough real context exists to
+# get it right. See knowledge/brain.md → "Known heuristic failure" for detail.

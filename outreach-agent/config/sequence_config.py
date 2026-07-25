@@ -138,3 +138,30 @@ LINKEDIN_SCHEDULE = {
         "max_words": 60,
     },
 }
+
+# Phrases the model is instructed never to use. Shared source of truth between
+# the prompt (sequence_skill.py) and the post-generation lint (qa_lint_skill.py)
+# so the rule is actually enforced, not just requested.
+BANNED_PHRASES = [
+    "i hope this finds you well",
+    "i hope this email finds you well",
+    "i've been following your journey",
+    "i have been following your journey",
+    "your company is doing amazing work",
+    "your company is doing great work",
+    "just circling back",
+    "just checking in",
+    "touching base",
+    "reaching out because",
+    "hope you're doing well",
+    "hope all is well",
+]
+
+# Common cold-email spam/deliverability triggers. Flagged as warnings (not
+# auto-blocked) since some are context-dependent — a human should confirm.
+SPAM_TRIGGER_WORDS = [
+    "free", "guarantee", "guaranteed", "act now", "limited time",
+    "click here", "risk-free", "no obligation", "100% free",
+    "no cost", "cash bonus", "act immediately", "urgent", "winner",
+    "congratulations", "special promotion", "as seen on",
+]

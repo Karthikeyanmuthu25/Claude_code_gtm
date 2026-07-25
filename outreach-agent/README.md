@@ -40,22 +40,38 @@ outreach-agent-v2/
 ├── README.md
 │
 ├── config/
-│   └── sequence_config.py                ← Day schedule, timing rules, writing guidelines
+│   └── sequence_config.py                ← Day schedule, timing rules, banned phrases, spam words
 │
-├── output/                               ← Reports saved here (auto-created)
+├── knowledge/
+│   └── brain.md                          ← Living swipe file: proven angles, subject lines,
+│                                            objection handling, per-vertical notes. Injected
+│                                            into every prompt. Grows via scripts/promote_to_brain.py
+│
+├── output/                               ← Reports saved here (auto-created).
+│                                            Each .json also carries fit_report, lint_report,
+│                                            review{}, and outcomes{} — see below.
+│
+├── scripts/
+│   ├── log_outcome.py                    ← Record opens/replies/meetings/bounces per touch
+│   ├── review.py                         ← Record human approve/edit/reject + edited text
+│   ├── analyze_outcomes.py               ← Aggregate reply rate by touch and by fit score
+│   └── promote_to_brain.py               ← Promote an approved/high-reply pattern into brain.md
 │
 └── src/
     ├── agents/
-    │   └── nurture_agent.py              ← Main orchestration agent
+    │   └── nurture_agent.py              ← Orchestrates: fit gate → personalize → prompt →
+    │                                        generate → lint → revise (if needed) → save
     │
     ├── tools/
-    │   ├── claude_client.py              ← Anthropic SDK wrapper
+    │   ├── claude_client.py              ← Anthropic SDK wrapper (generate + revise)
     │   ├── input_collector.py            ← Interactive CLI + JSON loader
-    │   └── output_formatter.py           ← Saves .md report + .json data
+    │   └── output_formatter.py           ← Saves .md report + .json data (+ QA/review/outcomes)
     │
     └── skills/
         ├── personalization_skill.py      ← Profile analysis, pain point extraction
-        └── sequence_skill.py             ← Builds full Claude prompt
+        ├── sequence_skill.py             ← Builds full Claude prompt, injects brain.md
+        ├── icp_fit_skill.py              ← Pre-generation lead fit score (0-100)
+        └── qa_lint_skill.py              ← Post-generation rule-compliance check
 ```
 
 ---
@@ -91,6 +107,9 @@ python main.py --input sample_input.json
 
 # Interactive mode (fill details in terminal)
 python main.py
+
+# Abort before generating if the lead's ICP fit score is below 60
+python main.py --input sample_input.json --min-fit-score 60
 ```
 
 ---
@@ -133,6 +152,60 @@ Open the `.md` file in:
 - Notion (import)
 - markdownlivepreview.com
 
+Every `.md` report now opens with a **Pre-Send QA** table (ICP fit score, lint
+status, any unresolved violations/warnings) right under the campaign overview.
+
+---
+
+## What Happens on Every Run
+
+```
+1. ICP Fit Gate     → score_fit() scores input completeness/specificity 0-100.
+                       Low score = you're about to generate a generic sequence
+                       off a thin brief. Doesn't block unless --min-fit-score is set.
+2. Personalization  → extract hooks, pain points. (No more keyword-guessed
+                       connection angle — the LLM derives that itself from the
+                       receiver's actual profile, see knowledge/brain.md →
+                       "Known heuristic failure" for why that changed.)
+3. Prompt Build     → sequence_config.py rules + knowledge/brain.md's proven
+                       patterns are both injected into the prompt.
+4. Generate         → single Claude call.
+5. Lint             → qa_lint_skill checks banned phrases, spam words, LinkedIn
+                       word limits, and the model's own Self-QA answers.
+                       Hard violations trigger one automatic revise() pass.
+6. Save             → .md + .json, with review{} and outcomes{} skeletons ready
+                       to be filled in as the sequence actually gets used.
+```
+
+## Closing the Loop — Review, Send, Measure, Learn
+
+The agent generating a good-looking sequence once is not the same as the
+system getting better over time. That requires actually recording what
+happened and feeding it back in:
+
+```bash
+# 1. Human reviews the draft before it goes out
+python scripts/review.py --file output/nurture_x.json --status approved --reviewer "Karthikeyan"
+# ...or, if you edited the copy before sending, capture the diff:
+python scripts/review.py --file output/nurture_x.json --status edited \
+    --reviewer "Karthikeyan" --edited-text-file output/nurture_x_edited.md
+
+# 2. After sending, log what actually happened per touch
+python scripts/log_outcome.py --file output/nurture_x.json --touch day_1 --replied true
+
+# 3. Periodically, see what's working across every sequence you've sent
+python scripts/analyze_outcomes.py
+
+# 4. Promote a confirmed winning pattern into the shared knowledge base
+python scripts/promote_to_brain.py --file output/nurture_x.json \
+    --section "Angle patterns that have worked" \
+    --note "Naming the specific compliance/timeline edge up front worked for facilities buyers."
+```
+
+`knowledge/brain.md` is what every future prompt reads from — this is the
+mechanism that turns individual sends into compounding institutional
+knowledge instead of one-off documents nobody re-reads.
+
 ---
 
 ## Framework Source
@@ -150,11 +223,17 @@ Key principles:
 
 ## Tips for Best Results
 
-1. **Write real, specific receiver summaries** — generic profiles = generic output
+1. **Write real, specific receiver summaries** — generic profiles = generic output.
+   A thin summary now also tanks your ICP Fit Score (check the Pre-Send QA table).
 2. **Use their actual language** for pain points (copy from LinkedIn/G2 reviews/Slack)
 3. **The asset name matters** — a specific asset beats "N/A" for Day 0 personalization
-4. **Review Notes for Human Review section** before sending anything
+4. **Review the Self-QA Checklist and Notes for Human Review** before sending anything,
+   then record your decision with `scripts/review.py` so it's tracked, not just read
 5. Use `sequence_type: "Email"` if you only need the email track
+6. **Log outcomes after you send** (`scripts/log_outcome.py`) — the system can only
+   get smarter than the first draft if real replies/meetings get fed back in
+7. **Update `knowledge/brain.md`** as you learn what's working per vertical —
+   it's read into every prompt going forward
 
 ---
 

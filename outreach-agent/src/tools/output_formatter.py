@@ -28,11 +28,13 @@ def _base_name(inputs: dict) -> str:
     return f"nurture_{receiver}_{company}_{ts}"
 
 
-def format_and_save(raw_output: str, inputs: dict) -> dict:
+def format_and_save(raw_output: str, inputs: dict, fit_report: dict = None, lint_report: dict = None) -> dict:
     _ensure_dir()
     base = _base_name(inputs)
+    fit_report = fit_report or {}
+    lint_report = lint_report or {}
 
-    md_content = _build_markdown(raw_output, inputs)
+    md_content = _build_markdown(raw_output, inputs, fit_report, lint_report)
     md_path = os.path.join(OUTPUT_DIR, f"{base}.md")
     with open(md_path, "w", encoding="utf-8") as f:
         f.write(md_content)
@@ -43,6 +45,22 @@ def format_and_save(raw_output: str, inputs: dict) -> dict:
         "sequence_type": inputs.get("sequence_type", "Both"),
         "output_file": md_path,
         "raw_output": raw_output,
+        "fit_report": fit_report,
+        "lint_report": lint_report,
+        # Filled in later by scripts/review.py — makes human review a tracked
+        # gate instead of freeform notes, and captures edits as a diffable
+        # signal against raw_output.
+        "review": {
+            "status": "draft",  # draft | approved | edited | rejected
+            "reviewer": None,
+            "reviewed_at": None,
+            "edited_text": None,
+            "notes": None,
+        },
+        # Filled in later by scripts/log_outcome.py — this is what makes
+        # feedback-based optimization possible at all. Without this, nothing
+        # in the system ever learns from a real send.
+        "outcomes": _init_outcomes(inputs),
     }
     json_path = os.path.join(OUTPUT_DIR, f"{base}.json")
     with open(json_path, "w", encoding="utf-8") as f:
@@ -53,9 +71,34 @@ def format_and_save(raw_output: str, inputs: dict) -> dict:
     return {"markdown_path": md_path, "json_path": json_path, "raw_output": raw_output}
 
 
-def _build_markdown(raw_output: str, inputs: dict) -> str:
+def _init_outcomes(inputs: dict) -> dict:
+    seq_type = inputs.get("sequence_type", "Both")
+    touches = {}
+    if seq_type in ("Email", "Both"):
+        for day in ("day_0", "day_1", "day_3", "day_5", "day_14", "day_21"):
+            touches[day] = _blank_outcome()
+    if seq_type in ("LinkedIn", "Both"):
+        for step in ("li_step_1", "li_step_2", "li_step_3", "li_step_4"):
+            touches[step] = _blank_outcome()
+    return touches
+
+
+def _blank_outcome() -> dict:
+    return {
+        "sent_at": None,
+        "opened": None,
+        "replied": None,
+        "meeting_booked": None,
+        "bounced": None,
+        "notes": None,
+    }
+
+
+def _build_markdown(raw_output: str, inputs: dict, fit_report: dict = None, lint_report: dict = None) -> str:
     now = datetime.now().strftime("%B %d, %Y %H:%M")
     seq_type = inputs.get("sequence_type", "Both")
+    fit_report = fit_report or {}
+    lint_report = lint_report or {}
 
     # Sequence timeline label
     if seq_type == "Email":
@@ -81,6 +124,22 @@ def _build_markdown(raw_output: str, inputs: dict) -> str:
 | **Tone** | {inputs.get("tone", "")} |
 | **Sequence** | {timeline} |
 | **Asset (Day 0)** | {inputs.get("asset_name", "N/A")} |
+
+---
+
+## Pre-Send QA
+
+| Check | Result |
+|-------|--------|
+| **ICP Fit Score** | {fit_report.get("score", "n/a")}/100 |
+| **Fit Notes** | {"; ".join(fit_report.get("reasons", [])) or "n/a"} |
+| **Lint Status** | {"✅ Passed" if lint_report.get("passed") else f"⚠️ {len(lint_report.get('violations', []))} unresolved issue(s)"} |
+| **Lint Violations** | {"; ".join(lint_report.get("violations", [])) or "None"} |
+| **Lint Warnings** | {"; ".join(lint_report.get("warnings", [])) or "None"} |
+
+Review status, reviewer, and send outcomes are tracked in the companion `.json`
+file (`review` / `outcomes` keys) — update them with `scripts/review.py` and
+`scripts/log_outcome.py`, not by hand.
 
 ---
 
