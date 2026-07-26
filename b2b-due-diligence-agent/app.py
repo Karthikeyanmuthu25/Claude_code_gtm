@@ -20,6 +20,10 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+from agent.config import LLM_PROVIDER, LLM_MODEL
+
+LLM_LABEL = f"Claude ({LLM_MODEL})" if LLM_PROVIDER == "anthropic" else f"OpenAI ({LLM_MODEL})"
+
 # ── Page config ───────────────────────────────────────────────────────────────
 st.set_page_config(
     page_title="B2B Due Diligence Agent",
@@ -202,13 +206,13 @@ def evidence(items, cls):
         st.markdown(f'<div class="ei {cls}">{item}</div>', unsafe_allow_html=True)
 
 STAGES = [
-    ("◈", "Input Validation",    "OpenAI GPT-4o"),
+    ("◈", "Input Validation",    LLM_LABEL),
     ("◉", "Data Collection",     "Apify · Exa"),
-    ("⊕", "Cross-Verification",  "Exa · OpenAI GPT-4o"),
-    ("⊗", "Risk Detection",      "Exa · Apify · OpenAI GPT-4o"),
-    ("⚡", "Trust Scoring",       "Exa · OpenAI GPT-4o"),
-    ("◆", "Evidence Aggregation","Exa · OpenAI GPT-4o"),
-    ("✦", "Final Assessment",    "OpenAI GPT-4o"),
+    ("⊕", "Cross-Verification",  f"Exa · {LLM_LABEL}"),
+    ("⊗", "Risk Detection",      f"Exa · Apify · {LLM_LABEL}"),
+    ("⚡", "Trust Scoring",       f"Exa · {LLM_LABEL}"),
+    ("◆", "Evidence Aggregation",f"Exa · {LLM_LABEL}"),
+    ("✦", "Final Assessment",    LLM_LABEL),
 ]
 
 def pipeline_html(done_up_to: int) -> str:
@@ -242,16 +246,20 @@ def pipeline_html(done_up_to: int) -> str:
         )
     return out + "</div>"
 
+def get_llm_key() -> str:
+    if LLM_PROVIDER == "anthropic":
+        return os.environ.get("ANTHROPIC_API_KEY", "").strip()
+    return os.environ.get("OPENAI_API_KEY", "").strip()
+
 def api_ok() -> bool:
-    key = os.environ.get("OPENAI_API_KEY", "").strip()
-    return bool(key) and not key.startswith("sk-ant-")
+    return bool(get_llm_key())
 
 # ── Header ────────────────────────────────────────────────────────────────────
-st.markdown("""
+st.markdown(f"""
 <div class="dd-header">
-  <div class="dd-eyebrow">Intelligence Platform · v2.0</div>
+  <div class="dd-eyebrow">Intelligence Platform · v5.0</div>
   <div class="dd-title">B2B <span>Due Diligence</span> Agent</div>
-  <div class="dd-sub">7-Stage Autonomous Pipeline · Apify · Exa Search · OpenAI GPT-4o — Each stage independently reasoned</div>
+  <div class="dd-sub">7-Stage Autonomous Pipeline · Apify · Exa Search · {LLM_LABEL} — Each stage independently reasoned</div>
 </div>""", unsafe_allow_html=True)
 
 # ── Two-column layout ─────────────────────────────────────────────────────────
@@ -294,10 +302,11 @@ with left:
         st.rerun()
 
     # Key status
+    key_name = "ANTHROPIC_API_KEY" if LLM_PROVIDER == "anthropic" else "OPENAI_API_KEY"
     if api_ok():
-        st.markdown('<div class="status-ok">◉ OpenAI GPT-4o API key ready</div>', unsafe_allow_html=True)
+        st.markdown(f'<div class="status-ok">◉ {LLM_LABEL} API key ready</div>', unsafe_allow_html=True)
     else:
-        st.markdown('<div class="status-err">◎ OPENAI_API_KEY not set or invalid in .env</div>', unsafe_allow_html=True)
+        st.markdown(f'<div class="status-err">◎ {key_name} not set or invalid in .env</div>', unsafe_allow_html=True)
 
     parts = []
     for env, lbl in [("EXA_API_KEY","Exa"),("APIFY_API_KEY","Apify")]:
@@ -362,42 +371,34 @@ with right:
             from agent.orchestrator import run_pipeline
             from agent.validator import validate_input
 
-            def show_stage(n: int, msg: str):
-                pipeline_ph.markdown(pipeline_html(n), unsafe_allow_html=True)
+            stage_messages = {
+                1: "Stage 1 — GPT-4o validating fields, URLs, email-domain alignment...",
+                2: "Stage 2 — Collecting intelligence: Apify scraping + Exa web search...",
+                3: "Stage 3 — Cross-verifying identity against gathered intelligence...",
+                4: "Stage 4 — Detecting risk signals: legal, reputation, domain flags...",
+                5: "Stage 5 — Scoring company and decision maker trust (0-100)...",
+                6: "Stage 6 — Aggregating supporting vs contradicting evidence...",
+                7: "Stage 7 — Synthesising final verdict: PROCEED / CAUTION / REJECT...",
+            }
+
+            def on_stage(stage_num: int, message: str = ""):
+                msg = message or stage_messages.get(stage_num, f"Stage {stage_num} running...")
+                pipeline_ph.markdown(pipeline_html(stage_num), unsafe_allow_html=True)
                 status_ph.markdown(
                     f'<div style="font-family:\'IBM Plex Mono\',monospace;font-size:0.68rem;color:#17a2c8;">'
                     f'<span class="dot"></span>{msg}</div>',
                     unsafe_allow_html=True,
                 )
 
-            # Stage 1 — Input Validation (GPT-4o)
-            show_stage(1, "Stage 1 — GPT-4o validating fields, URL patterns, email-domain alignment...")
             is_valid, errors, warnings = validate_input(inp)
             if errors:
                 raise ValueError("Validation failed: " + " · ".join(errors))
 
-            # Stage 2 — Data Collection (Apify + Exa)
-            show_stage(2, "Stage 2 — Collecting data: Apify scraping · Exa web intelligence...")
-
-            # Stage 3 — Cross-Verification (Exa + GPT-4o)
-            show_stage(3, "Stage 3 — GPT-4o cross-verifying identity against Exa web intelligence...")
-
-            # Stage 4 — Risk Detection (Exa + Apify + GPT-4o)
-            show_stage(4, "Stage 4 — GPT-4o classifying risk flags from Exa signals + Apify data...")
-
-            # Stage 5 — Trust Scoring (Exa + GPT-4o)
-            show_stage(5, "Stage 5 — GPT-4o scoring company + DM via Exa intelligence...")
-
-            # Stage 6 — Evidence Aggregation (Exa + GPT-4o)
-            show_stage(6, "Stage 6 — GPT-4o aggregating supporting vs contradicting evidence from Exa...")
-
-            # Stage 7 — Final Assessment (GPT-4o only)
-            show_stage(7, "Stage 7 — GPT-4o synthesising all stages → final verdict...")
-
             result = run_pipeline(
                 input_data=inp,
-                api_key=os.environ.get("OPENAI_API_KEY",""),
+                api_key=get_llm_key(),
                 save_report=True,
+                stage_callback=on_stage,
             )
 
             st.session_state.result = result
@@ -479,6 +480,46 @@ with right:
             st.markdown(f'<div style="font-family:\'IBM Plex Mono\',monospace;font-size:0.65rem;color:#2a5060;margin-top:0.25rem;line-height:1.5;"><span style="color:#3a7080;">DM:</span> {dm_rat}</div>', unsafe_allow_html=True)
         st.markdown('</div>', unsafe_allow_html=True)
 
+        # ── DATA COLLECTION COVERAGE ──
+        s2 = sr.get("data_collection", {})
+        if s2:
+            sources = s2.get("sources_active", {})
+            exa_active = sources.get("exa", False)
+            apify_active = sources.get("apify", False)
+
+            st.markdown('<div class="dd-card">', unsafe_allow_html=True)
+            st.markdown('<div class="dd-card-title">Data Collection Coverage</div>', unsafe_allow_html=True)
+
+            metrics = [
+                ("Web Company Intel", s2.get("company_signals_count", 0), "results"),
+                ("Web Person Intel",  s2.get("person_signals_count", 0),  "results"),
+                ("Website Pages",     s2.get("website_pages_crawled", 0), "pages"),
+                ("LinkedIn Profile",  s2.get("profile_scraped", 0),       "items"),
+                ("Google Results",    s2.get("google_results", 0),         "results"),
+            ]
+
+            for label, count, unit in metrics:
+                color = "#17c87a" if count >= 3 else ("#c8a217" if count >= 1 else "#c82817")
+                st.markdown(f"""
+                <div class="srow">
+                  <div class="slbl">{label}</div>
+                  <div class="strack"><div class="sfill" style="width:{min(count*10,100)}%;background:{color};"></div></div>
+                  <div class="sval" style="color:{color};">{count}<span style="font-size:0.55rem;color:#2a4a5a;"> {unit}</span></div>
+                </div>""", unsafe_allow_html=True)
+
+            tool_status = []
+            if exa_active:   tool_status.append('<span style="color:#17c87a">● Exa active</span>')
+            else:            tool_status.append('<span style="color:#152030">○ Exa inactive</span>')
+            if apify_active: tool_status.append('<span style="color:#17c87a">● Apify active</span>')
+            else:            tool_status.append('<span style="color:#152030">○ Apify inactive</span>')
+
+            st.markdown(
+                f'<div style="font-family:\'IBM Plex Mono\',monospace;font-size:0.6rem;margin-top:0.5rem;">'
+                f'{"  ·  ".join(tool_status)}</div>',
+                unsafe_allow_html=True
+            )
+            st.markdown('</div>', unsafe_allow_html=True)
+
         # ── RISK FLAGS ──
         reds   = rd.get("red_flags", [])
         yellows= rd.get("yellow_flags", [])
@@ -532,6 +573,51 @@ with right:
                 st.markdown(f'<div class="ai"><span class="aa">→</span><span>{a}</span></div>', unsafe_allow_html=True)
             st.markdown('</div>', unsafe_allow_html=True)
 
+        # ── RUN COST ──
+        cost = result.get("cost_tracking", {})
+        if cost:
+            cb = cost.get("cost_breakdown", {})
+            tb = cost.get("token_breakdown", {})
+            rel_c = cost.get("reliability", {})
+            ts_tool = cost.get("tool_summary", {})
+            dur = cost.get("pipeline_duration_s", 0)
+
+            grand = cb.get("grand_total_usd", 0)
+            llm_c = cb.get("llm_total_usd", 0)
+            tool_c = cb.get("tool_total_usd", 0)
+            total_tok = tb.get("total_tokens", 0)
+            prompt_tok = tb.get("prompt_tokens", 0)
+            comp_tok = tb.get("completion_tokens", 0)
+            exa_calls = ts_tool.get("exa_calls", 0)
+            apify_calls = ts_tool.get("apify_calls", 0)
+            retries = rel_c.get("total_retries", 0)
+            llm_calls_total = rel_c.get("total_llm_calls", 0)
+
+            st.markdown('<div class="dd-card">', unsafe_allow_html=True)
+            st.markdown('<div class="dd-card-title">Run Cost & Token Spend</div>', unsafe_allow_html=True)
+            st.markdown(f"""
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.5rem;margin-bottom:0.6rem;">
+              <div style="text-align:center;padding:0.6rem;background:#060f18;border:1px solid #0e2233;border-radius:3px;">
+                <div style="font-family:'IBM Plex Mono',monospace;font-size:0.55rem;color:#1a4a5a;letter-spacing:0.2em;text-transform:uppercase;">Total Cost</div>
+                <div style="font-family:'IBM Plex Mono',monospace;font-size:1.1rem;font-weight:700;color:#17c87a;">${grand:.5f}</div>
+              </div>
+              <div style="text-align:center;padding:0.6rem;background:#060f18;border:1px solid #0e2233;border-radius:3px;">
+                <div style="font-family:'IBM Plex Mono',monospace;font-size:0.55rem;color:#1a4a5a;letter-spacing:0.2em;text-transform:uppercase;">Total Tokens</div>
+                <div style="font-family:'IBM Plex Mono',monospace;font-size:1.1rem;font-weight:700;color:#17a2c8;">{total_tok:,}</div>
+              </div>
+              <div style="text-align:center;padding:0.6rem;background:#060f18;border:1px solid #0e2233;border-radius:3px;">
+                <div style="font-family:'IBM Plex Mono',monospace;font-size:0.55rem;color:#1a4a5a;letter-spacing:0.2em;text-transform:uppercase;">Duration</div>
+                <div style="font-family:'IBM Plex Mono',monospace;font-size:1.1rem;font-weight:700;color:#c8a217;">{dur}s</div>
+              </div>
+            </div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:0.6rem;color:#1a4a5a;line-height:2.0;">
+              LLM cost: ${llm_c:.5f} &nbsp;·&nbsp; Tool cost (est.): ${tool_c:.5f}<br>
+              Prompt tokens: {prompt_tok:,} &nbsp;·&nbsp; Completion tokens: {comp_tok:,}<br>
+              LLM calls: {llm_calls_total} &nbsp;·&nbsp; Exa calls: {exa_calls} &nbsp;·&nbsp; Apify calls: {apify_calls} &nbsp;·&nbsp; Retries: {retries}
+            </div>
+            """, unsafe_allow_html=True)
+            st.markdown('</div>', unsafe_allow_html=True)
+
         # ── PIPELINE COMPLETE ──
         st.markdown('<div class="slabel" style="margin-top:1rem;">Pipeline Complete</div>', unsafe_allow_html=True)
         st.markdown(pipeline_html(8), unsafe_allow_html=True)
@@ -562,13 +648,13 @@ with right:
         st.markdown('<div class="slabel" style="margin-top:2.5rem;">7-Stage Pipeline</div>', unsafe_allow_html=True)
         st.markdown(pipeline_html(0), unsafe_allow_html=True)
 
-        st.markdown("""
+        st.markdown(f"""
         <div style="margin-top:1.5rem;font-family:'IBM Plex Mono',monospace;font-size:0.6rem;color:#0e2030;line-height:2.2;">
-          Stage 1 — Input Validation &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ OpenAI GPT-4o ]<br>
+          Stage 1 — Input Validation &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ {LLM_LABEL} ]<br>
           Stage 2 — Data Collection &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ Apify · Exa ]<br>
-          Stage 3 — Cross-Verification &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ Exa · OpenAI GPT-4o ]<br>
-          Stage 4 — Risk Detection &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ Exa · Apify · OpenAI GPT-4o ]<br>
-          Stage 5 — Trust Scoring &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ Exa · OpenAI GPT-4o ]<br>
-          Stage 6 — Evidence Aggregation &nbsp;[ Exa · OpenAI GPT-4o ]<br>
-          Stage 7 — Final Assessment &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ OpenAI GPT-4o ]
+          Stage 3 — Cross-Verification &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ Exa · {LLM_LABEL} ]<br>
+          Stage 4 — Risk Detection &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ Exa · Apify · {LLM_LABEL} ]<br>
+          Stage 5 — Trust Scoring &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ Exa · {LLM_LABEL} ]<br>
+          Stage 6 — Evidence Aggregation &nbsp;[ Exa · {LLM_LABEL} ]<br>
+          Stage 7 — Final Assessment &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ {LLM_LABEL} ]
         </div>""", unsafe_allow_html=True)

@@ -1,5 +1,5 @@
 """
-Report Exporter v4.0 — Two-report architecture.
+Report Exporter v5.0 — Two-report architecture.
 
 export_executive_report() → Client-facing strategic intelligence report
 export_monitor_report()   → Internal agent performance & governance report
@@ -98,7 +98,7 @@ def _health_label(telemetry: dict) -> str:
 def _report_path(company_name: str, suffix: str, output_dir: str) -> str:
     Path(output_dir).mkdir(parents=True, exist_ok=True)
     ts   = datetime.now().strftime("%Y%m%d_%H%M%S")
-    slug = company_name.lower().replace(" ", "_")[:20]
+    slug = re.sub(r"[^\w\-]", "_", company_name.lower()).strip("_")[:20]
     return f"{output_dir}/{slug}_{suffix}_{ts}.md"
 
 
@@ -107,14 +107,14 @@ def _report_path(company_name: str, suffix: str, output_dir: str) -> str:
 def export_json(input_data: dict, result: dict, output_dir: str = "reports") -> str:
     Path(output_dir).mkdir(parents=True, exist_ok=True)
     ts   = datetime.now().strftime("%Y%m%d_%H%M%S")
-    slug = input_data.get("company_name", "unknown").lower().replace(" ", "_")[:20]
+    slug = re.sub(r"[^\w\-]", "_", input_data.get("company_name", "unknown").lower()).strip("_")[:20]
     path = f"{output_dir}/{slug}_{ts}.json"
     with open(path, "w") as f:
         json.dump({
             "input":        input_data,
             "analysis":     result,
             "generated_at": datetime.now().isoformat(),
-            "report_version": "4.0",
+            "report_version": "5.0",
         }, f, indent=2)
     return path
 
@@ -406,6 +406,7 @@ def export_monitor_report(input_data: dict, result: dict, output_dir: str = "rep
         f"> **Executed:** {now}  ",
         "> **Classification:** Internal — Agent Operations & AI Governance Team  ",
         f"> **Agent Version:** {metadata.get('agent_version', '4.0')}  ",
+        f"> **LLM Provider:** {metadata.get('llm_provider', '—')}  ",
         f"> **LLM Model:** {metadata.get('llm_model', 'gpt-4o')}  ",
         "",
         "---",
@@ -424,6 +425,16 @@ def export_monitor_report(input_data: dict, result: dict, output_dir: str = "rep
         f"| Retry Events | {retry_count} |",
         f"| Pipeline Errors | {len(errors)} |",
         f"| Overall Health | {health} |",
+        f"| LLM Provider Fallback Triggered | {'⚠️ Yes' if metadata.get('llm_fell_back') else 'No'} |",
+    ]
+
+    fallbacks = telemetry.get("provider_fallbacks", [])
+    if fallbacks:
+        lines += ["", "**Fallback events:**", ""]
+        for fb in fallbacks:
+            lines.append(f"- `{fb.get('label','—')}`: {fb.get('from','—')} → {fb.get('to','—')} — {fb.get('reason','—')}")
+
+    lines += [
         "",
         "---",
         "",
@@ -443,11 +454,119 @@ def export_monitor_report(input_data: dict, result: dict, output_dir: str = "rep
             note = ", ".join(note)
         lines.append(f"| {label} | {icon} {status.capitalize()} | {dur} | {str(note)[:80] if note else '—'} |")
 
+    # ── Cost & Token Spend Analysis ───────────────────────────────────────────
+    cost = result.get("cost_tracking", {})
+    cb   = cost.get("cost_breakdown", {})
+    tb   = cost.get("token_breakdown", {})
+    ts_tool = cost.get("tool_summary", {})
+    rel  = cost.get("reliability", {})
+    ct_dur = cost.get("pipeline_duration_s", 0)
+
     lines += [
         "",
         "---",
         "",
-        "## 3. Data Source Coverage Analysis",
+        "## 3. Cost & Token Spend Analysis",
+        "",
+        "### 3.1 Grand Total",
+        "",
+        "| Metric | Value |",
+        "|--------|-------|",
+        f"| Grand Total (USD) | ${cb.get('grand_total_usd', 0):.6f} |",
+        f"| LLM Cost | ${cb.get('llm_total_usd', 0):.6f} |",
+        f"| Tool Cost (est.) | ${cb.get('tool_total_usd', 0):.6f} |",
+        f"| Pipeline Duration | {ct_dur}s |",
+        "",
+        f"> {cb.get('cost_note', '')}",
+        "",
+        "### 3.2 Token Breakdown",
+        "",
+        "| Metric | Count |",
+        "|--------|-------|",
+        f"| Total Tokens | {tb.get('total_tokens', 0):,} |",
+        f"| Prompt Tokens | {tb.get('prompt_tokens', 0):,} |",
+        f"| Completion Tokens | {tb.get('completion_tokens', 0):,} |",
+        f"| Avg Tokens / LLM Call | {tb.get('avg_tokens_per_call', 0)} |",
+        "",
+        "### 3.3 LLM Call Detail",
+        "",
+        "| # | Stage | Model | Prompt | Completion | Total | Cost (USD) | Duration | Attempts | Status |",
+        "|---|-------|-------|--------|------------|-------|------------|----------|----------|--------|",
+    ]
+
+    llm_detail = cost.get("llm_calls", [])
+    total_cost_sum = 0.0
+    total_prompt_sum = 0
+    total_comp_sum = 0
+    total_tok_sum = 0
+    for i, c in enumerate(llm_detail, 1):
+        attempt_str = str(c.get("attempt", 1))
+        if c.get("attempt", 1) > 1:
+            attempt_str = f"**{attempt_str} RETRIED**"
+        status_icon = "✅" if c.get("status") == "success" else "🔴"
+        lines.append(
+            f"| {i} | {c.get('stage','—')} | {c.get('model','—')} "
+            f"| {c.get('prompt_tokens',0):,} | {c.get('completion_tokens',0):,} "
+            f"| {c.get('total_tokens',0):,} | ${c.get('total_cost_usd',0):.6f} "
+            f"| {c.get('duration_s','—')}s | {attempt_str} | {status_icon} {c.get('status','—')} |"
+        )
+        total_cost_sum += c.get("total_cost_usd", 0)
+        total_prompt_sum += c.get("prompt_tokens", 0)
+        total_comp_sum += c.get("completion_tokens", 0)
+        total_tok_sum += c.get("total_tokens", 0)
+
+    lines.append(
+        f"| **Total** | — | — | **{total_prompt_sum:,}** | **{total_comp_sum:,}** "
+        f"| **{total_tok_sum:,}** | **${total_cost_sum:.6f}** | — | — | — |"
+    )
+
+    lines += [
+        "",
+        "### 3.4 Tool Call Detail",
+        "",
+        "| # | Tool | Method | Stage | Results | Cost (USD) | Duration | Status |",
+        "|---|------|--------|-------|---------|------------|----------|--------|",
+    ]
+
+    tool_detail = cost.get("tool_calls", [])
+    tool_cost_sum = 0.0
+    for i, c in enumerate(tool_detail, 1):
+        status_icon = {"success": "✅", "failed": "🔴", "skipped": "—"}.get(c.get("status",""), "—")
+        lines.append(
+            f"| {i} | {c.get('tool','—')} | {c.get('method','—')} | {c.get('stage','—')} "
+            f"| {c.get('results_count',0)} | ${c.get('cost_usd',0):.6f} "
+            f"| {c.get('duration_s','—')}s | {status_icon} {c.get('status','—')} |"
+        )
+        tool_cost_sum += c.get("cost_usd", 0)
+
+    lines.append(f"| **Total** | — | — | — | — | **${tool_cost_sum:.6f}** | — | — |")
+
+    lines += [
+        "",
+        "### 3.5 Tool Summary",
+        "",
+        "| Tool | Calls | Results | Est. Cost (USD) |",
+        "|------|-------|---------|-----------------|",
+        f"| Exa Search | {ts_tool.get('exa_calls',0)} | {ts_tool.get('exa_results_total',0)} | ${ts_tool.get('exa_cost_usd',0):.6f} |",
+        f"| Apify | {ts_tool.get('apify_calls',0)} | — | ${ts_tool.get('apify_cost_usd',0):.6f} |",
+        "",
+        f"> Failed tool calls: {ts_tool.get('failed_calls',0)}  |  Skipped: {ts_tool.get('skipped_calls',0)}",
+        "",
+        "### 3.6 Reliability",
+        "",
+        "| Metric | Value |",
+        "|--------|-------|",
+        f"| Total LLM Calls | {rel.get('total_llm_calls',0)} |",
+        f"| Successful | {rel.get('successful_llm',0)} |",
+        f"| Failed | {rel.get('failed_llm',0)} |",
+        f"| Retry Rate | {rel.get('retry_rate_pct',0)}% |",
+    ]
+
+    lines += [
+        "",
+        "---",
+        "",
+        "## 4. Data Source Coverage Analysis",
         "",
         "| Source | Results Retrieved | Coverage Quality |",
         "|--------|------------------|-----------------|",
@@ -480,7 +599,7 @@ def export_monitor_report(input_data: dict, result: dict, output_dir: str = "rep
         "",
         "---",
         "",
-        "## 4. LLM Call Performance",
+        "## 5. LLM Call Performance",
         "",
         "| # | Stage | Duration | Tokens | Attempts | Status |",
         "|---|-------|----------|--------|----------|--------|",
@@ -508,7 +627,7 @@ def export_monitor_report(input_data: dict, result: dict, output_dir: str = "rep
         "",
         "---",
         "",
-        "## 5. Trust Score Audit Trail",
+        "## 6. Trust Score Audit Trail",
         "",
         f"### Overall Verdict: `{rec}` — Confidence: {conf}%",
         "",
@@ -543,7 +662,7 @@ def export_monitor_report(input_data: dict, result: dict, output_dir: str = "rep
         "",
         "---",
         "",
-        "## 6. Verification Quality Assessment",
+        "## 7. Verification Quality Assessment",
         "",
         f"| Metric | Count |",
         "|--------|-------|",
@@ -566,7 +685,7 @@ def export_monitor_report(input_data: dict, result: dict, output_dir: str = "rep
         "",
         "---",
         "",
-        "## 7. AI Governance & Risk Assessment",
+        "## 8. AI Governance & Risk Assessment",
         "",
         "### Hallucination Risk Indicators",
         "",
@@ -653,7 +772,7 @@ def export_monitor_report(input_data: dict, result: dict, output_dir: str = "rep
         "",
         "---",
         "",
-        "## 8. Pipeline Error Log",
+        "## 9. Pipeline Error Log",
         "",
     ]
 
@@ -667,7 +786,7 @@ def export_monitor_report(input_data: dict, result: dict, output_dir: str = "rep
         "",
         "---",
         "",
-        "## 9. Agent Improvement Recommendations",
+        "## 10. Agent Improvement Recommendations",
         "",
     ]
 
@@ -692,7 +811,7 @@ def export_monitor_report(input_data: dict, result: dict, output_dir: str = "rep
         "",
         "---",
         "",
-        "## 10. Governance Sign-off",
+        "## 11. Governance Sign-off",
         "",
         "| Check | Status |",
         "|-------|--------|",

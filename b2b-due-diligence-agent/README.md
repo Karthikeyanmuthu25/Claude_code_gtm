@@ -1,64 +1,110 @@
-# B2B Due Diligence Verification Agent
+# B2B Due Diligence Verification Agent — v5.0
 
-A production-grade autonomous intelligence pipeline for B2B trust verification.
-
-```
-◈ Input Validation → ◉ Data Collection → ⊗ Cross-Verification
-⚠ Risk Detection → ◆ Trust Scoring → ≡ Evidence Aggregation → ✦ Final Assessment
-```
-
----
-
-## What It Does
-
-Runs a 7-stage intelligence pipeline on any company + decision maker pair and produces:
-
-- **Company trust score** (0–100)
-- **Decision maker authenticity score** (0–100)
-- **Overall trust score** (0–100)
-- **Risk flags** — Red / Yellow / Green classification
-- **Cross-verification** — domain, email, LinkedIn, title consistency
-- **Final verdict** — `PROCEED` / `CAUTION` / `REJECT` with confidence %
-- **Action items** — what to verify manually before proceeding
-- **Structured reports** — JSON + Markdown
+A 7-stage autonomous intelligence pipeline that verifies B2B leads and decision makers using web intelligence, professional profile scraping, and GPT-4o analysis.
 
 ---
 
 ## Quick Start
 
-### 1. Install
+### 1. Set up environment
+
+```bash
+cp .env.example .env
+# Edit .env and add your real API keys
+```
+
+### 2. Install dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 2. Set API key
+### 3. Check connectivity
 
 ```bash
-export ANTHROPIC_API_KEY=sk-ant-your-key-here
+python test_tools.py
 ```
 
-### 3. Run
+### 4. Run analysis
 
-**Interactive mode (guided prompts):**
+**CLI mode (recommended for batch):**
 ```bash
 python main.py
-```
-
-**From a JSON file:**
-```bash
 python main.py --file examples/acme.json
+python main.py --json '{"company_name":"Acme","decision_maker_name":"Jane Smith"}'
 ```
 
-**With Markdown report:**
+**Streamlit UI:**
 ```bash
-python main.py --file examples/acme.json --report md
+streamlit run app.py
 ```
 
-**Inline JSON:**
-```bash
-python main.py --json '{"company_name":"Acme","company_website":"https://acme.com","decision_maker_name":"Jane Smith","decision_maker_job_title":"CRO","decision_maker_linkedin_url":"https://linkedin.com/in/janesmith","decision_maker_email":"jane@acme.com"}'
-```
+---
+
+## Environment Variables
+
+Copy `.env.example` to `.env` and fill in your keys. **Never commit `.env` to git.**
+
+| Variable | Required | Description |
+|----------|----------|-------------|
+| `OPENAI_API_KEY` | Yes | GPT-4o for all LLM stages |
+| `APIFY_API_KEY` | Optional | LinkedIn scraping, website crawl, Google search |
+| `EXA_API_KEY` | Optional | Neural web search for company/person intel |
+
+Without Apify and Exa keys the pipeline still runs using GPT-4o only, but with reduced data coverage.
+
+### Optional config overrides (via `.env`)
+
+| Variable | Default | Description |
+|----------|---------|-------------|
+| `LLM_MODEL` | `gpt-4o` | OpenAI model |
+| `LLM_MAX_TOKENS` | `2500` | Max tokens per LLM call |
+| `LLM_RETRY_ATTEMPTS` | `3` | Retry attempts per LLM call |
+| `APIFY_TIMEOUT_S` | `120` | Apify actor run timeout |
+| `APIFY_WEBSITE_PAGES` | `5` | Max website pages to crawl |
+| `APIFY_GOOGLE_RESULTS` | `8` | Google search results per query |
+| `TRUNCATE_CHARS` | `6000` | Max chars per stage context |
+| `REPORT_OUTPUT_DIR` | `reports` | Report output directory |
+| `LOG_DIR` | `logs` | Log file directory |
+| `COMPANY_SCORE_WEIGHT` | `0.6` | Company score weight in overall |
+| `DM_SCORE_WEIGHT` | `0.4` | Decision maker score weight |
+| `PROCEED_MIN_SCORE` | `70` | Minimum score for PROCEED |
+| `REJECT_MAX_SCORE` | `40` | Maximum score before REJECT |
+
+---
+
+## 7-Stage Pipeline
+
+| Stage | Name | Tools |
+|-------|------|-------|
+| 1 | Input Validation | GPT-4o |
+| 2 | Data Collection | Apify (LinkedIn, website, Google) + Exa (web search) |
+| 3 | Cross-Verification | Exa + GPT-4o |
+| 4 | Risk Detection | Exa + Apify + GPT-4o |
+| 5 | Trust Scoring | Exa + GPT-4o |
+| 6 | Evidence Aggregation | Exa + GPT-4o |
+| 7 | Final Assessment | GPT-4o |
+
+**Verdicts:** `PROCEED` · `CAUTION` · `REJECT`
+
+Hard verdict rules are enforced post-LLM — any red flag forces REJECT regardless of LLM output.
+
+---
+
+## Reports
+
+Each run produces two Markdown reports in `reports/`:
+
+- **Executive report** (`*_executive_*.md`) — Client-facing strategic intelligence. No tool names, written as a human analyst.
+- **Monitor report** (`*_monitor_*.md`) — Internal agent performance. Includes stage timing, LLM call detail, cost breakdown, data coverage, hallucination risk assessment.
+
+JSON output via `--file` or download in the UI includes a `cost_tracking` section with:
+- `cost_breakdown` — LLM cost, tool cost, grand total (USD)
+- `token_breakdown` — prompt, completion, total tokens
+- `llm_calls` — per-call detail with cost, duration, attempt count
+- `tool_calls` — per-tool-call detail with cost and status
+- `tool_summary` — Exa and Apify call aggregates
+- `reliability` — LLM success rate, retry rate
 
 ---
 
@@ -76,94 +122,13 @@ python main.py --json '{"company_name":"Acme","company_website":"https://acme.co
 }
 ```
 
-**Required fields:** `company_name`, `decision_maker_name`  
-**Recommended:** All others (more fields = higher coverage)
+See `examples/` for sample inputs.
 
 ---
 
-## CLI Options
+## Security
 
-| Flag | Description |
-|------|-------------|
-| `--file FILE` | Load input from JSON file |
-| `--json JSON` | Inline JSON string |
-| `--report [json\|md\|both]` | Report format (default: json) |
-| `--no-save` | Skip saving reports to disk |
-| `--output-dir DIR` | Report output directory (default: reports/) |
-
----
-
-## Output
-
-### Terminal
-
-Live 7-stage pipeline output with:
-- Stage-by-stage findings
-- Color-coded risk flags
-- Trust score table
-- Evidence aggregation
-- Final verdict panel with action items
-
-### Reports
-
-Saved to `reports/` directory:
-- `{company}_{timestamp}.json` — full structured data
-- `{company}_{timestamp}.md` — human-readable Markdown report
-
----
-
-## 7-Stage Pipeline
-
-| Stage | Layer | What It Does |
-|-------|-------|--------------|
-| 1 | Input Validation | Format checks, domain alignment, email domain match |
-| 2 | Data Collection | Signal extraction from all provided data points |
-| 3 | Cross-Verification | Company ↔ decision maker consistency checks |
-| 4 | Risk Detection | Red / Yellow / Green flag classification |
-| 5 | Trust Scoring | 0–100 scores for company and decision maker |
-| 6 | Evidence Aggregation | Supporting vs contradicting signal summary |
-| 7 | Final Assessment | PROCEED / CAUTION / REJECT with confidence |
-
----
-
-## Project Structure
-
-```
-b2b-due-diligence-agent/
-├── main.py                  # CLI entrypoint
-├── requirements.txt
-├── README.md
-├── examples/
-│   ├── acme.json            # Example input
-│   └── techflow.json        # Example input
-├── agent/
-│   ├── __init__.py
-│   ├── orchestrator.py      # 7-stage pipeline + Claude integration
-│   ├── validator.py         # Input pre-flight validation
-│   └── reporter.py          # JSON + Markdown report export
-├── reports/                 # Auto-created, stores output reports
-└── logs/                    # Auto-created, stores debug logs
-```
-
----
-
-## Verdict Guide
-
-| Verdict | Meaning |
-|---------|---------|
-| `PROCEED` | Company and decision maker verified. Proceed with business. |
-| `CAUTION` | Some signals warrant manual verification before proceeding. |
-| `REJECT` | Significant red flags detected. Do not proceed without further investigation. |
-
----
-
-## Notes
-
-- This agent performs **inference-based** due diligence from provided data. It does not scrape live websites.
-- For live scraping, integrate Apify or Exa as additional enrichment layers.
-- All reports are stored locally in `reports/`.
-- Requires Python 3.9+
-
----
-
-*B2B Due Diligence Verification Agent v1.0*
+- `.env` is gitignored — never committed
+- Input is sanitised: control chars stripped, length-limited, prompt injection blocked
+- All report text is sanitised to remove tool vendor names before output
+- Logs written to `logs/agent_YYYYMMDD.log` (DEBUG level file, WARNING only to console)

@@ -6,23 +6,28 @@ Docs: https://docs.apify.com/api/v2
 import time
 import httpx
 
+from agent.config import (
+    APIFY_ACTOR_LINKEDIN,
+    APIFY_ACTOR_WEBSITE,
+    APIFY_ACTOR_GOOGLE,
+    APIFY_TIMEOUT_S,
+    APIFY_WEBSITE_PAGES,
+    APIFY_GOOGLE_RESULTS,
+)
+
 
 class ApifyScraper:
     BASE_URL = "https://api.apify.com/v2"
 
-    # Verified working actor IDs
-    ACTOR_LINKEDIN_PROFILE  = "dev_fusion~Linkedin-Profile-Scraper"
-    ACTOR_WEBSITE_CRAWLER   = "apify~website-content-crawler"
-    ACTOR_GOOGLE_SEARCH     = "apify~google-search-scraper"
-
     def __init__(self, api_key: str):
         self._api_key = api_key
 
-    def _run_actor(self, actor_id: str, input_data: dict, timeout: int = 90) -> dict:
+    def _run_actor(self, actor_id: str, input_data: dict, timeout: int = None) -> dict:
         """Start an Apify actor run, poll until done, return dataset items."""
+        if timeout is None:
+            timeout = APIFY_TIMEOUT_S
         try:
             with httpx.Client(timeout=30) as client:
-                # Start run
                 r = client.post(
                     f"{self.BASE_URL}/acts/{actor_id}/runs",
                     params={"token": self._api_key},
@@ -36,7 +41,6 @@ class ApifyScraper:
                 if not run_id:
                     return {"error": "No run ID returned from Apify"}
 
-                # Poll for completion
                 deadline = time.time() + timeout
                 status   = "RUNNING"
                 while time.time() < deadline:
@@ -68,27 +72,31 @@ class ApifyScraper:
     def scrape_linkedin_profile(self, linkedin_url: str) -> dict:
         """Scrape a LinkedIn personal profile page."""
         return self._run_actor(
-            self.ACTOR_LINKEDIN_PROFILE,
+            APIFY_ACTOR_LINKEDIN,
             {"profileUrls": [linkedin_url]},
-            timeout=120,
+            timeout=APIFY_TIMEOUT_S,
         )
 
-    def scrape_website(self, url: str, max_pages: int = 3) -> dict:
+    def scrape_website(self, url: str, max_pages: int = None) -> dict:
         """Crawl a company website — extract text content and metadata."""
+        if max_pages is None:
+            max_pages = APIFY_WEBSITE_PAGES
         return self._run_actor(
-            self.ACTOR_WEBSITE_CRAWLER,
+            APIFY_ACTOR_WEBSITE,
             {
                 "startUrls":    [{"url": url}],
                 "maxCrawlPages": max_pages,
                 "crawlerType":  "cheerio",
             },
-            timeout=120,
+            timeout=APIFY_TIMEOUT_S,
         )
 
-    def google_search(self, query: str, max_results: int = 5) -> dict:
+    def google_search(self, query: str, max_results: int = None) -> dict:
         """Run a Google search and return organic results."""
+        if max_results is None:
+            max_results = APIFY_GOOGLE_RESULTS
         return self._run_actor(
-            self.ACTOR_GOOGLE_SEARCH,
+            APIFY_ACTOR_GOOGLE,
             {
                 "queries":          query,
                 "maxPagesPerQuery": 1,

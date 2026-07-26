@@ -22,7 +22,8 @@ from rich.panel import Panel
 
 from agent.orchestrator import run_pipeline
 from agent.validator import validate_input
-from agent.reporter import export_executive_report, export_monitor_report
+from agent.reporter import export_executive_report, export_monitor_report, export_json
+from agent.config import LLM_PROVIDER
 
 os.environ.setdefault("PYTHONUTF8", "1")
 os.environ.setdefault("PYTHONIOENCODING", "utf-8")
@@ -33,11 +34,16 @@ console = Console(legacy_windows=False)
 
 
 def get_api_key() -> str:
-    key = os.environ.get("OPENAI_API_KEY", "")
+    anthropic_key = os.environ.get("ANTHROPIC_API_KEY", "")
+    openai_key    = os.environ.get("OPENAI_API_KEY", "")
+    if LLM_PROVIDER == "anthropic":
+        key = anthropic_key or openai_key
+    else:
+        key = openai_key or anthropic_key
     if not key:
         console.print()
-        console.print("[red]  OPENAI_API_KEY not set.[/red]")
-        console.print("[dim]  Add it to your .env file: OPENAI_API_KEY=sk-...[/dim]")
+        console.print("[red]  No API key found.[/red]")
+        console.print("[dim]  Add ANTHROPIC_API_KEY or OPENAI_API_KEY to your .env file.[/dim]")
         console.print()
         sys.exit(1)
     return key
@@ -148,8 +154,10 @@ Examples:
     if not args.no_save:
         exec_path    = export_executive_report(data, result, output_dir=args.output_dir)
         monitor_path = export_monitor_report(data, result, output_dir=args.output_dir)
+        json_path    = export_json(data, result, output_dir=args.output_dir)
         console.print(f"  Executive    --> {exec_path}")
         console.print(f"  Monitor      --> {monitor_path}")
+        console.print(f"  JSON         --> {json_path}")
         console.print()
 
     # ── Final line ────────────────────────────────────────────────────────────
