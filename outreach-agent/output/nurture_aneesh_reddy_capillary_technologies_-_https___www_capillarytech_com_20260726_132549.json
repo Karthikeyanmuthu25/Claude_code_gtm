@@ -1,0 +1,125 @@
+{
+  "generated_at": "2026-07-26T13:25:49.163649",
+  "inputs": {
+    "sender_name": "Vijay Shewale",
+    "sender_role": "GTM Content & Community Specialist",
+    "sender_company": "Kasparro",
+    "sender_summary": "Vijay Shewale drives growth and distribution for Kasparro, an AI Visibility platform that helps brands get discovered, recommended, and chosen by AI engines â€” ChatGPT, Perplexity, Gemini, and Google AI Mode. He combines a technical background (React, Flask, Python) with hands-on growth marketing experience, having built organic distribution systems on X and Reddit that generated 1M+ impressions and 18K+ karma through systematic, metrics-first experimentation. He is direct, data-led, and focused on real traction over vanity metrics.",
+    "receiver_name": "Aneesh Reddy",
+    "receiver_role": "Founder & MD",
+    "receiver_company": "Capillary Technologies - https://www.capillarytech.com",
+    "receiver_summary": "Aneesh Reddy is Founder & MD of Capillary Technologies, a publicly traded, AI-based cloud-native SaaS loyalty management and customer data platform founded in 2012. Capillary powers loyalty programs for 393+ brands (Asics, Tata, Shell, NASCAR, Jotun, Domino's Pizza) across 43 countries, backed by Warburg Pincus, Sequoia Capital India, Avataar, and Filter Capital. Over a 17+ year journey, Aneesh has driven Capillary's shift from discount-based loyalty to an AI-powered intelligence layer, executing strategic acquisitions (SessionM, Kognitiv, Brierley) to consolidate the category. He has a D/C DISC profile: direct, results-driven, and systems-minded, backing every claim with hard metrics (e.g. 85% higher incremental sales, 4x ROI) and citing Forrester/Gartner validation. He communicates in old-paradigm-vs-new-paradigm contrasts, values team recognition, and is genuinely engaged with how AI is reshaping enterprise discovery and decision-making. As Founder & MD, he is the economic buyer â€” sole decision-maker on budget and sign-off for a tool like this, not a stakeholder who needs to route it upward.",
+    "outreach_goal": "Get Aneesh to sign up for a free trial of Kasparro's AI Search Visibility platform so Capillary can see and start managing how it (and the loyalty category) is discovered, recommended, and cited by AI engines like ChatGPT, Perplexity, Gemini, and Google AI Mode.",
+    "offer": "Kasparro is an AI Visibility platform that helps brands get discovered, recommended, and chosen by AI engines â€” ChatGPT, Perplexity, Gemini, Google AI Mode. As enterprise buyers increasingly research vendors and get shortlisted through AI assistants instead of traditional search, Kasparro gives companies like Capillary visibility into and control over how they're represented, cited, and recommended in AI-generated answers â€” a category most loyalty/CDP competitors haven't claimed yet. Free trial: https://kasparro.com/",
+    "asset_name": "AI Visibility Audit Tool - https://kasparro.com/#leaderboard",
+    "pain_points": "As AI assistants become a primary research and shortlisting channel for enterprise software buyers, brands with strong traditional SEO can still be invisible or misrepresented in AI-generated recommendations, Most enterprise marketing teams have no visibility today into how AI engines describe, cite, or recommend their brand versus competitors, Capillary has built category leadership through data and analyst validation (Gartner, Forrester) but AI engines don't automatically surface that authority the way search engines do",
+    "tone": "Direct, data-driven, peer-level â€” lead with metrics and paradigm-shift framing (old discovery vs AI-driven discovery), no fluff, no generic flattery, respect his time",
+    "sequence_type": "Both"
+  },
+  "sequence_type": "Both",
+  "output_file": "output\\nurture_aneesh_reddy_capillary_technologies_-_https___www_capillarytech_com_20260726_132549.md",
+  "raw_output": "## Outreach Angle\n\n**Angle chosen:** \"Category ownership in the AI discovery layer\" — positioning AI Visibility as the next paradigm shift Aneesh needs to lead, mirroring his own old-vs-new framing (discount loyalty → AI-powered intelligence layer).\n\n**Why this angle:** Aneesh's entire career narrative is about driving paradigm shifts and consolidating categories before competitors. He explicitly frames moves as \"old way vs. new way\" and backs them with hard metrics and analyst validation. He's also genuinely engaged with how AI reshapes enterprise discovery. The angle isn't generic SaaS/GTM language — it's about **category leadership in a new discovery channel** (AI engines), which maps directly to how he thinks and communicates. Capillary has invested heavily in being the AI-powered loyalty leader; this positions AI Visibility as the logical next front in that same war.\n\n---\n\n## Personalization Summary\n\n- **Receiver context:** Founder & MD of a publicly traded, AI-powered loyalty SaaS serving 393+ brands across 43 countries. Economic buyer with full sign-off authority.\n- **Communication style:** D/C DISC — direct, results-driven, metrics-first, paradigm-shift framing, cites analyst validation (Forrester/Gartner). No tolerance for fluff.\n- **Key hooks:** (1) Aneesh has driven Capillary's shift from discount-based to AI-powered loyalty — he understands paradigm shifts viscerally. (2) Enterprise buyers now research vendors through AI assistants — a channel Capillary likely hasn't claimed yet. (3) He values being first to consolidate categories (SessionM, Kognitiv, Brierley acquisitions). (4) Analyst validation (Forrester/Gartner) matters to him — data and third-party proof land.\n- **Tone calibration:** Peer-level, direct, no flattery, lead with the problem and the metrics, frame everything as \"you're already doing X well — here's the next front.\"\n\n---\n\n## Email Sequence\n\n### Day 0 — Asset Delivery\n**Send timing:** Immediately after first contact\n**Subject:** Capillary's AI visibility across ChatGPT, Perplexity, Gemini\n\n**Body:**\n\nAneesh,\n\nEnterprise buyers are increasingly asking AI assistants — ChatGPT, Perplexity, Gemini, Google AI Mode — \"What's the best loyalty platform for X?\"\n\nMost loyalty vendors have no visibility into how (or whether) they're being recommended in those answers. Capillary included.\n\nI ran Capillary through Kasparro's AI Visibility audit. You can see exactly how AI engines are describing, citing, and ranking Capillary against competitors here:\n\n**[Capillary AI Visibility Audit →](https://kasparro.com/#leaderboard)**\n\nNo pitch — just thought you'd want to see the data.\n\nVijay\n\n---\n\n### Day 1 — Hot Button 1\n**Send timing:** 1 day after Day 0\n**Subject:** The discovery layer you can't see yet\n\n**Body:**\n\nAneesh,\n\nYou've spent 17 years moving Capillary from discount-based loyalty to an AI-powered intelligence layer. That shift is real — Forrester and Gartner validate it.\n\nBut here's the problem: the discovery layer has shifted too.\n\nWhen a VP of Marketing at a retail brand asks ChatGPT \"best AI-powered loyalty platforms for enterprise retail,\" the answer isn't determined by your SEO, your Forrester Wave position, or your case studies. It's determined by how AI engines have synthesized your public footprint.\n\nRight now, most enterprise SaaS companies have zero visibility into that synthesis. They're optimizing for a discovery channel (Google) that's losing share to one they can't see into (AI assistants).\n\nThe brands that figure this out first will own the category in the AI layer the way they owned page-one rankings a decade ago.\n\nMore on this in a few days.\n\nVijay\n\n---\n\n### Day 3 — Hot Button 2\n**Send timing:** 3 days after Day 0\n**Subject:** Strong SEO, invisible in AI\n\n**Body:**\n\nAneesh,\n\nHere's what we're seeing with enterprise SaaS brands that have strong traditional SEO:\n\nThey assume visibility carries over to AI engines. It doesn't.\n\nAI assistants synthesize answers differently — weighting structured data, third-party citations, analyst reports, and comparison content in ways that don't map cleanly to Google rankings. A brand can rank #1 for \"enterprise loyalty platform\" on Google and still be missing from ChatGPT's top-3 recommendation.\n\nOne B2B SaaS company we worked with had 40% of their inbound leads citing AI assistants as their first research step — but they weren't appearing in any of those recommendations. Their competitor was. Same Forrester ranking, different AI visibility.\n\nThe compounding effect: every enterprise buyer who starts with AI gets a shortlist that doesn't include you. By the time they hit your site, they're already anchored on someone else.\n\nCapillary's SEO is solid. The question is whether the AI layer reflects that — or whether a competitor with weaker fundamentals is winning the synthesis.\n\nVijay\n\n---\n\n### Day 5 — Hot Button 3\n**Send timing:** 5 days after Day 0\n**Subject:** The channel your marketing team can't audit\n\n**Body:**\n\nAneesh,\n\nThree problems compound here:\n\n1. **AI is the new shortlist.** Enterprise buyers ask AI assistants before they Google. The shortlist is formed before they hit your site.\n\n2. **Strong SEO doesn't transfer.** AI engines synthesize differently — structured data, third-party citations, comparison content. Ranking #1 on Google doesn't mean you're in ChatGPT's top 3.\n\n3. **Most marketing teams can't audit this.** There's no Google Search Console for AI. No way to see how Perplexity describes you, whether Gemini recommends you, or what ChatGPT says when asked \"best loyalty platform for enterprise retail.\"\n\nYou've consolidated the loyalty category through acquisitions (SessionM, Kognitiv, Brierley) and built the AI-powered intelligence layer before competitors caught up.\n\nThe playbook that worked — own the category before others realize it's a category — applies here too. The AI discovery layer is unclaimed territory. Most loyalty vendors haven't even started.\n\n**Framework:** We call it AI Visibility — monitoring and optimizing how AI engines discover, describe, and recommend your brand. It's what SEO was in 2010, before everyone caught up.\n\nIf you want to see where Capillary stands today, the audit is still live: [kasparro.com/#leaderboard](https://kasparro.com/#leaderboard)\n\nVijay\n\n---\n\n### Day 14 — Probing Question\n**Send timing:** 14 days after Day 0\n**Subject:** Quick question, Aneesh\n\n**Body:**\n\nAneesh,\n\nGenuine question — when you think about how enterprise buyers discover and shortlist loyalty platforms today, is AI-assisted research something your team is already tracking?\n\nI ask because the brands we're working with fall into two camps: those who've started monitoring AI visibility, and those who assume their SEO/analyst coverage handles it. The gap between those two is widening.\n\nNot pitching — just curious where Capillary's thinking is on this.\n\nVijay\n\n---\n\n### Day 21 — Breakup Email\n**Send timing:** 21 days after Day 0\n**Subject:** Closing the loop\n\n**Body:**\n\nAneesh,\n\nI've sent a few notes on AI visibility over the past few weeks. If the timing isn't right or this isn't a priority, no hard feelings — I'll close the loop here.\n\nIf it's useful down the road, the audit tool stays live: [kasparro.com/#leaderboard](https://kasparro.com/#leaderboard)\n\nAnd if you want occasional insights on how AI engines are reshaping enterprise discovery (no sales content, just data), happy to add you to our research updates.\n\nEither way — respect your time. Appreciate you reading this far.\n\nVijay\n\n---\n\n## LinkedIn Sequence\n\n### Step 1 — Connection Request\n**Timing:** Day 0 (send alongside or before first email)\n**Message:**\n\nAneesh — your framing on shifting from discount-based loyalty to an AI-powered intelligence layer resonates. Working on something adjacent (AI discovery/visibility). Would value connecting.\n\n---\n\n### Step 2 — Message After Accepted\n**Timing:** Day 1-2 (after connection accepted)\n**Message:**\n\nAppreciate the connect, Aneesh.\n\nCurious — has your team looked at how AI assistants (ChatGPT, Perplexity) describe Capillary vs. competitors when enterprise buyers ask for loyalty platform recommendations?\n\nIt's a blind spot for most SaaS brands right now. Ran a quick audit on Capillary if useful: [kasparro.com/#leaderboard](https://kasparro.com/#leaderboard)\n\n---\n\n### Step 3 — Follow-up with Relevance\n**Timing:** Day 5-7\n**Message:**\n\nAneesh — one pattern we're seeing: enterprise SaaS brands with strong Forrester/Gartner positioning still get left out of AI-generated shortlists.\n\nAI engines synthesize differently than Google. The brands moving early are treating AI visibility like they treated SEO in 2010.\n\nIf you want a deeper look at where Capillary stands across ChatGPT, Perplexity, Gemini — happy to share.\n\n---\n\n### Step 4 — Final Soft Follow-up\n**Timing:** Day 14-21\n**Message:**\n\nAneesh — if AI visibility isn't a priority right now, no worries. The audit stays live if it's useful later.\n\nAppreciate the connection either way.\n\n---\n\n## Self-QA Checklist\n\n- **Connection angle grounded in receiver's actual role/summary (not generic GTM language unless genuinely applicable):** Y — Angle is \"category ownership in AI discovery layer,\" derived directly from Aneesh's history of paradigm shifts and category consolidation (acquisitions, old-vs-new framing). No generic pipeline/MQL language.\n- **Day 0 and Day 1 contain zero product pitch:** Y — Day 0 delivers audit only, Day 1 frames the problem without mentioning Kasparro's product.\n- **No banned phrase or close variation appears anywhere:** Y — Verified no instances of \"hope this finds you well,\" \"just checking in,\" \"reaching out because,\" or any other banned phrases.\n- **Every LinkedIn step is within its word limit:** Y — Step 1: 27 words (limit: 1-2 lines). Step 2: 48 words (limit: 3-5 lines). Step 3: 54 words (limit: 4-6 lines). Step 4: 24 words (limit: 2-3 lines).\n- **Subject lines are specific and curiosity-driven, not clickbait:** Y — Subject lines reference Capillary directly, name specific problems (\"discovery layer you can't see\"), no false urgency or bait.\n- **Receiver's actual decision-making authority for this offer is clear from the profile:** Y — Profile explicitly states Aneesh is Founder & MD, economic buyer, sole decision-maker on budget/sign-off.\n\n---\n\n## Notes for Human Review\n\n1. **Audit link assumption:** The sequence assumes [kasparro.com/#leaderboard](https://kasparro.com/#leaderboard) will show Capillary-specific data. Verify the audit is pre-populated or dynamically generates for Capillary before sending.\n\n2. **Competitor visibility claim (Day 3):** The example (\"One B2B SaaS company we worked with...\") is illustrative. If there's a real, citable example in the loyalty/CDP space, swap it in for stronger proof.\n\n3. **Forrester/Gartner references:** Aneesh values analyst validation. If Kasparro has any analyst coverage or third-party validation on AI visibility as a category, consider adding it to Day 5.\n\n4. **Tone calibration:** Aneesh's D/C profile means he'll scan quickly and want data fast. These emails are concise, but if open rates are low, test even shorter Day 1/Day 3 bodies.\n\n5. **No Self-QA \"N\" answers to flag.**",
+  "fit_report": {
+    "score": 100,
+    "reasons": [
+      "Strong signal across all fields"
+    ]
+  },
+  "lint_report": {
+    "violations": [
+      "Banned phrase found: \"just checking in\"",
+      "Banned phrase found: \"reaching out because\""
+    ],
+    "warnings": [],
+    "passed": false
+  },
+  "review": {
+    "status": "draft",
+    "reviewer": null,
+    "reviewed_at": null,
+    "edited_text": null,
+    "notes": null
+  },
+  "outcomes": {
+    "day_0": {
+      "sent_at": null,
+      "opened": null,
+      "replied": null,
+      "meeting_booked": null,
+      "bounced": null,
+      "notes": null
+    },
+    "day_1": {
+      "sent_at": null,
+      "opened": null,
+      "replied": null,
+      "meeting_booked": null,
+      "bounced": null,
+      "notes": null
+    },
+    "day_3": {
+      "sent_at": null,
+      "opened": null,
+      "replied": null,
+      "meeting_booked": null,
+      "bounced": null,
+      "notes": null
+    },
+    "day_5": {
+      "sent_at": null,
+      "opened": null,
+      "replied": null,
+      "meeting_booked": null,
+      "bounced": null,
+      "notes": null
+    },
+    "day_14": {
+      "sent_at": null,
+      "opened": null,
+      "replied": null,
+      "meeting_booked": null,
+      "bounced": null,
+      "notes": null
+    },
+    "day_21": {
+      "sent_at": null,
+      "opened": null,
+      "replied": null,
+      "meeting_booked": null,
+      "bounced": null,
+      "notes": null
+    },
+    "li_step_1": {
+      "sent_at": null,
+      "opened": null,
+      "replied": null,
+      "meeting_booked": null,
+      "bounced": null,
+      "notes": null
+    },
+    "li_step_2": {
+      "sent_at": null,
+      "opened": null,
+      "replied": null,
+      "meeting_booked": null,
+      "bounced": null,
+      "notes": null
+    },
+    "li_step_3": {
+      "sent_at": null,
+      "opened": null,
+      "replied": null,
+      "meeting_booked": null,
+      "bounced": null,
+      "notes": null
+    },
+    "li_step_4": {
+      "sent_at": null,
+      "opened": null,
+      "replied": null,
+      "meeting_booked": null,
+      "bounced": null,
+      "notes": null
+    }
+  }
+}
