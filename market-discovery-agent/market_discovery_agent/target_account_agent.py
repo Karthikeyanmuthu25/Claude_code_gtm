@@ -53,7 +53,15 @@ whichever it's less sure of):
 A thin candidate pool (discover more than you need) absorbs candidates
 that fail verification in step 2 — asking for exactly `count` up front
 would mean any verification failure shrinks the final list below what was
-asked for.
+asked for. On top of that buffer, `discover_and_verify_candidates` will
+run MULTIPLE discovery rounds (up to `DISCOVERY_MAX_ROUNDS`) if the first
+round's buffer still doesn't yield `count` verified candidates — each
+extra round excludes every company name already seen (verified or not) so
+it doesn't just re-surface the same rejects. This is still best-effort,
+not an absolute guarantee: a narrow enough ICP/location combination can
+have fewer than `count` real, LinkedIn-verified qualifying companies to
+find, in which case the run honestly returns fewer, with the shortfall
+visible in `unverified_candidates`.
 """
 import difflib
 import unicodedata
@@ -160,7 +168,8 @@ def _location_check(headquarters: str, target_location: str) -> Optional[bool]:
         return None
     return hq_country == target_country
 
-DISCOVERY_BUFFER_MULTIPLIER = 3  # discover 3x the requested count: some won't have a confident LinkedIn URL, some will fail to scrape, and (when a location filter is set) some will scrape fine but turn out headquartered elsewhere
+DISCOVERY_BUFFER_MULTIPLIER = 5  # discover 5x the requested count: some won't have a confident LinkedIn URL, some will fail to scrape, and (when a location filter is set) some will scrape fine but turn out headquartered elsewhere
+DISCOVERY_MAX_ROUNDS = 3  # cap on extra discovery rounds discover_and_verify_candidates will run to try to reach `count` verified candidates
 
 DISCOVERY_RECORD_TOOL = {
     "name": "record_candidate_companies",
@@ -297,7 +306,9 @@ SCORING_RECORD_SCHEMA = {
 }
 
 
-def _build_discovery_prompt(spec: dict, target_location: str, buffer_count: int) -> str:
+def _build_discovery_prompt(
+    spec: dict, target_location: str, buffer_count: int, exclude_names: Optional[List[str]] = None,
+) -> str:
     lines = [
         "You are identifying REAL, SPECIFIC, NAMED companies (not made-up "
         "or example companies) that plausibly match the target-account "
@@ -319,6 +330,11 @@ def _build_discovery_prompt(spec: dict, target_location: str, buffer_count: int)
         )
     else:
         lines.append("Target location: not specified — consider any region.")
+    if exclude_names:
+        lines.append(
+            "\nDo NOT suggest any of these companies again — already considered in a "
+            "prior pass: " + ", ".join(exclude_names)
+        )
     lines.append(f"\nIdentify at least {buffer_count} distinct real companies matching the above.")
     lines.append("For each, briefly explain why it matches, citing your sources.")
     return "\n".join(lines)
@@ -361,6 +377,98 @@ def _names_plausibly_match(candidate_name: str, scraped_name: str) -> bool:
     if a in b or b in a:
         return True
     return difflib.SequenceMatcher(None, a, b).ratio() >= 0.6
+
+
+def _verify_candidate(c: dict, resolved_location: str) -> tuple:
+    """Runs one candidate through the Exa-lookup + Apify-scrape + name-match
+    + deterministic-location-check pipeline. Returns
+    (verified_entry_or_None, unverified_reason_or_None) — exactly one of
+    the pair is non-None. Shared by both `discover_and_verify_candidates`
+    (target accounts) and the Lookalike Account Agent, which reuses it as
+    `target_account_agent._verify_candidate`."""
+    if not c.get("linkedin_url"):
+        print(f"  looking up LinkedIn URL for {c['company_name']} via Exa...")
+        found_url = _find_linkedin_url_with_exa(c["company_name"])
+        if not found_url:
+            return None, f"{c['company_name']} (no LinkedIn URL found via research or Exa lookup)"
+        c["linkedin_url"] = found_url
+    print(f"  verifying {c['company_name']} via Apify LinkedIn scrape...")
+    apify_data = scrape_linkedin_company(c["linkedin_url"])
+    if not apify_data:
+        return None, f"{c['company_name']} (LinkedIn scrape failed)"
+    scraped_name = apify_data.get("name", "")
+    if not _names_plausibly_match(c["company_name"], scraped_name):
+        return None, (
+            f"{c['company_name']} (scraped LinkedIn page is for '{scraped_name}', not a "
+            f"confident name match — likely the wrong company's URL, dropped)"
+        )
+    if resolved_location:
+        location_result = _location_check(apify_data.get("headquarters", ""), resolved_location)
+        if location_result is False:
+            hq = apify_data.get("headquarters") or "unknown"
+            return None, (
+                f"{c['company_name']} (headquartered in '{hq}', not '{resolved_location}' — "
+                f"dropped for location mismatch, confirmed deterministically)"
+            )
+        # True (confirmed) or None (couldn't resolve, deferred to the
+        # scoring step's best-effort judgment) both proceed.
+    return {"candidate": c, "apify_data": apify_data}, None
+
+
+def discover_and_verify_candidates(
+    build_prompt_fn, structuring_context: str, resolved_location: str, count: int,
+    max_rounds: int = DISCOVERY_MAX_ROUNDS, initial_excluded_names: Optional[List[str]] = None,
+) -> tuple:
+    """Runs discovery+verification in rounds until `count` candidates are
+    verified or `max_rounds` is exhausted. `build_prompt_fn(buffer_count,
+    exclude_names)` builds the Perplexity research prompt for one round —
+    target_account_agent and lookalike_account_agent each supply their own
+    (different discovery framing, same verification). Every company name
+    seen in any round (verified or not) is excluded from later rounds so a
+    top-up round doesn't just re-surface the same rejects.
+
+    `initial_excluded_names`, if given, seeds the exclusion set before round
+    1 — used by the Lookalike Account Agent to keep its seed accounts (and
+    anything the prior target-accounts run already rejected) out of its own
+    results, not just names this call itself discovers.
+
+    Returns (verified, unverified_names) — `verified` is a list of
+    {"candidate", "apify_data"} dicts ready for `_score_verified_candidates`."""
+    verified: List[dict] = []
+    unverified_names: List[str] = []
+    excluded_lower = {n.strip().lower() for n in (initial_excluded_names or [])}
+
+    for round_num in range(1, max_rounds + 1):
+        remaining = count - len(verified)
+        if remaining <= 0:
+            break
+        buffer_count = remaining * DISCOVERY_BUFFER_MULTIPLIER
+        prompt = build_prompt_fn(buffer_count, sorted(excluded_lower))
+        if round_num > 1:
+            print(f"  discovering more candidate companies with Perplexity (round {round_num}, need {remaining} more)...")
+        else:
+            print("  discovering candidate companies with Perplexity...")
+        discovery_result = run_research_pipeline(
+            record_tool=DISCOVERY_RECORD_TOOL,
+            research_prompt=prompt,
+            structuring_context=structuring_context,
+        )
+        candidates = [
+            c for c in discovery_result["candidates"]
+            if c["company_name"].strip().lower() not in excluded_lower
+        ]
+        if not candidates:
+            break  # nothing new came back — further rounds won't help either
+
+        for c in candidates:
+            excluded_lower.add(c["company_name"].strip().lower())
+            entry, reason = _verify_candidate(c, resolved_location)
+            if entry:
+                verified.append(entry)
+            else:
+                unverified_names.append(reason)
+
+    return verified, unverified_names
 
 
 def _format_verified_candidate(candidate: dict, apify_data: dict, target_location: str) -> str:
@@ -428,7 +536,7 @@ def _score_verified_candidates(verified: List[dict], spec: dict, rubric: List[di
 def run_target_account_discovery(
     session_data: dict,
     target_location: Optional[str] = None,
-    count: int = 3,
+    count: int = 5,
 ) -> TargetAccountListOutput:
     """Runs the Target Account Agent to completion. Requires
     `icp_discovery` to already exist in `session_data` (raises RuntimeError
@@ -451,52 +559,13 @@ def run_target_account_discovery(
     rubric = icp["scoring_rubric"]
 
     resolved_location = target_location or session_data.get("founder_input", {}).get("target_location") or ""
-    buffer_count = count * DISCOVERY_BUFFER_MULTIPLIER
 
-    research_prompt = _build_discovery_prompt(spec, resolved_location, buffer_count)
+    def build_prompt(buffer_count: int, exclude_names: List[str]) -> str:
+        return _build_discovery_prompt(spec, resolved_location, buffer_count, exclude_names)
 
-    print("  discovering candidate companies with Perplexity...")
-    discovery_result = run_research_pipeline(
-        record_tool=DISCOVERY_RECORD_TOOL,
-        research_prompt=research_prompt,
-        structuring_context=DISCOVERY_STRUCTURING_CONTEXT,
+    verified, unverified_names = discover_and_verify_candidates(
+        build_prompt, DISCOVERY_STRUCTURING_CONTEXT, resolved_location, count,
     )
-    candidates = discovery_result["candidates"]
-
-    verified = []
-    unverified_names = []
-    for c in candidates:
-        if not c.get("linkedin_url"):
-            print(f"  looking up LinkedIn URL for {c['company_name']} via Exa...")
-            found_url = _find_linkedin_url_with_exa(c["company_name"])
-            if not found_url:
-                unverified_names.append(f"{c['company_name']} (no LinkedIn URL found via research or Exa lookup)")
-                continue
-            c["linkedin_url"] = found_url
-        print(f"  verifying {c['company_name']} via Apify LinkedIn scrape...")
-        apify_data = scrape_linkedin_company(c["linkedin_url"])
-        if not apify_data:
-            unverified_names.append(f"{c['company_name']} (LinkedIn scrape failed)")
-            continue
-        scraped_name = apify_data.get("name", "")
-        if not _names_plausibly_match(c["company_name"], scraped_name):
-            unverified_names.append(
-                f"{c['company_name']} (scraped LinkedIn page is for '{scraped_name}', not a "
-                f"confident name match — likely the wrong company's URL, dropped)"
-            )
-            continue
-        if resolved_location:
-            location_result = _location_check(apify_data.get("headquarters", ""), resolved_location)
-            if location_result is False:
-                hq = apify_data.get("headquarters") or "unknown"
-                unverified_names.append(
-                    f"{c['company_name']} (headquartered in '{hq}', not '{resolved_location}' — "
-                    f"dropped for location mismatch, confirmed deterministically)"
-                )
-                continue
-            # True (confirmed) or None (couldn't resolve, deferred to the
-            # scoring step's best-effort judgment) both proceed.
-        verified.append({"candidate": c, "apify_data": apify_data})
 
     if not verified:
         return TargetAccountListOutput(

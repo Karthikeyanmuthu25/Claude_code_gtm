@@ -1,4 +1,4 @@
 __pycache__/
 *.pyc
-sessions/*.json
+**/sessions/*.json
 .env

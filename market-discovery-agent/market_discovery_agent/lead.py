@@ -46,6 +46,7 @@ AGENT_SLUGS = {
     "ICP Discovery Agent": "icp-discovery",
     "Market Sizing Agent": "market-sizing",
     "Target Account Agent": "target-accounts",
+    "Lookalike Account Agent": "lookalike-accounts",
     "Customer Discovery Agent": "customer-discovery",
     "Validation Agent": "validation",
     "GTM Recommendation Agent": "gtm-recommendation",

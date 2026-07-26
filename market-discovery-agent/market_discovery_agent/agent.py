@@ -38,6 +38,10 @@ import os
 import sys
 from typing import Optional
 
+from dotenv import load_dotenv
+
+load_dotenv()  # walks up from cwd, so it finds market-discovery-agent/.env whether run from there or from market_discovery_agent/
+
 if sys.stdout.encoding and sys.stdout.encoding.lower() != "utf-8":
     sys.stdout.reconfigure(encoding="utf-8")
     sys.stderr.reconfigure(encoding="utf-8")
@@ -57,6 +61,7 @@ from synthesizer import run_synthesis, AGENT_DISPLAY
 from icp_discovery import run_icp_discovery
 from market_sizing import run_market_sizing
 from target_account_agent import run_target_account_discovery
+from lookalike_account_agent import run_lookalike_account_discovery
 from customer_discovery import run_customer_discovery
 from validation import run_validation
 from gtm import run_gtm_recommendation
@@ -66,26 +71,45 @@ from gtm import run_gtm_recommendation
 # Terminal I/O helpers
 # --------------------------------------------------------------------------
 
+def _safe_input(prompt: str = "") -> str:
+    """Wraps input() so a closed/exhausted stdin (piped input missing a
+    trailing blank line, running in a context with no real interactive
+    terminal, Ctrl+D/Ctrl+Z) fails with one clear message instead of an
+    unhandled EOFError traceback. Every interactive prompt helper below
+    routes through this rather than calling input() directly."""
+    try:
+        return input(prompt)
+    except EOFError:
+        print(
+            "\n\nInput ended unexpectedly (no more lines to read from stdin). "
+            "If you're piping input, make sure it has a blank line to end each "
+            "multi-line field AND a final blank line to end the whole list. "
+            "If you're running this interactively, use `python agent.py run "
+            "--input <file>` instead for a fully non-interactive run."
+        )
+        sys.exit(1)
+
+
 def _prompt(label: str, multiline: bool = False) -> str:
     if multiline:
         print(f"\n{label} (end with a blank line):")
         lines = []
         while True:
-            line = input()
+            line = _safe_input()
             if line.strip() == "" and lines:
                 break
             if line.strip() == "" and not lines:
                 continue
             lines.append(line)
         return "\n".join(lines).strip()
-    return input(f"\n{label}: ").strip()
+    return _safe_input(f"\n{label}: ").strip()
 
 
 def _prompt_list(label: str) -> list:
     print(f"\n{label} (one per line, blank line to finish):")
     items = []
     while True:
-        line = input(f"  {len(items) + 1}. ").strip()
+        line = _safe_input(f"  {len(items) + 1}. ").strip()
         if line == "":
             break
         items.append(line)
@@ -610,10 +634,10 @@ def _prompt_competitors() -> list:
     print("(not personal profiles). One per line, blank line to finish:")
     competitors = []
     while True:
-        url = input(f"  {len(competitors) + 1}. LinkedIn company page URL: ").strip()
+        url = _safe_input(f"  {len(competitors) + 1}. LinkedIn company page URL: ").strip()
         if url == "":
             break
-        name = input("     Known name (optional, enter to skip): ").strip()
+        name = _safe_input("     Known name (optional, enter to skip): ").strip()
         competitors.append({"linkedin_url": url, "known_name": name or None})
     return competitors
 
@@ -934,6 +958,71 @@ def cmd_target_accounts(args: argparse.Namespace) -> None:
 
 
 # --------------------------------------------------------------------------
+# Phase 4d — Lookalike Account Agent (more real, LinkedIn-verified
+# companies resembling the Target Account Agent's verified seed accounts)
+# --------------------------------------------------------------------------
+
+def cmd_lookalike_accounts(args: argparse.Namespace) -> None:
+    session_id = _resolve_session(args)
+    data = state.load(session_id)
+
+    if "phase1_output" not in data:
+        print("This session has no phase1_output yet. Run `discover` first.")
+        sys.exit(1)
+    if "icp_discovery" not in data:
+        print("This session has no icp_discovery yet. Run `icp` first —")
+        print("Lookalike Account Agent scores candidates against Phase 4's scoring rubric.")
+        sys.exit(1)
+    if "target_accounts" not in data:
+        print("This session has no target_accounts yet. Run `target-accounts` first —")
+        print("Lookalike Account Agent uses its verified accounts as the seed set.")
+        sys.exit(1)
+
+    location = args.location or data.get("target_accounts", {}).get("target_location") or ""
+    _section("LOOKALIKE ACCOUNT AGENT — researching")
+    print(f"Target location: {location or '(none set — searching without a location filter)'}")
+    print(f"Requested count: {args.count}\n")
+
+    try:
+        result = run_lookalike_account_discovery(session_data=data, target_location=args.location, count=args.count)
+    except RuntimeError as e:
+        print(str(e))
+        sys.exit(1)
+
+    result_dict = result.to_dict()
+    data["lookalike_accounts"] = result_dict
+    state.save(session_id, data)
+
+    md_body = lead.render_target_accounts_md(result_dict)
+    md_path, json_path = lead.save_output(
+        "Lookalike Account Agent", session_id, "Lookalike Account List", md_body, result_dict,
+    )
+
+    if result.accounts:
+        _section(f"LOOKALIKE ACCOUNTS  ({len(result.accounts)} verified)")
+        for a in result.accounts:
+            print(f"\n{a.company_name}  (fit score: {a.fit_score}/100)")
+            print(f"  LinkedIn: {a.linkedin_url}")
+            print(f"  Website: {a.website_url}")
+            print(f"  Industry: {a.industry} | Employees: {a.employee_count}")
+            print(f"  Why: {a.fit_score_rationale}")
+    else:
+        _section("NO VERIFIED LOOKALIKE ACCOUNTS")
+        print("No candidates could be confirmed via a real LinkedIn scrape this run.")
+
+    if result.unverified_candidates:
+        _section("UNVERIFIED CANDIDATES (dropped, not recommended)")
+        for name in result.unverified_candidates:
+            print(f"  - {name}")
+
+    _section("SUMMARY")
+    print(result.summary)
+
+    print(f"\nSession ID: {session_id}")
+    print(f"Report saved to {md_path}\nand {json_path}")
+
+
+# --------------------------------------------------------------------------
 # Phase 5 — Customer Discovery (interview guide, recruiting channels,
 # outreach template, and success criteria for talking to real prospects)
 # --------------------------------------------------------------------------
@@ -1014,10 +1103,10 @@ def _prompt_interviews() -> list:
     print("time — leave the interviewee label blank when you're done.")
     interviews = []
     while True:
-        label = input(f"\n  Interview {len(interviews) + 1} — interviewee label (e.g. 'Founder #1', blank to finish): ").strip()
+        label = _safe_input(f"\n  Interview {len(interviews) + 1} — interviewee label (e.g. 'Founder #1', blank to finish): ").strip()
         if label == "":
             break
-        fits = input("    Fits the ICP? (Yes/No/Partial/Unsure): ").strip() or "Unsure"
+        fits = _safe_input("    Fits the ICP? (Yes/No/Partial/Unsure): ").strip() or "Unsure"
         notes = _prompt("    Notes from this conversation", multiline=True)
         interviews.append({"interviewee_label": label, "fits_icp": fits, "notes": notes})
     return interviews
@@ -1224,7 +1313,7 @@ def cmd_run(args: argparse.Namespace) -> None:
     }
     competitors = payload.get("competitors") or []
     interviews = payload.get("interview_notes") or []
-    target_account_count = payload.get("target_account_count", 3)
+    target_account_count = payload.get("target_account_count", 5)
 
     session_id = args.session or state.new_session_id(founder_input["product_idea"])
 
@@ -1341,8 +1430,14 @@ def main() -> None:
     p_target_accounts = sub.add_parser("target-accounts", help="Phase 4c: find real, LinkedIn-verified target companies scored against the ICP's qualified-account spec (requires `icp` to have been run)")
     p_target_accounts.add_argument("--session", required=True, help="Session ID, or 'latest'")
     p_target_accounts.add_argument("--location", help="Override the target location (defaults to founder_input.target_location from `init`, or none)")
-    p_target_accounts.add_argument("--count", type=int, default=3, help="Number of verified target accounts to return (default: 3)")
+    p_target_accounts.add_argument("--count", type=int, default=5, help="Number of verified target accounts to return (default: 5)")
     p_target_accounts.set_defaults(func=cmd_target_accounts)
+
+    p_lookalike_accounts = sub.add_parser("lookalike-accounts", help="Phase 4d: find MORE real, LinkedIn-verified companies resembling the Target Account Agent's verified accounts (requires `target-accounts` to have been run)")
+    p_lookalike_accounts.add_argument("--session", required=True, help="Session ID, or 'latest'")
+    p_lookalike_accounts.add_argument("--location", help="Override the target location (defaults to the prior target-accounts run's location, or founder_input.target_location)")
+    p_lookalike_accounts.add_argument("--count", type=int, default=5, help="Number of verified lookalike accounts to return (default: 5)")
+    p_lookalike_accounts.set_defaults(func=cmd_lookalike_accounts)
 
     p_customer_discovery = sub.add_parser("customer-discovery", help="Phase 5: build a customer discovery plan (interview guide, recruiting channels, outreach template)")
     p_customer_discovery.add_argument("--session", required=True, help="Session ID, or 'latest'")

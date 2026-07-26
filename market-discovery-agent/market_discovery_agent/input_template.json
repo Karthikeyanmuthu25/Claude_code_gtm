@@ -14,6 +14,6 @@
   "competitors": [
     {"linkedin_url": "https://www.linkedin.com/company/example", "known_name": "Example Competitor"}
   ],
-  "target_account_count": 3,
+  "target_account_count": 5,
   "interview_notes": []
 }

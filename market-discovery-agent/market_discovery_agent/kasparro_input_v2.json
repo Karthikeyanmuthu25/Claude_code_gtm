@@ -1,0 +1,31 @@
+{
+  "product_idea": "Kasparro is an AI Visibility Platform that helps mid-market and enterprise brands in ecommerce, D2C, SaaS, and fintech get discovered, recommended, and chosen by AI search engines and assistants such as ChatGPT, Perplexity, Gemini, Google AI Mode, and Microsoft Copilot -- measuring and improving their AI visibility, trust signals, and structured content so they appear in high-intent AI-generated recommendations.",
+  "vision": "Become the infrastructure powering AI recommendation visibility for modern brands -- the Semrush or Ahrefs of the AI search ecosystem -- helping businesses measure, monitor, and optimize AI discoverability across every major AI engine as buyers increasingly research and buy through AI assistants instead of traditional search.",
+  "features": [
+    "AI Visibility Audit -- inclusion rate, brand mentions, recommendation frequency, competitive visibility, category presence",
+    "Search Visibility Analysis -- inclusion score, competitive recall, surface coverage, AI engine coverage across high-intent prompts",
+    "Trust Signal Analysis -- third-party citations, structured claims, verified information, schema quality, citation authority",
+    "Content Quality Analysis -- catalog completeness, product attributes, structured metadata, entity optimization, AI-readable content",
+    "Transaction Readiness -- pricing clarity, availability, product information, website performance, agent-readable content",
+    "Prompt Explorer -- test prompts across AI platforms to see brand/competitor recommendations, ranking positions, category responses",
+    "AI Visibility Benchmarking -- inclusion index, recommendation share, competitive position, category leadership vs competitors",
+    "AI Optimization Playbook -- prioritized, structural recommendations to improve AI discoverability, not prompt manipulation"
+  ],
+  "assumptions": [
+    "AI assistants are becoming the first place buyers conduct product research",
+    "AI recommendations will become as commercially important as traditional search rankings",
+    "Brands that optimize for AI visibility will gain a competitive advantage",
+    "AI visibility can be measured objectively using inclusion rates, recommendation frequency, citations, and trust signals",
+    "Structural optimization is more sustainable than prompt engineering or short-term AI hacks",
+    "Continuous monitoring is essential because AI models, retrieval systems, and recommendation behaviors evolve over time"
+  ],
+  "founder_knowledge": "Deep expertise across AI search and large language models, technical SEO, entity optimization, schema and structured data, information retrieval, knowledge graphs, ecommerce catalog optimization, AI evaluation systems, AI recommendation measurement, revenue operations, and search infrastructure. Primary target customers are mid-market and enterprise companies (50-5,000 employees) in Ecommerce, D2C, SaaS, and Fintech that depend heavily on online/organic customer acquisition, invest significantly in SEO and content marketing, maintain large product/service catalogs, have dedicated marketing teams, operate in highly competitive comparison-driven markets, and compete for category leadership. Key buying signals: significant SEO investment, high-volume content production, active blogs/resource centers, strong digital marketing teams, enterprise martech stacks, products/services that buyers research online before purchase, frequent new product/service launches, and heavy dependence on inbound organic traffic for revenue. These prospects would lose revenue if competitors are recommended more often by AI assistants, and have the budget/organizational maturity to invest in AI visibility as a strategic growth initiative.",
+  "target_location": "India",
+  "competitors": [
+    {"linkedin_url": "https://www.linkedin.com/company/tryprofound", "known_name": "Profound"},
+    {"linkedin_url": "https://www.linkedin.com/company/evertune-ai", "known_name": "Evertune"},
+    {"linkedin_url": "https://www.linkedin.com/company/athena-hq", "known_name": "AthenaHQ"}
+  ],
+  "target_account_count": 5,
+  "interview_notes": []
+}

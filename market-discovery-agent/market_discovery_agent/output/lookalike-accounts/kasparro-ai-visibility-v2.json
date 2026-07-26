@@ -1,0 +1,90 @@
+{
+  "target_location": "India",
+  "accounts": [
+    {
+      "company_name": "Lendingkart",
+      "linkedin_url": "https://www.linkedin.com/company/lendingkart/",
+      "website_url": "https://bit.ly/45ugnJN",
+      "industry": "Financial Services",
+      "employee_count": "1456",
+      "fit_score": 90,
+      "fit_score_rationale": "Lendingkart is an excellent fit due to its confirmed headquarters in India and a strong focus on fintech for SMEs, fitting the fintech vertical. The company also falls within the employee size range and aligns with the technographic expectations of using Salesforce-class CRMs. AI and data-driven decision-making are integral to its operations.",
+      "key_matching_signals": [
+        "1456 employees on LinkedIn",
+        "Industry: Financial Services",
+        "Location confirmed: Ahmedabad, Gujarat, India",
+        "AI/data-driven credit decisions"
+      ]
+    },
+    {
+      "company_name": "InsuranceDekho",
+      "linkedin_url": "https://www.linkedin.com/company/insurancedekho/",
+      "website_url": "https://insurancedekho.com",
+      "industry": "Insurance",
+      "employee_count": "2317",
+      "fit_score": 85,
+      "fit_score_rationale": "InsuranceDekho is a strong candidate with a confirmed Indian headquarters and operates as a tech-driven platform. It fits the size range with 2317 employees and uses AI-powered technology in its operations. As a fast-growing company in the insurance domain, it aligns well with the fintech interest.",
+      "key_matching_signals": [
+        "2317 employees on LinkedIn",
+        "Industry: Insurance",
+        "Location confirmed: Gurugram, Haryana, India",
+        "AI-powered operations"
+      ]
+    },
+    {
+      "company_name": "MyMoneyMantra",
+      "linkedin_url": "https://www.linkedin.com/company/mymoneymantra/",
+      "website_url": "http://www.mymoneymantra.com",
+      "industry": "Financial Services",
+      "employee_count": "1596",
+      "fit_score": 80,
+      "fit_score_rationale": "MyMoneyMantra aligns well with the ICP due to its size and headquarters in India, alongside its strategic use of technology in financial services. The use of CRM systems in its operations makes it a relevant target.",
+      "key_matching_signals": [
+        "1596 employees on LinkedIn",
+        "Industry: Financial Services",
+        "Location confirmed: New Delhi, India"
+      ]
+    },
+    {
+      "company_name": "Namaste Credit",
+      "linkedin_url": "https://www.linkedin.com/company/namaste-credit/",
+      "website_url": "http://www.namastecredit.com",
+      "industry": "Financial Services",
+      "employee_count": "213",
+      "fit_score": 75,
+      "fit_score_rationale": "Namaste Credit is included because of its focus on AI/data-driven lending and matching technology, relevant to the financial services sector. Although it has a smaller employee count, the use of technology and data analytics justifies its fit.",
+      "key_matching_signals": [
+        "213 employees on LinkedIn",
+        "Industry: Financial Services",
+        "Location confirmed: Bengaluru, Karnataka, India"
+      ]
+    },
+    {
+      "company_name": "Digit Insurance",
+      "linkedin_url": "https://www.linkedin.com/company/godigit/",
+      "website_url": "www.godigit.com",
+      "industry": "Insurance",
+      "employee_count": "3140",
+      "fit_score": 70,
+      "fit_score_rationale": "Digit Insurance exceeds the employee range but is highlighted for its digital-first model and insurtech focus. As a larger company with a strong technological and AI focus, it remains relevant despite the size issue.",
+      "key_matching_signals": [
+        "3140 employees on LinkedIn",
+        "Industry: Insurance",
+        "Location confirmed: Bengaluru, Karnataka, India",
+        "Digital-first insurtech model"
+      ]
+    }
+  ],
+  "unverified_candidates": [
+    "PayU India (LinkedIn scrape failed)",
+    "CCAvenue (LinkedIn scrape failed)",
+    "PhonePe (LinkedIn scrape failed)",
+    "Trusting Social (headquartered in 'Singapore', not 'India' — dropped for location mismatch, confirmed deterministically)",
+    "CreditMantri (LinkedIn scrape failed)",
+    "Inditrade Capital (LinkedIn scrape failed)",
+    "Skydo (LinkedIn scrape failed)",
+    "Paytm Money (LinkedIn scrape failed)",
+    "CreditEnable India (headquartered in London, not target location India)"
+  ],
+  "summary": "The target list includes Lendingkart, InsuranceDekho, MyMoneyMantra, Namaste Credit, and Digit Insurance, all of which are strong fits for the ICP. Lendingkart and InsuranceDekho stand out particularly well due to their size, fintech/insurance focus, and technological integrations such as AI. Each candidate aligns well with the firmographic and technographic filters, making them promising prospects for this campaign."
+}
